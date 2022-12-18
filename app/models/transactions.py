@@ -12,7 +12,7 @@ likes = db.Table(
 if environment == "production":
     likes.schema = SCHEMA
 
-class Transactions(db.Model):
+class Transaction(db.Model):
     __tablename__ = 'transactions'
 
     if environment == "production":
@@ -26,12 +26,12 @@ class Transactions(db.Model):
     created_at = db.Column(db.DateTime(
         timezone=True), nullable=False, server_default=func.current_timestamp())
 
-    user_from = db.relationship('Users', back_populates='transactions_from', foreign_key="from_user_id")
-    user_to = db.relationship('Users', back_populates='transactions_to', foreign_key="to_user_id")
+    user_from = db.relationship('User', back_populates='transactions_from', foreign_keys=[from_user_id])
+    user_to = db.relationship('User', back_populates='transactions_to', foreign_keys=[to_user_id])
 
-    likes = db.relationship('Users', secondary=likes, back_populates='liked_transactions')
+    likes = db.relationship('User', secondary=likes, back_populates='liked_transactions')
 
-    comments = db.relationship('Comments', back_populates='transaction')
+    comments = db.relationship('Comment', back_populates='transaction')
 
 
     def to_dict_luxury(self):

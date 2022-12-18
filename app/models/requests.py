@@ -2,7 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
 
 
-class OpenRequests(db.Model):
+class OpenRequest(db.Model):
     __tablename__ = 'open_requests'
 
     if environment == "production":
@@ -20,10 +20,8 @@ class OpenRequests(db.Model):
     updated_at = db.Column(db.DateTime(
         timezone=True), nullable=False, server_default=func.current_timestamp())
 
-    user_from = db.relationship(
-        'Users', back_populates='request_from', foreign_key="from_user_id")
-    user_to = db.relationship(
-        'Users', back_populates='request_to', foreign_key="to_user_id")
+    user_from = db.relationship('User', back_populates='requests_from', foreign_keys=[from_user_id])
+    user_to = db.relationship('User', back_populates='requests_to', foreign_keys=[to_user_id])
 
     def to_dict_fancy(self):
         return {

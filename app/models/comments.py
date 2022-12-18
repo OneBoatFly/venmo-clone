@@ -2,7 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
 
 
-class Comments(db.Model):
+class Comment(db.Model):
     __tablename__ = 'comments'
 
     if environment == "production":
@@ -15,8 +15,8 @@ class Comments(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.current_timestamp())
     updated_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.current_timestamp())
 
-    user = db.relationship('Users', back_populates='comments')
-    transaction = db.relationship('Transactions', back_populates='comments')
+    user = db.relationship('User', back_populates='comments')
+    transaction = db.relationship('Transaction', back_populates='comments')
 
     def to_dict_fancy(self):
         return {
