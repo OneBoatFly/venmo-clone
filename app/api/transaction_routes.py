@@ -33,7 +33,7 @@ def transaction(id):
 
 @transaction_routes.route('', methods=['POST'])
 @login_required
-def create_transaction(id):
+def create_transaction():
     """
     Create a transaction and returns the newly created transaction in a dictionary
     """
@@ -41,14 +41,24 @@ def create_transaction(id):
     
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        transaction = Transaction(
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password']
-        )
-        db.session.add(transaction)
-        db.session.commit()
-        return transaction.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-    return transaction.to_dict_luxury()
+        with db.session.begin():
+            user_from = User.query.get(current_user.id).populate_existing().with_for_update()
+            user_to = User.query.get(
+                form.data['to_user_id']).populate_existing().with_for_update()
+            
+            user_from.balance -= form.data['amount']
+            user_to.balance += form.data['amount']
+
+            transaction = Transaction(
+                amount=form.data['amount'],
+                note=form.data['note'],
+                user_from=user_from,
+                user_to=user_to
+            )
+
+            db.session.add(transaction)
+        
+        return transaction.to_dict_fancy()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
