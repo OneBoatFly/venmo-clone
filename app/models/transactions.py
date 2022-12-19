@@ -32,9 +32,7 @@ class Transaction(db.Model):
     likes = db.relationship('User', secondary=likes, back_populates='liked_transactions')
 
     comments = db.relationship('Comment', back_populates='transaction')
-
-    user_from.balance -= amount
-
+    
     def to_dict_luxury(self):
         return {
             'id': self.id,
