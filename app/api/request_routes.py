@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import User, OpenRequest, db
-from app.forms import PayRequestForm
+from app.forms import PayRequestForm, PayRequestEditForm
 from .auth_routes import validation_errors_to_error_messages
 
 request_routes = Blueprint('requests', __name__)
@@ -40,3 +40,38 @@ def create_request():
         return request.to_dict_fancy()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@request_routes.route('/<int:requestId>', methods=['PUT'])
+@login_required
+def edit_request(requestId):
+    """
+    Edit a request and returns the updated request in a dictionary
+    """
+    form = PayRequestEditForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        request = OpenRequest.query.get(requestId)
+        request.amount = form.data['amount']
+        request.note = form.data['note']
+
+        db.session.commit()
+
+        return request.to_dict_fancy()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@request_routes.route('/<int:requestId>', methods=['DELETE'])
+@login_required
+def edit_request(requestId):
+    """
+    Delete a request and returns None
+    """
+    request = OpenRequest.query.get(requestId)
+    if request:
+        db.session.remove(request)
+        db.session.commit()
+
+    return {'errors': 'Request is not found.'}, 404
