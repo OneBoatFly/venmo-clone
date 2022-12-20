@@ -4,16 +4,35 @@ from app.models import db, User, OpenRequest, environment, SCHEMA
 def seed_requests():
     user1 = User.query.get(1)
     user2 = User.query.get(2)
+    user3 = User.query.get(3)
 
     for i in range(3):
-        requests = OpenRequest(
+        request1 = OpenRequest(
             amount=(i + 1) * 10000,
             note=f'Lunch {i + 1}'
         )
 
-        requests.user_from = user1
-        requests.user_to = user2
-        db.session.add(requests)
+        request1.user_from = user1
+        request1.user_to = user2
+        db.session.add(request1)
+
+        request2 = OpenRequest(
+            amount=(i + 1) * 5000,
+            note=f'Dinner {i + 1}'
+        )
+
+        request2.user_from = user3
+        request2.user_to = user1
+        db.session.add(request2)
+
+        request3 = OpenRequest(
+            amount=(i + 1) * 500,
+            note=f'Breakfast {i + 1}'
+        )
+
+        request3.user_from = user3
+        request3.user_to = user2
+        db.session.add(request3)
 
     db.session.commit()
 

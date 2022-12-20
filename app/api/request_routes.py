@@ -27,17 +27,20 @@ def create_open_request():
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        request = OpenRequest(
+        if form.data['to_user_id'] == current_user.id:
+            return {'errors': 'You cannot make request to yourself.'}, 401
+
+        open_request = OpenRequest(
             amount=form.data['amount'],
             note=form.data['note'],
         )
 
-        request.user_from = current_user
-        request.user_to = User.query.get(form.data['to_user_id'])
-        db.session.add(request)
+        open_request.user_from = current_user
+        open_request.user_to = User.query.get(form.data['to_user_id'])
+        db.session.add(open_request)
         db.session.commit()
 
-        return request.to_dict_fancy()
+        return open_request.to_dict_fancy()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -52,13 +55,13 @@ def edit_open_request(requestId):
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        request = OpenRequest.query.get(requestId)
-        request.amount = form.data['amount']
-        request.note = form.data['note']
+        open_request = OpenRequest.query.get(requestId)
+        if open_request:
+            open_request.amount = form.data['amount']
+            open_request.note = form.data['note']
+            db.session.commit()
 
-        db.session.commit()
-
-        return request.to_dict_fancy()
+            return open_request.to_dict_fancy()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -69,9 +72,10 @@ def delete_open_request(requestId):
     """
     Delete a request and returns None
     """
-    request = OpenRequest.query.get(requestId)
-    if request:
-        db.session.remove(request)
+    open_request = OpenRequest.query.get(requestId)
+    if open_request:
+        db.session.delete(open_request)
         db.session.commit()
+        return {'success': 'This request is deleted.'}
 
     return {'errors': 'Request is not found.'}, 404
