@@ -14,11 +14,23 @@ def friends():
     """
     Query for all friends of the current user, and returns them in a list of friend dictionaries
     """
-    friends = current_user.to_dict_luxury()['friends']
-    pending_from = current_user.to_dict_luxury()['pending_friends_from']
-    pending_to = current_user.to_dict_luxury()['pending_friends_to']
-    
-    return {"Friends": friends, 'PendingFriendsFrom': pending_from, 'PendingFriendsTo': pending_to}
+    fds_from_ids = filter(lambda friend: friend.is_confirmed, current_user.friends_from)
+    fds_to_ids = filter(lambda friend: friend.is_confirmed, current_user.friends_to)
+
+    fds_from = [User.query.get(fds.to_user_id) for fds in fds_from_ids]
+    fds_to = [User.query.get(fds.from_user_id) for fds in fds_to_ids]
+
+    friends = [*fds_from, *fds_to]
+
+    pending_from_ids = filter(lambda friend: not friend.is_confirmed, current_user.friends_from)
+    pending_from = [User.query.get(fds.to_user_id) for fds in pending_from_ids]
+
+    pending_to_ids = filter(lambda friend: not friend.is_confirmed, current_user.friends_to)
+    pending_to = [User.query.get(fds.from_user_id) for fds in pending_to_ids]
+
+    return {"Friends": [f.to_dict() for f in friends],
+            'PendingFriendsFrom': [f.to_dict() for f in pending_from], 
+            'PendingFriendsTo': [f.to_dict() for f in pending_to]}
 
 
 @friend_routes.route('', methods=['POST'])
@@ -28,7 +40,12 @@ def create_friend_request():
     Create a friend and returns None
     """
     to_user_id = request.args.get('to_user_id')
+    if int(to_user_id) == current_user.id:
+        return {'errors': 'You cannot send a friend request to yourself.'}, 401
+
     to_user = User.query.get(to_user_id)
+    if not to_user:
+        return {'errors': 'User not found.'}, 404
 
     friendship = Friend.query.filter(
         or_(and_(Friend.from_user_id == to_user_id, Friend.to_user_id == current_user.id), 
@@ -37,16 +54,14 @@ def create_friend_request():
     if friendship:
         return {'errors': 'You already have a pending friend request with this user.'}, 401
 
-    if not to_user:
-        return {'errors': 'User not found.'}, 404
-
     friend = Friend(
         from_user_id=current_user.id,
         to_user_id=to_user_id
     )
 
     db.session.add(friend)
-    db.session.commit() 
+    db.session.commit()
+    return friend.to_dict_basics()
 
 
 @friend_routes.route('', methods=['PATCH'])
@@ -63,8 +78,12 @@ def confirm_friend():
             Friend.from_user_id==from_user_id, 
             Friend.to_user_id==current_user.id).first()
 
+        if not friend:
+            return {'error': 'There is no friend request from this user.'}, 404
+
         friend.is_confirmed = True
         db.session.commit()
+        return friend.to_dict_basics()
 
     return {'errors': 'User not found.'}, 404
 
@@ -76,6 +95,9 @@ def delete_friend():
     Delete a friend and returns None
     """
     unfriend_user_id = request.args.get('unfriend_user_id')
+    if int(unfriend_user_id) == current_user.id:
+        return {'errors': 'You cannot unfriend yourself.'}, 401
+
     unfriend_user = User.query.get(unfriend_user_id)
 
     if not unfriend_user:
@@ -88,5 +110,6 @@ def delete_friend():
     if not friendship:
         return {'errors': 'You are not a friend with this user.'}, 404
     
-    db.session.remove(friendship)
+    db.session.delete(friendship)
     db.session.commit()
+    return {'success': 'You unfriended this user.'}

@@ -14,9 +14,23 @@ def transactions():
     Query for all transactions of the current user and its friends, and returns them in a list of transaction dictionaries
     """
     user_transactions = current_user.to_dict_luxury()['transactions']
+    user_transactions_ids = [tran['id'] for tran in user_transactions]
 
-    friends = current_user.friends
-    friends_transactions = [friend.to_dict_luxury()['transactions'] for friend in friends]
+    fds_from_ids = filter(lambda friend: friend.is_confirmed, current_user.friends_from)
+    fds_to_ids = filter(lambda friend: friend.is_confirmed, current_user.friends_to)
+    fds_from = [User.query.get(fds.to_user_id).to_dict_luxury() for fds in fds_from_ids]
+    fds_to = [User.query.get(fds.from_user_id).to_dict_luxury() for fds in fds_to_ids]
+    friends = [*fds_from, *fds_to]
+
+    friends_transactions = []
+    friend_trans_dups = []
+    
+    for f in friends:
+        friend_trans = f['transactions']
+        for t in friend_trans:
+            if t['id'] not in user_transactions_ids and t['id'] not in friend_trans_dups:
+                friends_transactions.append(t)  
+                friend_trans_dups.append(t['id'])
 
     return {'UserTransactions': user_transactions, "FriendsTransactions": friends_transactions}
 
@@ -41,24 +55,40 @@ def create_transaction():
     
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        if form.data['to_user_id'] == current_user.id:
+            return {'error': 'You cannot transfer fund to yourself.'}, 401
+        
+        # user_from = User.query.with_for_update(of=User).filter_by(id=current_user.id).first()
+        # user_to = User.query.with_for_update(of=User).filter_by(id=form.data['to_user_id']).first()
+        user_from = db.session.query(User).populate_existing().with_for_update(of=User.balance).filter_by(id=current_user.id).first()
+        user_to = db.session.query(User).populate_existing().with_for_update(of=User.balance).filter_by(id=form.data['to_user_id']).first()
 
-        with db.session.begin():
-            user_from = User.query.get(current_user.id).populate_existing().with_for_update()
-            user_to = User.query.get(
-                form.data['to_user_id']).populate_existing().with_for_update()
-            
-            user_from.balance -= form.data['amount']
-            user_to.balance += form.data['amount']
+        if user_from.balance < form.data['amount']:
+            return {'error': 'insufficient fund.'}
 
-            transaction = Transaction(
-                amount=form.data['amount'],
-                note=form.data['note'],
-                user_from=user_from,
-                user_to=user_to
-            )
+        user_from.balance -= form.data['amount']
+        user_to.balance += form.data['amount']
 
-            db.session.add(transaction)
+        transaction = Transaction(
+            amount=form.data['amount'],
+            note=form.data['note'],
+            user_from=user_from,
+            user_to=user_to
+        )
+
+        db.session.add(transaction)
+        db.session.commit()
         
         return transaction.to_dict_fancy()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+# to remove
+@transaction_routes.route('/<int:transaction_id>', methods=['DELETE'])
+@login_required
+def delete_transaction(transaction_id):
+    t = Transaction.query.get(transaction_id)
+    db.session.delete(t)
+    db.session.commit()
+
+    return 'deleted'

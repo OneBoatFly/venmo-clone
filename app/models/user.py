@@ -48,29 +48,17 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    @property
-    def friends(self):
-        fds_from = filter(lambda friend: friend.is_confirmed, [self.friends_from])
-        fds_to = filter(lambda friend: friend.is_confirmed, [self.friends_to])
-        return [*fds_from, *fds_to]
-
     def sort_transactions_by_time(self):
         fromArr = [transaction.to_dict_fancy() for transaction in self.transactions_from]
         toArr = [transaction.to_dict_fancy() for transaction in self.transactions_to]
         all_transactions = [*fromArr, *toArr]
         all_transactions.sort(key=lambda transaction: transaction['createdAt'], reverse=True)
-        print('all_transactions_______________________', all_transactions)
         return all_transactions
 
     def sort_request_by_time(self, requests):
         requestsArr = [request.to_dict_fancy() for request in requests]
         sorted_requests = sorted(requestsArr, key=lambda request: request['createdAt'], reverse=True)
         return sorted_requests
-
-    def confirmed_friends(self):
-        fromArr = [friend.to_dict_basics() for friend in self.friends_from]
-        toArr = [friend.to_dict_basics() for friend in self.friends_to]
-        return list(filter(lambda friend: friend['isConfirmed'], [*fromArr, *toArr]))
 
     def to_dict_luxury(self):
         return {
@@ -82,9 +70,6 @@ class User(db.Model, UserMixin):
             'transactions': self.sort_transactions_by_time(),
             'request_from': self.sort_request_by_time(self.requests_from),
             'request_to': self.sort_request_by_time(self.requests_to),
-            'friends': self.confirmed_friends(),
-            'pending_friends_from': [friend.to_dict_basics() for friend in self.friends_from if friend.is_confirmed == False],
-            'pending_friends_to': [friend.to_dict_basics() for friend in self.friends_to if friend.is_confirmed == False],
         }
 
     def to_dict(self):
@@ -92,6 +77,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'balance': self.balance,
+            # 'balance': self.balance,
             'imageUrl': self.image_url
         }

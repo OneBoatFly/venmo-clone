@@ -31,7 +31,7 @@ def create_comment():
         return {'errors': 'Transaction is not found.'}, 404
 
     form = CommentForm()
-    form['csrf_token'].data = comment.cookies['csrf_token']
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         comment = Comment(
             body=form.data['body'],
@@ -53,13 +53,12 @@ def edit_comment(commentId):
     """
     Edit a comment and returns the updated comment in a dictionary
     """
-    commentId = request.args.get('commentId')
     comment = Comment.query.get(commentId)
     if not comment:
         return {'errors': 'Comment is not found.'}, 404
 
     form = CommentForm()
-    form['csrf_token'].data = comment.cookies['csrf_token']
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         comment.body = form.data['body']
         db.session.commit()
@@ -77,7 +76,8 @@ def delete_comment(commentId):
     """
     comment = Comment.query.get(commentId)
     if comment:
-        db.session.remove(comment)
+        db.session.delete(comment)
         db.session.commit()
+        return {'success': 'Comment deleted.'}
 
     return {'errors': 'Comment is not found.'}, 404

@@ -3,12 +3,12 @@ from flask_login import login_required, current_user
 from app.models import User, Transaction, Comment, OpenRequest, db
 from sqlalchemy import or_, and_, func
 
-search_routes = Blueprint('searchs', __name__)
+search_routes = Blueprint('search', __name__)
 
 
 @search_routes.route('')
 @login_required
-def searchs():
+def search():
     """
     Query for user, comments, transactions and requests corresponding to search keyword,
     and returns them in a list of search dictionaries

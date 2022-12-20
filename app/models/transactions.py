@@ -45,7 +45,7 @@ class Transaction(db.Model):
             'toUser': self.user_to.to_dict(),
             'numOfLikes': len(self.likes),
             'numOfComments': len(self.comments),
-            'comments': [comment.to_dict_basic() for comment in self.comments]
+            'comments': [comment.to_dict_basics() for comment in self.comments]
         }
 
     def to_dict_fancy(self):
