@@ -59,6 +59,7 @@ class User(db.Model, UserMixin):
         toArr = [transaction.to_dict_fancy() for transaction in self.transactions_to]
         all_transactions = [*fromArr, *toArr]
         all_transactions.sort(key=lambda transaction: transaction['createdAt'], reverse=True)
+        print('all_transactions_______________________', all_transactions)
         return all_transactions
 
     def sort_request_by_time(self, requests):
@@ -69,7 +70,7 @@ class User(db.Model, UserMixin):
     def confirmed_friends(self):
         fromArr = [friend.to_dict_basics() for friend in self.friends_from]
         toArr = [friend.to_dict_basics() for friend in self.friends_to]
-        return filter(lambda friend: friend['isConfirmed'], [*fromArr, *toArr])
+        return list(filter(lambda friend: friend['isConfirmed'], [*fromArr, *toArr]))
 
     def to_dict_luxury(self):
         return {

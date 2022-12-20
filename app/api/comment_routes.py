@@ -71,7 +71,7 @@ def edit_comment(commentId):
 
 @comment_routes.route('/<int:commentId>', methods=['DELETE'])
 @login_required
-def edit_comment(commentId):
+def delete_comment(commentId):
     """
     Delete a comment and returns None
     """

@@ -1,5 +1,5 @@
 from app.models import db, User, Friend, environment, SCHEMA, Friend
-
+from sqlalchemy import or_, and_
 
 def seed_friends():
     users = User.query.all()
@@ -9,13 +9,17 @@ def seed_friends():
         for j in range(len(users)):
             if j != i:
                 user2 = users[j]
-                is_confirmed = j % 2 == 0
-                friend = Friend(
-                    from_user_id= user1.id,
-                    to_user_id = user2.id,
-                    is_confirmed=is_confirmed
-                )
-                db.session.add(friend)
+                friendship = Friend.query.filter(
+                    or_(and_(Friend.from_user_id == user1.id, Friend.to_user_id == user2.id),
+                        and_(Friend.from_user_id == user2.id, Friend.to_user_id == user1.id))).first()
+                if not friendship:
+                    is_confirmed = j % 2 == 0
+                    friend = Friend(
+                        from_user_id= user1.id,
+                        to_user_id = user2.id,
+                        is_confirmed=is_confirmed
+                    )
+                    db.session.add(friend)
                 
     db.session.commit()
 

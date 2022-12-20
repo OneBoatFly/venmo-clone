@@ -19,7 +19,7 @@ def requests():
 
 @request_routes.route('', methods=['POST'])
 @login_required
-def create_request():
+def create_open_request():
     """
     Create a request and returns the newly created request in a dictionary
     """
@@ -44,7 +44,7 @@ def create_request():
 
 @request_routes.route('/<int:requestId>', methods=['PUT'])
 @login_required
-def edit_request(requestId):
+def edit_open_request(requestId):
     """
     Edit a request and returns the updated request in a dictionary
     """
@@ -65,7 +65,7 @@ def edit_request(requestId):
 
 @request_routes.route('/<int:requestId>', methods=['DELETE'])
 @login_required
-def edit_request(requestId):
+def delete_open_request(requestId):
     """
     Delete a request and returns None
     """
