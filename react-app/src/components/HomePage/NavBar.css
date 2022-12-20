@@ -1,0 +1,46 @@
+.nav-bar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vinmo-span {
+    font-size: 42px;
+    font-weight: bold;
+    background-image: linear-gradient(#6DC7FF, #E6ABFF);
+    background-clip: text;
+    -webkit-text-fill-color: transparent
+}
+
+.vinmo-a {
+    width: 100%;
+}
+
+.logo-tiny {
+    font-size: 18px;
+}
+
+.nav-bar-divs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1.2rem;
+}
+
+.login-a,
+.sign-up-a {
+    font-size: 16px;
+}
+
+.sign-up-a {
+    padding: 0.6rem 1.5rem;
+    border: 1px solid black;
+    border-radius: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.4rem;
+}
