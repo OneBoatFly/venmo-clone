@@ -1,8 +1,30 @@
 .nav-bar-nav {
+    /* outline: 1px solid black; */
+    position: sticky;
+    top: 0;
+    z-index: 3;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    padding: 8px 10rem 8px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 6%);
+    background-color: white;
+    min-height: 80px;
+    max-height: 80px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1240px) {
+    .nav-bar-nav {
+        padding: 1.2rem 5rem 1.2rem;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .nav-bar-nav {
+        padding: 1.2rem 0.8rem 1.2rem;
+    }
 }
 
 .vinmo-span {
@@ -19,6 +41,7 @@
 
 .logo-tiny {
     font-size: 18px;
+    font-weight: bold;
 }
 
 .nav-bar-divs {
@@ -43,4 +66,8 @@
     align-items: center;
     justify-content: center;
     column-gap: 0.4rem;
+}
+
+.sign-up-a:hover {
+    background-color: rgba(0, 140, 255, .1);
 }
