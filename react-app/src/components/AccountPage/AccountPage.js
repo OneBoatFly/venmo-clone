@@ -5,8 +5,8 @@ import './AccountPage.css';
 export default function AccountPage() {
   return (
     <div className='account-page-div'>
-        <SideBar />
-        <div>AccountPage Placeholder</div>
+      <SideBar />
+      <div>AccountPage Placeholder</div>
     </div>
   )
 }

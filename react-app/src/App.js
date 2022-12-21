@@ -11,6 +11,7 @@ import HomePage from './components/HomePage/HomePage';
 import AccountPage from './components/AccountPage/AccountPage';
 import Footer from './components/Footer/Footer';
 import PayPage from './components/PayPage/PayPage';
+import OpenRequestPage from './components/OpenRequestPage/OpenRequestPage';
 
 function App() {
   const user = useSelector(state => state.session.user);
@@ -47,7 +48,10 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/pay' exact={true} >
           <PayPage />
-        </ProtectedRoute>        
+        </ProtectedRoute>
+        <ProtectedRoute path='/open' exact={true} >
+          <OpenRequestPage />
+        </ProtectedRoute>               
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>

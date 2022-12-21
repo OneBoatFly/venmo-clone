@@ -4,9 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PayReqButt from './PayReqButt';
 import './SideBar.css';
+import { getDecimalNum } from '../../utils/getDecimalNum';
 
 export default function SideBar() {
   const user = useSelector(state => state.session.user);
+  const amount = getDecimalNum(user?.balance)
 
 return (
     <nav className='sidebar-div'>
@@ -26,7 +28,7 @@ return (
           </div>
           <PayReqButt />
           <div className='sidebar-single-div'>
-            <span className='sidebar-balance'>${parseFloat((user.balance / 100).toFixed(2)).toLocaleString()} in Vinmo</span>
+        <span className='sidebar-balance'>${amount} in Vinmo</span>
           </div>
           <div className='sidebar-single-div sidebar-menu'>
             <NavLink to='/search' onClick={(e) => e.preventDefault()}>Search - feature to come</NavLink>

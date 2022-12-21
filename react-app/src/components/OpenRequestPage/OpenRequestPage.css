@@ -1,0 +1,72 @@
+.openrequest-page-div {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100vh - 80px);
+    width: 100%;
+    color: #2F3033;
+}
+
+.openrequest-page {
+    margin-top: 3.26rem;
+    width: calc(100vw - 317px);
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+    padding: 0px 12%;
+    box-sizing: border-box;
+}
+
+.openrequest-head {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.33;
+    margin: 0.67em 0;
+}
+
+.openrequest-tag {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.33;
+}
+
+.openrequest-button {
+    border: unset;
+    cursor: pointer;
+    padding: 6px 12px;
+    background-color: white;
+    width: 50%;
+    color: #6B6E76;
+    min-height: 32px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.open-requests-active {
+    color: #0074DE;
+    border-bottom: 2px solid #0074DE;
+}
+
+.openrequests-single-div {
+    margin-top: 32px;
+}
+
+.openrequests-top {
+    border: 1px solid salmon;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8px;
+}
+
+.openrequest-profile-pic {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+.openrequest-info-div {
+    flex-basis: auto;
+    display: flex;
+    flex-direction: column;
+}

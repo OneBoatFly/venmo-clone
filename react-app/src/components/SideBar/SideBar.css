@@ -9,6 +9,7 @@
     row-gap: 2rem;
     padding: 1.7rem 8px 1.7rem 40px;
     border-right: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 .side-bar-profile-pic {

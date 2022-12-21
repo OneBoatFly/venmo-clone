@@ -48,7 +48,7 @@ const SignUpForm = () => {
     if (errors.email) emailDivRef.current.classList.add('hasErrors')
     if (errors.password) passwordDivRef.current.classList.add('hasErrors')
     if (errors.repeatPassword) repeatPasswordDivRef.current.classList.add('hasErrors')
-  }, [errors])
+  }, [errors, hasSubmit])
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
