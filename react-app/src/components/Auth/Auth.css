@@ -140,3 +140,19 @@ input:-webkit-autofill:focus {
     display: none;
     font-size: 16px;
 }
+
+.logout-butt {
+    cursor: pointer;
+    border: unset;
+    background: unset;
+    color: #2F3033;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
+
+.logout-butt:hover {
+    color: #0074DE;
+}

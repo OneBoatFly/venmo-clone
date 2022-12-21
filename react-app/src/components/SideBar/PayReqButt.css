@@ -1,0 +1,32 @@
+.sidebar-single-div.pay-request-butt {
+    width: 100%;
+    height: fit-content;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.pay-request-a {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #0074de;
+    border-radius: 24px;
+    text-align: center;
+    padding: 12px 12px;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 400;
+    position: relative;
+
+}
+
+.pay-request-a-v {
+    font-size: 1.8rem;
+    font-weight: 900;
+    position: absolute;
+    bottom: 0.3rem;
+}
+
+.pay-request-text {
+    margin-left: 1.8rem;
+}

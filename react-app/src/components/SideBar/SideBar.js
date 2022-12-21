@@ -17,18 +17,19 @@ return (
               <span className='vinmo-span'>Vinmo</span>
             </NavLink>
           </div>
-          <div className='sidebar-single-div'>
-            <img src={user.imageUrl} alt=''/>
+          <div className='sidebar-single-div profile-container'>
+            <img src={user.imageUrl} alt='' className='side-bar-profile-pic'/>
             <div className='sidebar-name-email-div'>
               <span>Hi, {user.username}</span>
-              <NavLink to={`/u/${user.username}`}>@ {user.email}</NavLink>
+              <NavLink to={`/u/${user.username}`}>@{user.email}</NavLink>
             </div>
           </div>
           <PayReqButt />
           <div className='sidebar-single-div'>
-              <span>${user.balance / 100} in Vinmo</span>
+            <span className='sidebar-balance'>${parseFloat((user.balance / 100).toFixed(2)).toLocaleString()} in Vinmo</span>
           </div>
-          <div className='sidebar-single-div'>
+          <div className='sidebar-single-div sidebar-menu'>
+            <NavLink to='/search' onClick={(e) => e.preventDefault()}>Search - feature to come</NavLink>
             <NavLink to='/open'>Open Request</NavLink>
             <LogoutButton />
           </div>

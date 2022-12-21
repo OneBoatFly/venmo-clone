@@ -1,6 +1,62 @@
 .sidebar-div {
     width: 317px;
     min-width: 317px;
-    border: 1px solid black;
     height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 2rem;
+    padding: 1.7rem 8px 1.7rem 40px;
+    border-right: 1px solid #ccc;
+}
+
+.side-bar-profile-pic {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+}
+
+.sidebar-single-div.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.sidebar-name-email-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 8px;
+    height: 100%;
+}
+
+.sidebar-name-email-div span {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.33;
+}
+
+.sidebar-name-email-div a {
+    color: #0074DE;
+}
+
+.sidebar-balance {
+    color: #2F3033;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.sidebar-single-div.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    color: #2F3033;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.sidebar-single-div.sidebar-menu a:hover {
+    color: #0074DE;
 }
