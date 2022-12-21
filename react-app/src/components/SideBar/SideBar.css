@@ -1,0 +1,6 @@
+.sidebar-div {
+    width: 317px;
+    min-width: 317px;
+    border: 1px solid black;
+    height: calc(100vh - 80px);
+}

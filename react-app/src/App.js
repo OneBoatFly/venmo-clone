@@ -10,6 +10,7 @@ import { authenticate } from './store/session';
 import HomePage from './components/HomePage/HomePage';
 import AccountPage from './components/AccountPage/AccountPage';
 import Footer from './components/Footer/Footer';
+import PayPage from './components/PayPage/PayPage';
 
 function App() {
   const user = useSelector(state => state.session.user);
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/account' exact={true} >
           <AccountPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/pay' exact={true} >
+          <PayPage />
         </ProtectedRoute>        
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

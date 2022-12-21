@@ -1,11 +1,12 @@
 import React from 'react';
 import SideBar from '../SideBar/SideBar';
+import './AccountPage.css';
 
 export default function AccountPage() {
   return (
-    <div>
+    <div className='account-page-div'>
         <SideBar />
-        AccountPage Placeholder
+        <div>AccountPage Placeholder</div>
     </div>
   )
 }
