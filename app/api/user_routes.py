@@ -5,7 +5,7 @@ from app.models import User
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/')
+@user_routes.route('')
 @login_required
 def users():
     """
@@ -22,4 +22,7 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
-    return user.to_dict()
+    if not user:
+        return {'errors': 'User not found.'}, 404
+
+    return user.to_dict_luxury()

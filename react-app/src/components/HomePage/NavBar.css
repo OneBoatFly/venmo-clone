@@ -1,0 +1,82 @@
+.nav-bar-nav {
+    /* outline: 1px solid black; */
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10rem 8px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 6%);
+    background-color: white;
+    min-height: 80px;
+    max-height: 80px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1240px) {
+    .nav-bar-nav {
+        padding: 1.2rem 5rem 1.2rem;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .nav-bar-nav {
+        padding: 1.2rem 0.8rem 1.2rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .vinmo-a {
+        display: none !important;
+    }
+}
+
+.vinmo-span {
+    font-size: 42px;
+    font-weight: bold;
+    background-image: linear-gradient(#6DC7FF, #E6ABFF);
+    background-clip: text;
+    -webkit-text-fill-color: transparent
+}
+
+.vinmo-a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-tiny {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-bar-divs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1.2rem;
+}
+
+.login-a,
+.sign-up-a {
+    font-size: 16px;
+}
+
+.sign-up-a {
+    padding: 0.6rem 1.5rem;
+    border: 1px solid black;
+    border-radius: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.4rem;
+}
+
+.sign-up-a:hover {
+    background-color: rgba(0, 140, 255, .1);
+}
