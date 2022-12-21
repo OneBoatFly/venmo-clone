@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../Auth/LogoutButton';
 import { NavLink } from 'react-router-dom';
 
 export default function SideBar() {

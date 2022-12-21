@@ -1,5 +1,6 @@
 .nav-bar-nav {
     /* outline: 1px solid black; */
+    width: 100%;
     position: sticky;
     top: 0;
     z-index: 3;
@@ -27,6 +28,12 @@
     }
 }
 
+@media screen and (max-width: 400px) {
+    .vinmo-a {
+        display: none !important;
+    }
+}
+
 .vinmo-span {
     font-size: 42px;
     font-weight: bold;
@@ -37,6 +44,8 @@
 
 .vinmo-a {
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .logo-tiny {

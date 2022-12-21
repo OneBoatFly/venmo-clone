@@ -1,16 +1,14 @@
 .home-main-div {
-    /* outline: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 6rem 10rem 6rem;
+    padding: 12rem 10rem 6rem;
     box-sizing: border-box;
-    column-gap: min(8rem, 100px);
-    height: calc(100vh - 160px);
+    column-gap: min(3rem, 80px);
+    width: 100%;
 }
 
 .home-main-left {
-    /* outline: 1px solid blue; */
     padding: 8rem 0px;
     display: flex;
     flex-direction: column;
@@ -60,38 +58,41 @@
 .doodle-green {
     position: absolute;
     z-index: 2;
-    width: 75px;
-    top: -20px;
-    left: 95px;
+    width: 55px;
+    top: 80px;
+    left: 80px;
 }
 
 .doodle-multi {
     position: absolute;
     z-index: 2;
-    width: 90px;
-    right: 60px;
-    top: 65px;
+    width: 70px;
+    top: 300px;
+    left: 300px;
 }
 
 .upper-phone {
-    position: absolute;
     z-index: 1;
-    width: 500px;
-    top: -100px;
+    width: 24rem;
 }
 
 .upper-phone-shadow {
     position: absolute;
-    z-index: 0;
-    width: 650px;
-    left: 10px;
-    top: -85px;
+    z-index: -1;
+    width: 32.5rem;
+    left: 0px;
+    top: 0px;
 }
 
-.lower-phone {
-    position: absolute;
-    z-index: 0;
-    width: 600px;
-    left: 50px;
-    top: -85px;
+
+@media screen and (max-width: 800px) {
+    .home-main-right {
+        display: none;
+    }
+}
+
+@media (max-width: 680px) {
+    .home-main-div {
+        padding: 0px 16px;
+    }
 }
