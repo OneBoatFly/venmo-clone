@@ -2,8 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-export default function NoteContainer({ newNote, setNewNote }) {
-    const [error, setError] = useState('');
+export default function NoteContainer({ newNote, setNewNote, errors, setErrors }) {
+    const [error, setError] = useState('')
 
     useEffect(() => {
         let newError = ''
@@ -16,14 +16,25 @@ export default function NoteContainer({ newNote, setNewNote }) {
             newError = ''
         }
 
-        if (newError.length) setError(newError)
+        setError(newError)
+        if (newError.length) {
+            setErrors(oldErrors => {
+                oldErrors.note = newError
+                return oldErrors
+            })
+        } else {
+            setErrors(oldErrors => {
+                delete oldErrors.note
+                return oldErrors
+            })
+        }
 
-    }, [newNote])
+    }, [newNote, errors, setErrors])
 
   return (
     <div className='note-input-div'>
         <input type='text' value={newNote} onChange={(e) => setNewNote(e.target.value)} />
-        {error.length > 0 && <span>{error}</span>}
+        {error && <span>{error}</span>}
     </div>
   )
 }
