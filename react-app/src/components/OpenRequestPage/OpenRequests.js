@@ -15,16 +15,18 @@ export default function OpenRequests({ userRequests }) {
                 <div className='openrequests-top'>
                     <img className='openrequest-profile-pic' src={open.toUser.imageUrl} alt=""/>
                     <div className='openrequest-info-div'>
-                        <span>Request to {open.toUser.username}</span>
-                        {console.log(open.createdAt)}
-                        <span>Request sent {diffTime}</span>
+                        <span>Request to <b>{open.toUser.username}</b></span>
+                        <span style={{'color':'#55585E', 'fontSize':'0.875rem'}}>{diffTime}</span>
                         <span>{open.note}</span>
                     </div>
-                    <span>${amount}</span>
+                    <span className='openrequest-amount'>${amount}</span>
                 </div>
-                <div>
-                    <button>Cancel</button>
-                    <button>Edit</button>
+                <div className='openrequest-buttons-div'>
+                    <div className='openrequest-buttons-div-button'>
+                        <button>Cancel</button>
+                        <button>Edit</button>
+                    </div>
+                    <hr></hr>
                 </div>
             </div>
         )
