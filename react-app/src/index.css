@@ -3,11 +3,10 @@ html,
 body,
 #root {
     font-family: "Ubuntu";
-    position: relative;
     margin: 0px;
     padding: 0px;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -15,6 +14,7 @@ body,
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 }
 
 a {

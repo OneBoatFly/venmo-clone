@@ -107,6 +107,7 @@ input:-webkit-autofill:focus {
     color: #0074DE;
     border-color: #0074DE;
     padding: 0.8rem 1.5rem;
+    font-size: 14px;
 }
 
 .auth-error-div {
