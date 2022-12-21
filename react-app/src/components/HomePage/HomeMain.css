@@ -1,15 +1,23 @@
 .home-main-div {
+    padding: 6rem 0;
+    box-sizing: border-box;
+    width: 100%;
+    
+}
+
+.home-main-sub-div {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 12rem 10rem 6rem;
     box-sizing: border-box;
-    column-gap: min(3rem, 80px);
+    column-gap: 80px;
+    margin: 0px auto;
     width: 100%;
 }
 
 .home-main-left {
-    padding: 8rem 0px;
+    padding: 8rem 0;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -18,7 +26,7 @@
 }
 
 .home-main-head {
-    font-size: 3.2rem;
+    font-size: 3rem;
     max-width: min(300px, 20rem);
 }
 
@@ -51,8 +59,7 @@
 .home-main-right {
     /* outline: 1px solid blue; */
     position: relative;
-    width: 55%;
-    max-width: 55%;
+    overflow: hidden;
 }
 
 .doodle-green {
@@ -82,6 +89,7 @@
     width: 32.5rem;
     left: 0px;
     top: 0px;
+    overflow: hidden;
 }
 
 
