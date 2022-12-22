@@ -4,12 +4,14 @@ import session from './session';
 import user from './user';
 import openReqPay from './openRequest';
 import friend from './friend';
+import transaction from './transactons';
 
 const rootReducer = combineReducers({
   session,
   user,
   openReqPay,
-  friend
+  friend,
+  transaction
 });
 
 
