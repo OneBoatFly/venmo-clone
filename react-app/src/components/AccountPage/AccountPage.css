@@ -43,3 +43,8 @@
     background-color: #6B6E76;
     border: 0.5px solid #6B6E76;
 }
+
+.transaction-body-div {
+    width: 100%;
+    margin-top: 32px;
+}

@@ -5,7 +5,7 @@ import './UserTransactions.css';
 import { useHistory } from 'react-router-dom';
 import TransactionRow from './TransactionRow';
 
-export default function UserTransactions({ userTransactions }) {
+export default function FriendsTransactions({ friendsTransactions }) {
     // const dispatch = useDispatch();
 
     const handleLike = (transaction) => {
@@ -20,10 +20,10 @@ export default function UserTransactions({ userTransactions }) {
 
 
     return (
-        userTransactions.map((transaction, idx) => {
+        friendsTransactions.map((transaction, idx) => {
             return (
                 <div key={idx} className='transaction-single-div'>
-                    <TransactionRow transaction={transaction} showAmount={true} />
+                    <TransactionRow transaction={transaction} showAmount={false} />
                     <div className='transaction-buttons-div'>
                         <div className='transaction-buttons-div-button'>
                             <button onClick={() => handleLike(transaction)} className={`transaction-icon-button ${transaction.numOfLikes ? 'hasLikes' : ''}`}>

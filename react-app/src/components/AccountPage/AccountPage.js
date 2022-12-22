@@ -4,6 +4,7 @@ import { fetchAllTransactions } from '../../store/transactons';
 import SideBar from '../SideBar/SideBar';
 import UserTransactions from './UserTransactions';
 import './AccountPage.css';
+import FriendsTransactions from './FriendsTransactions';
 
 export default function AccountPage() {
   const [active, setActive] = useState('MyTrans');
@@ -34,8 +35,7 @@ export default function AccountPage() {
         }
         {active === 'FrdTrans' &&
           <div className='transaction-body-div'>
-            {/* <OpenPayments userPayments={userOpens?.RequestTos || []} /> */}
-            Friend
+            <FriendsTransactions friendsTransactions={friendsTransactions || []} />
           </div>
         }
       </div>
