@@ -5,7 +5,7 @@ import { getDecimalNum } from '../../utils/getDecimalNum';
 import NoteContainer from './NoteContainer';
 import AmountContainer from './AmountContainer';
 import { useDispatch } from 'react-redux';
-import { editOpenRequest, fetchAllOpenRequests } from '../../store/openRequest';
+import { deleteOpenRequest, editOpenRequest, fetchAllOpenRequests } from '../../store/openRequest';
 
 export default function OpenRequests({ userRequests }) {
     const [inEdit, setInEdit] = useState(false);
@@ -17,16 +17,22 @@ export default function OpenRequests({ userRequests }) {
     const dispatch = useDispatch();
 
     const handleEdit = (open) => {
-        console.log('in edit handler')
-        console.log(open)
         setInEdit(true)
         setSelectedOpen(open)
         setNewNote(open.note)
         setNewAmount(open.amount / 100)
     }
 
-    const handleCancel = (open) => {
+    const handleCancel = async (open) => {
+        const data = await dispatch(deleteOpenRequest(open.id))
 
+        if (data) {
+            setErrors(data)
+            sethasBErrors(true)
+        } else {
+            setInEdit(false);
+            dispatch(fetchAllOpenRequests())
+        }
     }
 
     const handleUpdate = async (open) => {
@@ -60,25 +66,19 @@ export default function OpenRequests({ userRequests }) {
                         <span>Request to <b>{open.toUser.username}</b></span>
                         <span style={{'color':'#55585E', 'fontSize':'0.875rem'}}>{diffTime}</span>
                         {inEdit && selectedOpen.id === open.id ? 
-                            <NoteContainer newNote={newNote} setNewNote={setNewNote} errors={errors} setErrors={setErrors} hasBErrors={hasBErrors}/>
+                            <NoteContainer newNote={newNote} setNewNote={setNewNote} setErrors={setErrors} hasBErrors={hasBErrors}/>
                             :
                             <span>{open.note}</span>
                         }
                     </div>
                     {inEdit && selectedOpen.id === open.id ?
-                        <AmountContainer newAmount={newAmount} setNewAmount={setNewAmount} errors={errors} setErrors={setErrors} hasBErrors={hasBErrors} />
+                        <AmountContainer newAmount={newAmount} setNewAmount={setNewAmount} setErrors={setErrors} hasBErrors={hasBErrors} />
                         :
                         <span className='openrequest-amount'>${amount}</span>
                     }
                 </div>
                 <div className='openrequest-buttons-div'>
                     <div className='openrequest-buttons-div-button'>
-                        {hasBErrors &&
-                            <>
-                                <span>{errors.amount}</span>
-                                <span>{errors.note}</span>
-                            </>
-                        }
                         {inEdit && selectedOpen.id === open.id ?
                             <button onClick={() => setInEdit(false)}>Exit</button>
                             :

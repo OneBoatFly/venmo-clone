@@ -1,0 +1,88 @@
+.note-input-div input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 64px;
+    padding: 8px 12px 8px;
+    border: 0.5px solid #888C94;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #2F3033;
+}
+
+.edit-amount-input-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.amount-input-div {
+    width: fit-content;
+    border: 0.5px solid #888C94;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 14px;
+    text-align: center;
+    font-size: 16px;
+    color: #2F3033;
+}
+
+.note-input-div.hasError input,
+.amount-input-div.hasError {
+    border-color: #C72830;
+    background-color: #FCF4F5;
+}
+
+.note-input-div.hasError input:focus-within,
+.amount-input-div.hasError:focus-within {
+    border-color: #C72830;
+}
+
+.amount-input-div.hasError b {
+    color: #C72830;
+}
+
+.amount-input-div input {
+    width: fit-content;
+    border: unset;
+    padding: unset;
+    margin: unset;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.amount-input-div:focus-within {
+    border-color: #0074DE;
+}
+
+.note-input-div input:focus-visible {
+    outline: unset;
+    border: 0.5px solid #0074DE;
+}
+
+.amount-input-div input:focus-visible {
+    outline: unset;
+}
+
+.note-input-div,
+.edit-amount-input-div {
+    position: relative;
+}
+
+
+.edit-error-span,
+.edit-error-span-amount {
+    position: absolute;
+    font-size: 13px;
+    color: #C72830;
+}
+
+.edit-error-span {
+    right: 0;
+    bottom: -16px;
+}
+
+.edit-error-span-amount {
+    width: 160px;
+    right: 30px;
+    bottom: 0;
+}

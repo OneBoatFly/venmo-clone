@@ -122,7 +122,7 @@ const SignUpForm = () => {
         </NavLink>
         <span className='login-page-mid-span'>Sign up</span>
         <form className="auth-form" onSubmit={onSignUp}>
-          {console.log('sign up form errors', errors)}
+          {/* {console.log('sign up form errors', errors)} */}
           <div className='auth-form-error-input-wrapper'>
             <div className='auth-form-input-wrapper' ref={usernameDivRef}>
               <div className='auth-form-label-input-wrapper'>

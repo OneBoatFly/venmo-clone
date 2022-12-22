@@ -46,6 +46,7 @@
 .open-requests-active {
     color: #0074DE;
     border-bottom: 2px solid #0074DE;
+    margin-bottom: 16px;
 }
 
 .openrequests-single-div {

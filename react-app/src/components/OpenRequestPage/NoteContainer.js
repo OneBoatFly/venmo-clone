@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import './EditContainers.css'
 
 export default function NoteContainer({ newNote, setNewNote, errors, setErrors }) {
     const [error, setError] = useState('')
@@ -29,12 +30,12 @@ export default function NoteContainer({ newNote, setNewNote, errors, setErrors }
             })
         }
 
-    }, [newNote, errors, setErrors])
+    }, [newNote, setErrors])
 
   return (
-    <div className='note-input-div'>
+    <div className={`note-input-div ${error ? 'hasError': ''}`}>
         <input type='text' value={newNote} onChange={(e) => setNewNote(e.target.value)} />
-        {error && <span>{error}</span>}
+        {error && <span className='edit-error-span'>{error}</span>}
     </div>
   )
 }

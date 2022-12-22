@@ -37,7 +37,7 @@ export default function AmountContainer({ newAmount, setNewAmount, errors, setEr
             })            
         }
 
-    }, [newAmount, balance, errors, setErrors])
+    }, [newAmount, balance, setErrors])
 
     const handleKeyDown = (e) => {
         const valid = (e.key === 'Backspace') || /[0-9]/.test(e.key) || (e.key === 'ArrowLeft') || (e.key === 'ArrowRight') || (e.key === 'ArrowDown') || (e.key === 'ArrowUp') || (e.key === 'Tab') || (e.key === 'Delete' || (e.key === '.'))
@@ -47,9 +47,12 @@ export default function AmountContainer({ newAmount, setNewAmount, errors, setEr
     }
 
     return (
-        <div className='note-input-div'>
-            <input type='text' value={newAmount} onKeyDown={handleKeyDown} onChange={(e) => setNewAmount(e.target.value)} />
-            {error && <span>{error}</span>}
+        <div className='edit-amount-input-div'>
+            <div className={`amount-input-div ${error ? 'hasError': ''}`}>
+                <b>$ </b>
+                <input type='text' value={newAmount} size={`${newAmount}`.length || 1} onKeyDown={handleKeyDown} onChange={(e) => setNewAmount(e.target.value)} />
+            </div>
+            {error && <span className='edit-error-span-amount'>{error}</span>}
         </div>
     )
 }
