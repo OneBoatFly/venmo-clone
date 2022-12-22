@@ -10,9 +10,9 @@ export default function NoteContainer({ newNote, setNewNote, errors, setErrors }
         let newError = ''
 
         if (newNote.length === 0) {
-            newError = 'Note cannot be empty.'
+            newError = 'Enter some details regarding the payment.'
         } else if (newNote.length > 250) {
-            newError = 'Note must be 250 characters or shorter'
+            newError = 'Note must be 250 characters or shorter.'
         } else {
             newError = ''
         }
