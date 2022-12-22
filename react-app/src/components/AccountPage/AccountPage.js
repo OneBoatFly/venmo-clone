@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllTransactions } from '../../store/transactons';
 import SideBar from '../SideBar/SideBar';
+import UserTransactions from './UserTransactions';
 import './AccountPage.css';
 
 export default function AccountPage() {
   const [active, setActive] = useState('MyTrans');
-  const userOpens = useSelector(state => state.openReqPay.openRequests);
+  const userTransactions = useSelector(state => state.transaction.userTransactions);
+  const friendsTransactions = useSelector(state => state.transaction.friendsTransactions);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchAllTransactions())
-  }, [dispatch])
+    useEffect(() => {
+        dispatch(fetchAllTransactions())
+    }, [])
 
   return (
     <div className='transaction-page-div'>
@@ -27,8 +29,7 @@ export default function AccountPage() {
         </div>
         {active === 'MyTrans' &&
           <div className='transaction-body-div'>
-            {/* <OpenRequests userRequests={userOpens?.RequestFroms || []} /> */}
-            Me
+            <UserTransactions userTransactions={userTransactions || []} />
           </div>
         }
         {active === 'FrdTrans' &&
