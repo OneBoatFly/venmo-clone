@@ -1,5 +1,4 @@
 .payform-div {
-    outline: 1px solid salmon;
     width: calc(100vw - 317px);
     height: calc(100vh - 80px);
     overflow-y: auto;
@@ -28,12 +27,12 @@
 }
 
 .payform-input-wrapper {
-    outline: 1px solid salmon;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 8px;
+    position: relative;
 }
 
 .amount-input-div.payform-amount {
@@ -42,8 +41,10 @@
     justify-content: flex-start;
 }
 
+.payform-note-input-div.hasPayErrors,
 .amount-input-div.payform-amount.hasPayErrors {
-    border-color:#C72830
+    border-color:#C72830;
+    position: relative;
 }
 
 .amount-input-div.payform-amount b {
@@ -75,7 +76,7 @@
     padding: 8px;
     box-sizing: border-box;
     border-radius: 8px;
-    border: 0.5px solid #0074DE;
+    border: 0.5px solid #888C94;
     height: 54px;
     display: flex;
     flex-wrap: wrap;
@@ -83,27 +84,110 @@
     column-gap: 8px;
 }
 
+.payform-note-input-div:focus-within,
+.payform-input-div:focus-within {
+    border-color: #0074DE;
+}
+
 .payform-input-div label {
     color: #888c94;
     font-size: inherit;
 }
 
+.payform-note-input-div textarea,
 .payform-input-div input {
     flex-grow: 1;
-    color: #888c94;
+    color: rgb(47, 48, 51);
     border: unset;
     background-color: transparent;
     font-size: inherit;
     padding: 0;
     padding-top: 2px;
+    height: 100%;
+    resize: none;
 }
 
+.payform-note-input-div textarea:focus-visible,
 .payform-input-div input:focus-visible {
     outline: unset;
+}
+
+.payform-note-input-div.hasPayErrors:focus-within,
+.payform-input-div.hasPayErrors:focus-within {
+    border-color: #C72830;
 }
 
 .payform-input-div.hasPayErrors {
     border-color: #C72830;
     color: #C72830;
     background-color: #FCF4F5;
+}
+
+.all-users-drop-down-div {
+    position: absolute;
+    z-index: 1;
+    top: 54px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgb(0, 0, 0, 50%);
+    background-color: white;
+}
+
+.payform-note-input-div {
+    width: 100%;
+    border: 0.5px solid #888C94;
+    border-radius: 8px;
+    box-sizing: border-box;
+    height: 113px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    color: #888c94;
+    font-size: inherit;
+}
+
+.auth-error-div.payform-error {
+    width: 100% !important;
+    padding-left: 8px;
+    box-sizing: border-box;
+}
+
+.fa-solid.fa-exclamation.payErrorIcon {
+    display: inline-block;
+    padding: 8px;
+    color: #C72830;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.payform-note-icon {
+    position: absolute;
+    right: 0;
+    top:0;
+}
+
+.payform-button-div {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8px;
+    box-sizing: border-box;
+    width: min(100%, 443px);
+    margin-top: 48px;
+}
+
+.payform-div button {
+    cursor: pointer;
+    flex-grow: 1;
+    width: calc(50% - 4px);
+    box-sizing: border-box;
+    align-items: center;
+    background-color: #0074DE;
+    padding: 12px 24px;
+    border: unset;
+    border-radius: 4rem;
+    color: white;
+}
+
+.payform-div button:hover {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))
 }

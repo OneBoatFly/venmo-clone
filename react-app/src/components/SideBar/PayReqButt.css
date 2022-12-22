@@ -20,6 +20,10 @@
 
 }
 
+.pay-request-a:hover {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))
+}
+
 .pay-request-a-v {
     font-size: 1.8rem;
     font-weight: 900;

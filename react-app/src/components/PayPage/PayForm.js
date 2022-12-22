@@ -66,18 +66,13 @@ export default function PayForm() {
         }
 
         if (!backendErrors.length) {
-            <Redirect to='/account'></Redirect>
+            setComplete(true)
         }
     }
 
     useEffect(() => {
         dispatch(fetchAllUsers())
     }, [])
-
-    // useEffect(() => {
-    //     if (hasSubmit && Object.keys(errors).length === 0) setComplete(true)
-
-    // }, [hasSubmit, errors])
 
     useEffect(() => {
         let newErrors = {}
@@ -103,7 +98,6 @@ export default function PayForm() {
         } else {
             delete newErrors.note
         }
-
 
         setErrors(newErrors)
 
@@ -131,6 +125,8 @@ export default function PayForm() {
     console.log('recipient', recipients)
     console.log('toUserIds', toUserIds)
 
+    if (complete) return <Redirect to='/account'></Redirect>
+
   return (
     <div className='payform-div'>
         <span className='payform-head'>Pay & Request</span>
@@ -142,7 +138,8 @@ export default function PayForm() {
                 </div>
                 {hasSubmit && errors.amount &&
                     <div className='auth-error-div'>
-                        <span>{errors.amount} <i className="fa-solid fa-exclamation"></i></span> 
+                        <span>{errors.amount} </span>
+                        <i className={`fa-solid fa-exclamation ${errors?.amount && hasSubmit ? 'payErrorIcon' : ''}`}></i>
                     </div>
                 }
             </div>
@@ -157,42 +154,40 @@ export default function PayForm() {
                     <input
                         type='text'
                         name='recipient'
-                        placeholder='Username'
                         onChange={(e) => setRecipient(e.target.value)}
                         value={recipient}
                     ></input>
                 </div>
-                {showAllUsers && <div ref={showAllUsersRef}>
-                    <AllUsersDropDown setRecipient={setRecipient} setShowAllUsers={setShowAllUsers} setRecipients={setRecipients} setToUserIds={setToUserIds}/>
-                </div>}
                 {hasSubmit && errors.recipient &&
-                    <div className='auth-error-div'>
+                    <div className='auth-error-div payform-error'>
                         <span>{errors.recipient}</span>
                     </div>
                 }
+                {showAllUsers && <div ref={showAllUsersRef} className='all-users-drop-down-div'>
+                    <AllUsersDropDown setRecipient={setRecipient} setShowAllUsers={setShowAllUsers} setRecipients={setRecipients} setToUserIds={setToUserIds}/>
+                </div>}
             </div>
             <div className='payform-input-wrapper'>
-                <div className='' >
-                    <div className=''>
-                        <label htmlFor='note' className='' >Note</label>
-                        <input
-                            type='text'
-                            name='note'
-                            onChange={(e) => setNote(e.target.value)}
-                            value={note}
-                        ></input>
-                    </div>
-                    <i className="fa-solid fa-exclamation"></i>
+                <div className={`payform-note-input-div ${errors?.amount && hasSubmit ? 'hasPayErrors' : ''}`} >
+                    <label htmlFor='note' className='' >Note</label>
+                    <textarea
+                        name='note'
+                        onChange={(e) => setNote(e.target.value)}
+                        value={note}
+                    ></textarea>
+                    <i className={`fa-solid fa-exclamation payform-note-icon ${errors?.amount && hasSubmit ? 'payErrorIcon' : ''}`}></i>
                 </div>
                 {hasSubmit && errors.note &&
-                    <div className='auth-error-div'>
+                      <div className='auth-error-div payform-error'>
                         <span>{errors.note}</span>
                     </div>
                 }
             </div>            
         </form>
-        <button onClick={handlePay}>Pay</button>
-        <button onClick={handleRequest}>Request</button>
+        <div className='payform-button-div'>
+            <button onClick={handlePay}>Pay</button>
+            <button onClick={handleRequest}>Request</button>
+        </div>
     </div>
   )
 }
