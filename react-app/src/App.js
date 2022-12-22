@@ -12,6 +12,7 @@ import AccountPage from './components/AccountPage/AccountPage';
 import Footer from './components/Footer/Footer';
 import PayPage from './components/PayPage/PayPage';
 import OpenRequestPage from './components/OpenRequestPage/OpenRequestPage';
+import FriendPage from './components/FriendPage/FriendPage';
 
 function App() {
   const user = useSelector(state => state.session.user);
@@ -53,7 +54,7 @@ function App() {
           <OpenRequestPage />
         </ProtectedRoute>               
         <ProtectedRoute path='/friends' exact={true} >
-          <UsersList/>
+          <FriendPage />
         </ProtectedRoute>
       </Switch>
       <Footer />

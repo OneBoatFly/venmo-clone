@@ -1,4 +1,4 @@
-.openrequest-page-div {
+.friend-page-div {
     display: flex;
     flex-wrap: wrap;
     height: calc(100vh - 80px);
@@ -6,7 +6,7 @@
     color: #2F3033;
 }
 
-.openrequest-page {
+.friend-page {
     margin-top: 3.26rem;
     width: calc(100vw - 317px);
     height: calc(100vh - 80px);
@@ -15,14 +15,14 @@
     box-sizing: border-box;
 }
 
-.openrequest-head {
+.friend-head {
     font-size: 20px;
     font-weight: bold;
     line-height: 1.33;
     margin: 0.67em 0;
 }
 
-.openrequest-tag {
+.friend-tag {
     box-sizing: border-box;
     width: 100%;
     display: flex;
@@ -31,7 +31,7 @@
     line-height: 1.33;
 }
 
-.openrequest-button {
+.friend-button {
     border: unset;
     cursor: pointer;
     padding: 6px 12px;
@@ -44,57 +44,40 @@
     margin-bottom: 16px;
 }
 
-.open-requests-active {
+.friend-active {
     color: #0074DE;
     border-bottom: 2px solid #0074DE;
 }
 
-.openrequests-single-div {
+.friend-single-div {
     margin-top: 16px;
-}
-
-.openrequests-top {
-    /* border: 1px solid salmon; */
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     column-gap: 8px;
-    margin-bottom: 24px;
 }
 
-.openrequest-profile-pic {
+.friend-profile-pic {
     width: 46px;
     height: 46px;
     border-radius: 50%;
     flex-basis: fit-content;
 }
 
-.openrequest-info-div {
-    flex-basis: auto;
+.friend-info-div {
     flex-grow: 1;
-    flex-shrink: 1;
     display: flex;
     flex-direction: column;
-    row-gap: 6px;
-    font-size: 16px;
+    row-gap: 4px;
 }
 
-.openrequest-amount {
-    flex-basis: fit-content;
+.friend-email {
+    color: #0074DE;
 }
 
-.openrequest-buttons-div {
-    padding-left: 54px;
-}
-
-.openrequest-buttons-div-button {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 8px;
-    row-gap: 8px;
-}
-
-.openrequest-buttons-div button {
+.accept-friend-button,
+.unfriend-button {
     cursor: pointer;
     background-color: white;
     border: 1px solid #2F3033;
@@ -103,17 +86,18 @@
     max-width: 140px;
     width: 140px;
     box-sizing: border-box;
-    padding: 10px 16px;
+    padding: 8px 16px;
     font-size: 1rem;
     line-height: 1.25;
 }
 
-.openrequest-buttons-div button:hover {
+.accept-friend-button:hover,
+.unfriend-button:hover {
     background-color: #2F3033;
     color: white;
 }
 
-.openrequest-buttons-div hr {
+.friend-divider {
     margin-top: 16px;
     margin-bottom: 16px;
     border-top: 1px solid #ccc;
