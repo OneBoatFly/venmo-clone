@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import user from './user';
 import openReqPay from './openRequest';
+import friend from './friend';
 
 const rootReducer = combineReducers({
   session,
   user,
-  openReqPay
+  openReqPay,
+  friend
 });
 
 
