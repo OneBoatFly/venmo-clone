@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { createOpenRequest } from '../../store/openRequest';
 import { fetchAllUsers } from '../../store/user';
-import AllUsersDropDown from '../FriendPage/AllUsersDropDown';
+import AllUsersDropDown from './AllUsersDropDown';
 import './PayForm.css'
 
 export default function PayForm() {
     const user = useSelector(state => state.session.user);
+    const allUsers = useSelector(state => state.user.allUsers);
     const dispatch = useDispatch();
 
     const [amount, setAmount] = useState(0);
@@ -80,7 +81,7 @@ export default function PayForm() {
 
     useEffect(() => {
         dispatch(fetchAllUsers())
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         let newErrors = {}

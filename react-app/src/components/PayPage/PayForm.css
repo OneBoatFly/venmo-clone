@@ -1,13 +1,12 @@
 .payform-div {
-    width: calc(100vw - 317px);
-    height: calc(100vh - 80px);
-    overflow-y: auto;
+    flex-grow: 1;
     padding: 0px 8%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 16px;
+    height: 100%;
 }
 
 .payform-head {

@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/Auth/LoginForm';
 import SignUpForm from './components/Auth/SignUpForm';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage/HomePage';
 import AccountPage from './components/AccountPage/AccountPage';

@@ -68,7 +68,7 @@ export const createFriendRequest = (to_user_id) => async (dispatch) => {
 }
 
 
-export const editFriend = (from_user_id) => async (dispatch) => {
+export const editFriendRequest = (from_user_id) => async (dispatch) => {
     console.log('---------- editFriend Thunk - from_user_id ------------', from_user_id)
     const response = await fetch(`/api/friends?from_user_id=${from_user_id}`, {
         method: 'PATCH'
@@ -93,7 +93,7 @@ export const editFriend = (from_user_id) => async (dispatch) => {
 
 export const deleteFriend = (unfriend_user_id) => async (dispatch) => {
     console.log('---------- deleteFriend Thunk - unfriend_user_id ------------', unfriend_user_id)
-    const response = await fetch(`/api/requests?unfriend_user_id=${unfriend_user_id}`, {
+    const response = await fetch(`/api/friends?unfriend_user_id=${unfriend_user_id}`, {
         method: 'DELETE'
     });
 

@@ -2,15 +2,15 @@
     display: flex;
     flex-wrap: wrap;
     height: calc(100vh - 80px);
+    overflow-y: scroll;
     width: 100%;
     color: #2F3033;
 }
 
 .openrequest-page {
     margin-top: 3.26rem;
-    width: calc(100vw - 317px);
-    height: calc(100vh - 80px);
-    overflow-y: scroll;
+    flex-grow: 1;
+    height: 100%;
     padding: 0px 8%;
     box-sizing: border-box;
 }

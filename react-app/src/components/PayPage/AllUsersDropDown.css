@@ -1,6 +1,7 @@
 .all-users-div {
     padding: 16px 0px 8px 8px;
     height: max(350px, fit-content);
+    max-height: 350px;
     width: 443px;
     max-width: 443px;
     box-sizing: border-box;

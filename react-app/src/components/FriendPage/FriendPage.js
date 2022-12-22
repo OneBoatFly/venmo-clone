@@ -5,6 +5,7 @@ import SideBar from '../SideBar/SideBar';
 import AllFriends from './AllFriends';
 import PendingFriends from './PendingFriends';
 import './FriendPage.css';
+import AddFriends from './AddFriends';
 
 export default function FriendPage() {
     const [active, setActive] = useState('Friends');
@@ -22,9 +23,7 @@ export default function FriendPage() {
             <SideBar />
             <div className='friend-page'>
                 <h1 className='friend-head'>My Friends</h1>
-                <div className='friend-search-user'>
-                    <input></input>
-                </div>
+                <AddFriends />
                 <div className='friend-tag'>
                     <button className={`friend-button ${active === 'Friends' ? 'friend-active' : ''}`} onClick={() => { setActive('Friends') }}>Friends</button>
                     <button className={`friend-button ${active === 'Pendings' ? 'friend-active' : ''}`} onClick={() => { setActive('Pendings') }}>Pendings</button>

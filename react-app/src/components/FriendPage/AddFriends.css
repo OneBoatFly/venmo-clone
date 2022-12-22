@@ -1,0 +1,42 @@
+.friend-search-wrapper {
+    position: relative;
+    border: 0.5px solid #888C94;
+    border-radius: 8px;
+    height: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8px;
+    align-items: center;
+    padding: 0 8px;
+    color: #888C94;
+    margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+.friend-search-wrapper:focus-within {
+    border-color: #0074DE;
+}
+
+.non-friends-drop-down-div {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    top: 40px;
+    left: 0;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgb(0, 0, 0, 50%);
+    background-color: white;
+}
+
+.friend-search-wrapper input {
+    background-color: transparent;
+    flex-grow: 1;
+    border: unset;
+    color: #888C94;
+    font-size: inherit;
+}
+
+.friend-search-wrapper input:focus-visible {
+    outline: unset;
+}

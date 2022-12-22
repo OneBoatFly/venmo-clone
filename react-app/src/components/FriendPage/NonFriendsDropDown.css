@@ -1,0 +1,65 @@
+.non-friends-div {
+    padding: 16px 0px 8px 8px;
+    height: max(350px, fit-content);
+    max-height: 350px;
+    /* width: 443px;
+    max-width: 443px; */
+    box-sizing: border-box;
+    border-radius: 8px;
+    overflow-y: auto;
+    color: #888C94;
+}
+
+.non-friends-div>h4 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-left: 16px;
+}
+
+.non-friends-single-div {
+    padding: 8px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    column-gap: 8px;
+    font-size: 14px;
+}
+
+.non-friends-profile-pic {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+.non-friends-name-email-div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    font-weight: 300;
+    flex-grow: 1;
+}
+
+.non-friends-username {
+    font-weight: 400;
+}
+
+.add-friend-button {
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #2F3033;
+    border-radius: 4rem;
+    max-height: 40px;
+    min-width: 120px;
+    max-width: 140px;
+    width: 140px;
+    box-sizing: border-box;
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    line-height: 1.25;
+}
+
+
+.add-friend-button:hover {
+    background-color: #2F3033;
+    color: white;
+}
