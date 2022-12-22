@@ -105,6 +105,7 @@
     padding-top: 2px;
     height: 100%;
     resize: none;
+    font-family: inherit;
 }
 
 .payform-note-input-div textarea:focus-visible,
@@ -190,4 +191,21 @@
 
 .payform-div button:hover {
     background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))
+}
+
+.payform-username-bubble {
+    border-radius: 4px;
+    padding: 8px 12px;
+    background-color:#55585E;
+    color: white;
+    font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.payform-username-bubble .fa-solid.fa-x {
+    font-size: 0.75rem;
 }

@@ -15,13 +15,11 @@ export default function PayForm() {
     const [recipients, setRecipients] = useState([]);
     const [toUserIds, setToUserIds] = useState([]);
     const [recipient, setRecipient] = useState('');
-    // const [toUserId, setToUserId] = useState(-1);
     const [showAllUsers, setShowAllUsers] = useState(false);
     const [note, setNote] = useState('');
     const [hasSubmit, setHasSubmit] = useState(false)
     const [errors, setErrors] = useState({})
     const [complete, setComplete] = useState(false)
-   
 
     const handleKeyDown = (e) => {
         const valid = (e.key === 'Backspace') || /[0-9]/.test(e.key) || (e.key === 'ArrowLeft') || (e.key === 'ArrowRight') || (e.key === 'ArrowDown') || (e.key === 'ArrowUp') || (e.key === 'Tab') || (e.key === 'Delete' || (e.key === '.'))
@@ -70,6 +68,16 @@ export default function PayForm() {
         }
     }
 
+    const handleDeleteRecipient = (username) => {
+        const newRecipients = [...recipients]
+        const newToUserIds = [...toUserIds]
+        const idx = newRecipients.indexOf(username)
+        newRecipients.splice(idx, 1)
+        newToUserIds.splice(idx, 1)
+        setRecipients(newRecipients)
+        setToUserIds(newToUserIds)
+    }
+
     useEffect(() => {
         dispatch(fetchAllUsers())
     }, [])
@@ -79,8 +87,6 @@ export default function PayForm() {
 
         if (parseFloat(amount) <= 0 || amount.length === 0) {
             newErrors.amount = 'Enter a value greanter than $0.'
-        } else if (parseFloat(amount) * 100 > user?.balance) {
-            newErrors.amount = 'Insufficient balance.'
         } else {
             delete newErrors.amount
         }
@@ -148,7 +154,10 @@ export default function PayForm() {
                     <label htmlFor='recipient' className='' >To</label>
                     {recipients.map(username => {
                         return (
-                            <div key={username}>{username}</div>
+                            <div key={username} className='payform-username-bubble'>
+                                <span>{username}</span>
+                                <i className="fa-solid fa-x" onClick={() => handleDeleteRecipient(username)}></i>
+                            </div>
                         )
                     })}
                     <input

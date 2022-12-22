@@ -52,11 +52,8 @@ function App() {
         <ProtectedRoute path='/open' exact={true} >
           <OpenRequestPage />
         </ProtectedRoute>               
-        <ProtectedRoute path='/users' exact={true} >
+        <ProtectedRoute path='/friends' exact={true} >
           <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
         </ProtectedRoute>
       </Switch>
       <Footer />
