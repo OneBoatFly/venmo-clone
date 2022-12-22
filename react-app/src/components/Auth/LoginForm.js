@@ -38,7 +38,7 @@ const LoginForm = () => {
     if (!hasSubmit) return;
     if (errors.email) emailDivRef.current.classList.add('hasErrors')
     if (errors.password) passwordDivRef.current.classList.add('hasErrors')
-  }, [errors])
+  }, [errors, hasSubmit])
     
   const updateEmail = (e) => {
     setEmail(e.target.value);

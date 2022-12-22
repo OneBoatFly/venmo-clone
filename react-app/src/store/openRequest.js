@@ -25,7 +25,7 @@ export const removeAllOpenRquests = () => ({
 
 
 export const fetchAllOpenRequests = () => async (dispatch) => {
-    console.log('---------- fetchAllOpenRequest Thunk ------------')
+    // console.log('---------- fetchAllOpenRequest Thunk ------------')
     const response = await fetch('/api/requests');
 
     if (response.ok) {

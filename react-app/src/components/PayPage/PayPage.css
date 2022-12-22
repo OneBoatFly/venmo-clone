@@ -1,0 +1,7 @@
+.pay-page-div {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100vh - 80px);
+    width: 100%;
+    color: #2F3033;
+}

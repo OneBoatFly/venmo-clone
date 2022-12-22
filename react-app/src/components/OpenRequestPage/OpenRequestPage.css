@@ -1,0 +1,120 @@
+.openrequest-page-div {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100vh - 80px);
+    width: 100%;
+    color: #2F3033;
+}
+
+.openrequest-page {
+    margin-top: 3.26rem;
+    width: calc(100vw - 317px);
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+    padding: 0px 8%;
+    box-sizing: border-box;
+}
+
+.openrequest-head {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.33;
+    margin: 0.67em 0;
+}
+
+.openrequest-tag {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.33;
+}
+
+.openrequest-button {
+    border: unset;
+    cursor: pointer;
+    padding: 6px 12px;
+    background-color: white;
+    width: 50%;
+    color: #6B6E76;
+    min-height: 32px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.open-requests-active {
+    color: #0074DE;
+    border-bottom: 2px solid #0074DE;
+    margin-bottom: 16px;
+}
+
+.openrequests-single-div {
+    margin-top: 16px;
+}
+
+.openrequests-top {
+    /* border: 1px solid salmon; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 8px;
+    margin-bottom: 24px;
+}
+
+.openrequest-profile-pic {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    flex-basis: fit-content;
+}
+
+.openrequest-info-div {
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    font-size: 16px;
+}
+
+.openrequest-amount {
+    flex-basis: fit-content;
+}
+
+.openrequest-buttons-div {
+    padding-left: 54px;
+}
+
+.openrequest-buttons-div-button {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8px;
+    row-gap: 8px;
+}
+
+.openrequest-buttons-div button {
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #2F3033;
+    border-radius: 4rem;
+    min-width: 120px;
+    max-width: 140px;
+    width: 140px;
+    box-sizing: border-box;
+    padding: 10px 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+}
+
+.openrequest-buttons-div button:hover {
+    background-color: #2F3033;
+    color: white;
+}
+
+.openrequest-buttons-div hr {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-top: 1px solid #ccc;
+}

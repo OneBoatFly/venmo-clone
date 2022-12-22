@@ -1,0 +1,5 @@
+.account-page-div {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100vh - 80px);
+}

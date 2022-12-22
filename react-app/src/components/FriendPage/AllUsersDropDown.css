@@ -1,0 +1,47 @@
+.all-users-div {
+    padding: 16px 0px 8px 8px;
+    height: max(350px, fit-content);
+    width: 443px;
+    max-width: 443px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    overflow-y: auto;
+    color: #888C94;
+}
+
+.all-users-div>h4 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-left: 16px;
+}
+
+.all-users-single-div {
+    padding: 8px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    column-gap: 8px;
+    font-size: 14px;
+}
+
+.all-users-single-div:hover {
+    background-color: #434449;
+    color: white;
+}
+
+.all-user-profile-pic {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+.all-user-name-email-div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    font-weight: 300;
+}
+
+.all-user-username {
+    font-weight: 400;
+}

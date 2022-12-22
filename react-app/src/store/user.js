@@ -42,11 +42,12 @@ export const fetchSelectedUser = (userId) => async (dispatch) => {
 
 
 export const fetchAllUsers = () => async (dispatch) => {
+    // console.log('in fectch all users thunk')
     const response = await fetch('/api/users');
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(setAllUsers(data))
+        dispatch(setAllUsers(data.users))
         return null;
     } else if (response.status < 500) {
         const data = await response.json();
@@ -58,7 +59,7 @@ export const fetchAllUsers = () => async (dispatch) => {
     }
 }
 
-const initialState = { selectedUser: null, allUsers: {} };
+const initialState = { selectedUser: null, allUsers: [] };
 export default function reducer(state = initialState, action) {
     const newState = {...state}
     switch (action.type) {
