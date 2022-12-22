@@ -42,6 +42,22 @@ def transaction(id):
     Query for a transaction by id and returns that transaction in a dictionary
     """
     transaction = Transaction.query.get(id)
+
+    # get all confirmed friend ids.
+    fds_from_ids = [
+        friendship.to_user_id for friendship in current_user.friends_from if friendship.is_confirmed]
+    fds_to_ids = [
+        friendship.from_user_id for friendship in current_user.friends_to if friendship.is_confirmed]
+
+    friends = [*fds_from_ids, *fds_to_ids]
+
+    if current_user.id != transaction.from_user_id or current_user.id != transaction.to_user_id \
+        or transaction.from_user_id not in friends or transaction.to_user_id not in friends:
+            return {'errors': 'Unauthorized'}, 401
+    
+    if not transaction:
+        return {'errors': 'Transaction is not found.'}, 404
+
     return transaction.to_dict_luxury()
 
 
@@ -83,7 +99,8 @@ def create_transaction():
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# to remove
+
+# !!! for development only, to remove !!!
 @transaction_routes.route('/<int:transaction_id>', methods=['DELETE'])
 @login_required
 def delete_transaction(transaction_id):
