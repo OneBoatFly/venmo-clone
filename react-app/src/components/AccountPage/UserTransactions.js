@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './UserTransactions.css';
 import { useHistory } from 'react-router-dom';
 import TransactionRow from './TransactionRow';
+import { compareTime } from '../../utils/compareTime';
 
 export default function UserTransactions({ userTransactions }) {
     const [userTransactionsArr, setUserTransactions] = useState([])
@@ -17,7 +18,11 @@ export default function UserTransactions({ userTransactions }) {
     }
 
     useEffect(() => {
-        if (userTransactions) setUserTransactions(Object.values(userTransactions));
+        let userTransArr = []
+        if (userTransactions) userTransArr = Object.values(userTransactions)
+        userTransArr.sort(compareTime)
+
+        setUserTransactions(userTransArr);
     }, [userTransactions])
 
     return (
