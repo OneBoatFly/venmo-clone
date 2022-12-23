@@ -35,9 +35,10 @@ export default function PayForm() {
         console.log('handle pay')
         console.log(toUserIds, amount, note, parseFloat(amount) * 100 * recipients.length > user?.balance, user?.balance)
         setHasSubmit(true)
+
+        const numOfRecipient = recipients.length || 1
         
-        if (parseFloat(amount) * 100 * recipients.length > user?.balance) {
-            // console.log('in setting insufficient')
+        if (parseFloat(amount) * 100 * numOfRecipient > user?.balance) {
             setInsufficient('Insufficient balance.')
             return;
         }
@@ -110,7 +111,7 @@ export default function PayForm() {
 
     useEffect(() => {
         setInsufficient('')
-    }, [amount])
+    }, [amount, recipients])
 
     useEffect(() => {
         let newErrors = {}
