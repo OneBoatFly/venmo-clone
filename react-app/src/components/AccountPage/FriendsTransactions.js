@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { fetchAllTransactions } from '../../store/transactons';
 import './UserTransactions.css';
 import { useHistory } from 'react-router-dom';
 import TransactionRow from './TransactionRow';
 
 export default function FriendsTransactions({ friendsTransactions }) {
-    // const dispatch = useDispatch();
+    const [friendsTransactionsArr, setFriendsTransactions] = useState([])
 
     const handleLike = (transaction) => {
         console.log('handleLike', transaction)
@@ -18,9 +16,12 @@ export default function FriendsTransactions({ friendsTransactions }) {
         history.push(`/story/${transaction.id}`)
     }
 
+    useEffect(() => {
+        if (friendsTransactions) setFriendsTransactions(Object.values(friendsTransactions));
+    }, [friendsTransactions])
 
     return (
-        friendsTransactions.map((transaction, idx) => {
+        friendsTransactionsArr.map((transaction, idx) => {
             return (
                 <div key={idx} className='transaction-single-div'>
                     <TransactionRow transaction={transaction} showAmount={false} />

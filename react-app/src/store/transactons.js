@@ -1,3 +1,5 @@
+import {arrToObj} from '../utils/arrToObj';
+
 // constants
 const SET_USER_TRANSACTIONS = 'session/SET_USER_TRANSACTIONS';
 const REMOVE_USER_TRANSACTIONS = 'session/REMOVE_USER_TRANSACTIONS';
@@ -41,8 +43,12 @@ export const fetchAllTransactions = () => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(setUserTransactions(data.UserTransactions))
-        dispatch(setFriendTransactions(data.FriendsTransactions))
+
+        const userTransactionObj = arrToObj(data.UserTransactions);
+        const friendTransactionObj = arrToObj(data.FriendsTransactions);
+
+        dispatch(setUserTransactions(userTransactionObj))
+        dispatch(setFriendTransactions(friendTransactionObj))
         return null;
     } else if (response.status < 500) {
         const data = await response.json();
@@ -147,7 +153,7 @@ export const unlikeTransaction = (transactionId) => async (dispatch) => {
 }
 
 
-const initialState = { userTransactions: [], friendsTransactions: [], oneTransaction: null };
+const initialState = { userTransactions: {}, friendsTransactions: {}, oneTransaction: null };
 export default function reducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
@@ -155,13 +161,13 @@ export default function reducer(state = initialState, action) {
             newState.userTransactions = action.payload
             return newState
         case REMOVE_USER_TRANSACTIONS:
-            newState.userTransactions = []
+            newState.userTransactions = {}
             return newState
         case SET_FRIEND_TRANSACTIONS:
             newState.friendsTransactions = action.payload
             return newState
         case REMOVE_FRIEND_TRANSACTIONS:
-            newState.friendsTransactions = []
+            newState.friendsTransactions = {}
             return newState
         case SET_TRANSACTION:
             newState.oneTransaction = action.payload
