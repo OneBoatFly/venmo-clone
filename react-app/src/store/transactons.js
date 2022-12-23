@@ -101,6 +101,52 @@ export const createTransaction = (transaction) => async (dispatch) => {
 }
 
 
+export const likeTransaction = (transactionId) => async (dispatch) => {
+    console.log('---------- likeTransaction Thunk - transactionId ------------', transactionId)
+    const response = await fetch(`/api/likes?transactionId=${transactionId}`, {
+        method: 'POST'
+    });
+
+    console.log('---------- likeTransaction Thunk - response ------------', response)
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(fetchAllTransactions(data))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+
+}
+
+
+export const unlikeTransaction = (transactionId) => async (dispatch) => {
+    console.log('---------- unlikeTransaction Thunk - transactionId ------------', transactionId)
+    const response = await fetch(`/api/likes?transactionId=${transactionId}`, {
+        method: 'DELETE'
+    });
+
+    console.log('---------- unlikeTransaction Thunk - response ------------', response)
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(fetchAllTransactions(data))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+
+}
+
+
 const initialState = { userTransactions: [], friendsTransactions: [], oneTransaction: null };
 export default function reducer(state = initialState, action) {
     const newState = { ...state }

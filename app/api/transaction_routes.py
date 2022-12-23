@@ -51,8 +51,14 @@ def transaction(id):
 
     friends = [*fds_from_ids, *fds_to_ids]
 
-    if current_user.id != transaction.from_user_id or current_user.id != transaction.to_user_id \
-        or transaction.from_user_id not in friends or transaction.to_user_id not in friends:
+    print('--------------------------------------------------')
+    print(current_user.id, 'currend_user.id')
+    print(transaction.from_user_id, 'transaction.from_user_id')
+    print(transaction.to_user_id, 'transaction.to_user_id')
+
+    if current_user.id != transaction.from_user_id and current_user.id != transaction.to_user_id \
+        and transaction.from_user_id not in friends and transaction.to_user_id not in friends:
+            print('-------------------------returning unauthorized-------------------------')
             return {'errors': 'Unauthorized'}, 401
     
     if not transaction:
