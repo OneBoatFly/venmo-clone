@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import './UserTransactions.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import TransactionRow from './TransactionRow';
+import { likeTransaction, unlikeTransaction } from '../../store/transactons';
 import { compareTime } from '../../utils/compareTime';
+import TransactionRow from './TransactionRow';
+import './UserTransactions.css';
 
-export default function FriendsTransactions({ friendsTransactions }) {
+export default function FriendsTransactions() {
+    const friendsTransactions = useSelector(state => state.transaction.friendsTransactions);
+    const user = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
+
     const [friendsTransactionsArr, setFriendsTransactions] = useState([])
 
     const handleLike = (transaction) => {
-        console.log('handleLike', transaction)
+        console.log('handleLike - friendsTrans', transaction, user.id, transaction.likedUserIds, transaction.likedUserIds.includes(user.id))
+        if (transaction.likedUserIds.includes(user.id)) dispatch(unlikeTransaction(transaction.id, false))
+        else dispatch(likeTransaction(transaction.id, false))
     }
 
     const history = useHistory();
@@ -36,7 +44,7 @@ export default function FriendsTransactions({ friendsTransactions }) {
                                 <i className={`fa-sharp fa-solid fa-heart`}></i>
                                 {transaction.numOfLikes > 0 && <span>{transaction.numOfLikes}</span>}
                             </button>
-                            <button onClick={() => handleComment(transaction)} className={`transaction-icon-button ${transaction.numOfLikes ? 'hasComments' : ''}`}>
+                            <button onClick={() => handleComment(transaction)} className={`transaction-icon-button ${transaction.numOfComments ? 'hasComments' : ''}`}>
                                 <i className={`fa-solid fa-comment`}></i>
                                 {transaction.numOfComments > 0 && <span>{transaction.numOfComments}</span>}
                             </button>

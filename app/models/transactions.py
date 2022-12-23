@@ -45,6 +45,7 @@ class Transaction(db.Model):
             'toUser': self.user_to.to_dict(),
             'numOfLikes': len(self.likes),
             'numOfComments': len(self.comments),
+            'likedUserIds': [like.id for like in self.likes],
             'comments': [comment.to_dict_basics() for comment in self.comments]
         }
 
@@ -59,7 +60,8 @@ class Transaction(db.Model):
             'fromUser': self.user_from.to_dict(),
             'toUser': self.user_to.to_dict(),
             'numOfLikes': len(self.likes),
-            'numOfComments': len(self.comments)
+            'numOfComments': len(self.comments),
+            'likedUserIds': [like.id for like in self.likes]
         }
 
     def to_dict_basics(self):

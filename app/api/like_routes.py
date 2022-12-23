@@ -24,7 +24,7 @@ def create_like():
 
     transaction.likes.append(current_user)
     db.session.commit()
-    return {'success': 'You liked a transaction'}
+    return transaction.to_dict_luxury()
 
 
 @like_routes.route('', methods=['DELETE'])
@@ -45,4 +45,4 @@ def delete_request():
 
     transaction.likes.remove(current_user)
     db.session.commit()
-    return {'success': 'You unliked a transaction'}
+    return transaction.to_dict_luxury()

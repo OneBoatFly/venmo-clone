@@ -6,7 +6,7 @@ import SignUpForm from './components/Auth/SignUpForm';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage/HomePage';
-import AccountPage from './components/AccountPage/AccountPage';
+import AccountPage from './components/TransactionPage/TransactionPage';
 import Footer from './components/Footer/Footer';
 import PayPage from './components/PayPage/PayPage';
 import OpenRequestPage from './components/OpenRequestPage/OpenRequestPage';
@@ -42,7 +42,7 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/account' exact={true} >
+        <ProtectedRoute path='/transactions' exact={true} >
           <AccountPage />
         </ProtectedRoute>
         <ProtectedRoute path='/pay' exact={true} >

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchAllTransactions } from '../../store/transactons';
 import SideBar from '../SideBar/SideBar';
 import UserTransactions from './UserTransactions';
-import './AccountPage.css';
+import './TransactionPage.css';
 import FriendsTransactions from './FriendsTransactions';
 
 export default function AccountPage() {
   const [active, setActive] = useState('MyTrans');
-  const userTransactions = useSelector(state => state.transaction.userTransactions);
-  const friendsTransactions = useSelector(state => state.transaction.friendsTransactions);
 
   const dispatch = useDispatch();
     useEffect(() => {
@@ -30,12 +28,12 @@ export default function AccountPage() {
         </div>
         {active === 'MyTrans' &&
           <div className='transaction-body-div'>
-            <UserTransactions userTransactions={userTransactions || []} />
+            <UserTransactions />
           </div>
         }
         {active === 'FrdTrans' &&
           <div className='transaction-body-div'>
-            <FriendsTransactions friendsTransactions={friendsTransactions || []} />
+            <FriendsTransactions />
           </div>
         }
       </div>

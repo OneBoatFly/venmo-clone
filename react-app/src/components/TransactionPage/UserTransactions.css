@@ -23,6 +23,7 @@
     flex-wrap: wrap;
     align-items: flex-start;
     column-gap: 4px;
+    min-width: 48px;
 }
 
 .transaction-icon-button.hasLikes {
