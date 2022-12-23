@@ -6,9 +6,10 @@ export default function AllUsersDropDown({ recipients, setRecipient, setShowAllU
     const allUsers = useSelector(state => state.user.allUsers);
     const user = useSelector(state => state.session.user);
 
-    const handleClick = (singleUser) => {
+    const handleClick = (e, singleUser) => {
+        console.log(e.target)
         setRecipient('');
-        if (recipients.includes(singleUser.username)) return;
+        if (recipients.includes(singleUser.username)) return
         setRecipients(prev => [...prev, singleUser.username]);
         setToUserIds(prev => [...prev, singleUser.id]);
         setShowAllUsers(false)

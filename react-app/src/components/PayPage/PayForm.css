@@ -208,3 +208,7 @@
 .payform-username-bubble .fa-solid.fa-x {
     font-size: 0.75rem;
 }
+
+.payform-total {
+    font-size: 14px;
+}

@@ -10,18 +10,18 @@ import AllUsersDropDown from './AllUsersDropDown';
 import './PayForm.css'
 
 export default function PayForm() {
-    console.log('------------- PayForm Component ------------')
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState('0');
     const [recipients, setRecipients] = useState([]);
     const [toUserIds, setToUserIds] = useState([]);
     const [recipient, setRecipient] = useState('');
     const [showAllUsers, setShowAllUsers] = useState(false);
     const [note, setNote] = useState('');
     const [hasSubmit, setHasSubmit] = useState(false)
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({});
+    const [insufficient, setInsufficient] = useState('');
     const [complete, setComplete] = useState(false)
 
     const handleKeyDown = (e) => {
@@ -32,21 +32,18 @@ export default function PayForm() {
     }
 
     const handlePay = async () => {
-        console.log('handle pay')
-        console.log(toUserIds, amount, note)
+        // console.log('handle pay')
+        // console.log(toUserIds, amount, note, parseFloat(amount) * 100 > user?.balance, user?.balance)
         setHasSubmit(true)
-
-        let newErrors = errors
-        setErrors({})
-        if (parseFloat(amount) * 100 > user?.balance) {
-            newErrors.insufficient = 'Insufficient balance.'
+        
+        if (parseFloat(amount) * 100 * recipients.length > user?.balance) {
+            setInsufficient('Insufficient balance.')
+            return;
         }
-
-        setErrors(newErrors)
 
         if (Object.keys(errors).length) {
             return;
-        }        
+        }
 
         const backendErrors = [];
         for (const toUserId of toUserIds) {
@@ -69,8 +66,8 @@ export default function PayForm() {
     }
 
     const handleRequest = async () => {
-        console.log('handle request')
-        console.log(toUserIds, amount, note)
+        // console.log('handle request')
+        // console.log(toUserIds, amount, note)
         setHasSubmit(true)
 
         if (Object.keys(errors).length) {
@@ -111,9 +108,7 @@ export default function PayForm() {
     }, [dispatch])
 
     useEffect(() => {
-        let newErrors = errors
-        delete newErrors.insufficient
-        setErrors(newErrors)
+        setInsufficient('')
     }, [amount])
 
     useEffect(() => {
@@ -161,10 +156,11 @@ export default function PayForm() {
 
     }, [showAllUsers])
 
-    console.log('errors', errors)
-    console.log('hasSubmit', hasSubmit)
-    console.log('recipient', recipients)
-    console.log('toUserIds', toUserIds)
+    // console.log('errors', errors)
+    // console.log('hasSubmit', hasSubmit)
+    // console.log('recipient', recipients)
+    // console.log('toUserIds', toUserIds)
+    // console.log('insufficient', insufficient)
 
     if (complete) return <Redirect to='/account'></Redirect>
 
@@ -173,23 +169,23 @@ export default function PayForm() {
         <span className='payform-head'>Pay & Request</span>
         <form className='payform-form'>
             <div className='payform-input-wrapper'>
-                <div className={`amount-input-div payform-amount ${(errors?.amount|| errors?.insufficient) && hasSubmit ? 'hasPayErrors' : ''}`}>
+                <div className={`amount-input-div payform-amount ${(errors?.amount|| insufficient) && hasSubmit ? 'hasPayErrors' : ''}`}>
                     <b>$ </b>
                     <input type='text' value={amount} size={`${amount}`.length || 1} onKeyDown={handleKeyDown} onChange={(e) => setAmount(e.target.value)} />
                 </div>
+                {recipients.length > 1 &&
+                    <span className='payform-total'>Total: ${(amount * recipients.length).toFixed(2)}</span>
+                }
                 {hasSubmit && errors.amount &&
                     <div className='auth-error-div'>
                         <span>{errors.amount}</span>
                         <i className={`fa-solid fa-exclamation ${errors?.amount && hasSubmit ? 'payErrorIcon' : ''}`}></i>
                     </div>
                 }
-                {console.log('-----------------------------------')}
-                {console.log(hasSubmit)}
-                {console.log(errors.insufficient)}
-                {hasSubmit && errors.insufficient &&
+                {hasSubmit && insufficient &&
                     <div className='auth-error-div'>
-                          <span>{errors.insufficient}</span>
-                        <i className={`fa-solid fa-exclamation ${errors?.insufficient && hasSubmit ? 'payErrorIcon' : ''}`}></i>
+                        <span>{insufficient}</span>
+                        <i className={`fa-solid fa-exclamation ${insufficient && hasSubmit ? 'payErrorIcon' : ''}`}></i>
                     </div>
                 }
             </div>
