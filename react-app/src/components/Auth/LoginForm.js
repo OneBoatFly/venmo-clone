@@ -71,7 +71,7 @@ const LoginForm = () => {
   }, [email, password]);
 
   if (user) {
-    return <Redirect to='/account' />;
+    return <Redirect to='/transactions' />;
   }
 
   return (

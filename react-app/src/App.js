@@ -54,6 +54,9 @@ function App() {
         <ProtectedRoute path='/friends' exact={true} >
           <FriendPage />
         </ProtectedRoute>
+        <ProtectedRoute >
+          <AccountPage />
+        </ProtectedRoute>        
       </Switch>
       <Footer />
     </BrowserRouter>
