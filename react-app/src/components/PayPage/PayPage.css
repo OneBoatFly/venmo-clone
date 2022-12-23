@@ -4,4 +4,5 @@
     height: calc(100vh - 80px);
     width: 100%;
     color: #2F3033;
+    overflow-y: scroll;
 }

@@ -2,7 +2,7 @@ from app.models import db, User, Friend, environment, SCHEMA, Friend
 from sqlalchemy import or_, and_
 
 def seed_friends():
-    users = User.query.all()
+    users = User.query.all()[:5]
 
     for i in range(len(users)):
         user1 = users[i]

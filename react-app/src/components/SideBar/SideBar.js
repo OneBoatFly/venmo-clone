@@ -15,9 +15,15 @@ return (
       {user &&
         <>
           <div className='sidebar-single-div'>
-            <NavLink to='/' exact={true} className='vinmo-a'>
-              <span className='vinmo-span'>Vinmo</span>
-            </NavLink>
+            {user ? 
+              <NavLink to='/account' exact={true} className='vinmo-a'>
+                <span className='vinmo-span'>Vinmo</span>
+              </NavLink>            
+            :
+              <NavLink to='/' exact={true} className='vinmo-a'>
+                <span className='vinmo-span'>Vinmo</span>
+              </NavLink>
+            }
           </div>
           <div className='sidebar-single-div profile-container'>
             <img src={user.imageUrl} alt='' className='side-bar-profile-pic'/>
@@ -33,6 +39,7 @@ return (
           <div className='sidebar-single-div sidebar-menu'>
             <NavLink to='/search' onClick={(e) => e.preventDefault()}>Search - feature to come</NavLink>
             <NavLink to='/open'>Open Request</NavLink>
+            <NavLink to='/friends'>Friends</NavLink>
             <LogoutButton />
           </div>
         </>

@@ -40,6 +40,7 @@ def create_friend_request():
     Create a friend and returns None
     """
     to_user_id = request.args.get('to_user_id')
+    print('------------------', to_user_id)
     if int(to_user_id) == current_user.id:
         return {'errors': 'You cannot send a friend request to yourself.'}, 401
 

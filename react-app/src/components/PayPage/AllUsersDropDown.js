@@ -2,13 +2,14 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import './AllUsersDropDown.css';
 
-export default function AllUsersDropDown({ setRecipient, setShowAllUsers, setRecipients, setToUserIds }) {
+export default function AllUsersDropDown({ recipients, setRecipient, setShowAllUsers, setRecipients, setToUserIds }) {
     const allUsers = useSelector(state => state.user.allUsers);
     const user = useSelector(state => state.session.user);
 
     const handleClick = (e, singleUser) => {
-        console.log(e)
+        console.log(e.target)
         setRecipient('');
+        if (recipients.includes(singleUser.username)) return
         setRecipients(prev => [...prev, singleUser.username]);
         setToUserIds(prev => [...prev, singleUser.id]);
         setShowAllUsers(false)
@@ -18,7 +19,6 @@ export default function AllUsersDropDown({ setRecipient, setShowAllUsers, setRec
     <div className='all-users-div'>
         <h4>People</h4>
         {allUsers.map(singleUser => {
-            console.log('singleUser', singleUser.id)
             if (singleUser.id === user.id) return null;
             return (
                 <div key={singleUser.id} className='all-users-single-div' onClick={(e) => handleClick(e, singleUser)}>

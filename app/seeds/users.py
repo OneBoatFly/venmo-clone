@@ -13,6 +13,12 @@ def seed_users():
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+
+    # for testing purposes, delete later.
+    for i in range(20):
+        user = User(username=f'TestUser{i + 1}', email=f'test{i + 1}@aa.io', password='password')
+        db.session.add(user)
+    
     db.session.commit()
 
 

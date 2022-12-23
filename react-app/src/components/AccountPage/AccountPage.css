@@ -1,5 +1,52 @@
-.account-page-div {
+.transaction-page-div {
     display: flex;
     flex-wrap: wrap;
     height: calc(100vh - 80px);
+    overflow-y: scroll;
+    width: 100%;
+    color: #2F3033;
+}
+
+.transaction-page {
+    margin-top: 3.26rem;
+    flex-grow: 1;
+    padding: 0px 8%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.transaction-tag {
+    width: fit-content;
+    border-radius: 32px;
+    border: 0.5px solid #55585E;
+}
+
+.transaction-button {
+    cursor: pointer;
+    background-color: white;
+    color: #55585E;
+    border: unset;
+    padding: 6px 12px;
+    width: 80px;
+    min-width: 80px;
+    min-height: 32px;
+    border-radius: 32px;
+}
+
+.transaction-active {
+    background-color: #55585E;
+    border: 0.5px solid #55585E;
+    color: white;
+}
+
+.transaction-button.transaction-active:hover {
+    background-color: #6B6E76;
+    border: 0.5px solid #6B6E76;
+}
+
+.transaction-body-div {
+    width: 100%;
+    margin-top: 32px;
 }

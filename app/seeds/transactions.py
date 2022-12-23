@@ -16,6 +16,18 @@ def seed_transactions():
         transaction.likes = [user1]
         db.session.add(transaction)
 
+    user3 = User.query.get(3)
+    for i in range(3):
+        transaction = Transaction(
+            amount=(i + 1) * 10000,
+            note=f'Dinner {i + 1}'
+        )
+
+        transaction.user_from = user2
+        transaction.user_to = user3
+        transaction.likes = [user3]
+        db.session.add(transaction)
+
     db.session.commit()
 
 

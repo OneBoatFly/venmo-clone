@@ -1,13 +1,12 @@
 .payform-div {
-    width: calc(100vw - 317px);
-    height: calc(100vh - 80px);
-    overflow-y: auto;
+    flex-grow: 1;
     padding: 0px 8%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 16px;
+    /* height: 100%; */
 }
 
 .payform-head {
@@ -33,6 +32,8 @@
     align-items: center;
     row-gap: 8px;
     position: relative;
+    overflow-x:visible;
+    box-sizing: border-box;
 }
 
 .amount-input-div.payform-amount {
@@ -72,16 +73,18 @@
 }
 
 .payform-input-div {
+    max-width: min(443px, 100%);
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
     border-radius: 8px;
     border: 0.5px solid #888C94;
-    height: 54px;
+    min-height: 54px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     column-gap: 8px;
+    row-gap: 8px;
 }
 
 .payform-note-input-div:focus-within,
@@ -101,10 +104,9 @@
     border: unset;
     background-color: transparent;
     font-size: inherit;
-    padding: 0;
-    padding-top: 2px;
-    height: 100%;
+    padding: 8px 0;
     resize: none;
+    font-family: inherit;
 }
 
 .payform-note-input-div textarea:focus-visible,
@@ -130,6 +132,11 @@
     border-radius: 8px;
     box-shadow: 0px 0px 8px rgb(0, 0, 0, 50%);
     background-color: white;
+    height: max(350px, fit-content);
+    max-height: 350px;
+    width: 443px;
+    max-width: min(100%, 443px);
+    box-sizing: border-box;
 }
 
 .payform-note-input-div {
@@ -191,3 +198,26 @@
 .payform-div button:hover {
     background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))
 }
+
+.payform-username-bubble {
+    border-radius: 4px;
+    padding: 8px 12px;
+    background-color:#55585E;
+    color: white;
+    font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.payform-username-bubble .fa-solid.fa-x {
+    font-size: 0.75rem;
+}
+
+.payform-total {
+    font-size: 14px;
+}
+
+/* #888C94 */

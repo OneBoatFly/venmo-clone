@@ -1,7 +1,6 @@
 .sidebar-div {
     width: 317px;
     min-width: 317px;
-    height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;

@@ -1,0 +1,44 @@
+.transaction-single-div {
+    margin-top: 16px;
+    width: 100%;
+}
+
+.transaction-buttons-div {
+    margin-left: 54px;
+}
+
+.transaction-buttons-div-button {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+}
+
+.transaction-icon-button {
+    cursor: pointer;
+    background-color: transparent;
+    border: unset;
+    color: #888C94;
+    font-size: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 4px;
+}
+
+.transaction-icon-button.hasLikes {
+    color: #E51769;
+}
+
+.transaction-icon-button.hasComments {
+    color: #0074DE;
+}
+
+.transaction-icon-button span {
+    font-size: 0.725rem;
+}
+
+.transaction-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-top: 1px solid #ccc;
+}
