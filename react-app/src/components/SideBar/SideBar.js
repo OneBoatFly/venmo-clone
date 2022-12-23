@@ -29,7 +29,7 @@ return (
             <img src={user.imageUrl} alt='' className='side-bar-profile-pic'/>
             <div className='sidebar-name-email-div'>
               <span>Hi, {user.username}</span>
-              <NavLink to={`/u/${user.username}`}>@{user.email}</NavLink>
+              <NavLink to={`/account`}>@{user.email}</NavLink>
             </div>
           </div>
           <PayReqButt />
@@ -37,9 +37,10 @@ return (
         <span className='sidebar-balance'>${amount} in Vinmo</span>
           </div>
           <div className='sidebar-single-div sidebar-menu'>
-            <NavLink to='/search' onClick={(e) => e.preventDefault()}>Search - feature to come</NavLink>
+            <NavLink to='/account'>My Account</NavLink>
             <NavLink to='/open'>Open Request</NavLink>
             <NavLink to='/friends'>Friends</NavLink>
+            <NavLink to='/search' onClick={(e) => e.preventDefault()}>Search - feature to come</NavLink>
             <LogoutButton />
           </div>
         </>

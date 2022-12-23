@@ -9,12 +9,16 @@
 
 .transaction-page {
     margin-top: 3.26rem;
+    margin-left: auto;
+    margin-right: auto;
     flex-grow: 1;
     padding: 0px 8%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: calc(100% - 317px);
+    max-width: calc(960px + 16%);
 }
 
 .transaction-tag {

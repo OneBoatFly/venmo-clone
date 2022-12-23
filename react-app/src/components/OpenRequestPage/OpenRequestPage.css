@@ -9,10 +9,13 @@
 
 .openrequest-page {
     margin-top: 3.26rem;
-    flex-grow: 1;
-    /* height: 100%; */
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 317px);
+    max-width: calc(960px + 16%);
     padding: 0px 8%;
     box-sizing: border-box;
+    flex-grow: 1;
 }
 
 .openrequest-head {
