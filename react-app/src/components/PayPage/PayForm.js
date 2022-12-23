@@ -3,13 +3,15 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { createOpenRequest } from '../../store/openRequest';
+import { authenticate } from '../../store/session';
+import { createTransaction } from '../../store/transactons';
 import { fetchAllUsers } from '../../store/user';
 import AllUsersDropDown from './AllUsersDropDown';
 import './PayForm.css'
 
 export default function PayForm() {
+    console.log('------------- PayForm Component ------------')
     const user = useSelector(state => state.session.user);
-    const allUsers = useSelector(state => state.user.allUsers);
     const dispatch = useDispatch();
 
     const [amount, setAmount] = useState(0);
@@ -29,16 +31,40 @@ export default function PayForm() {
         }
     }
 
-    const handlePay = () => {
+    const handlePay = async () => {
         console.log('handle pay')
+        console.log(toUserIds, amount, note)
         setHasSubmit(true)
 
-        let newErrors = {}
+        let newErrors = errors
         if (parseFloat(amount) * 100 > user?.balance) {
-            newErrors.amount = 'Insufficient balance.'
+            newErrors.insufficient = 'Insufficient balance.'
         }
 
         setErrors(newErrors)
+
+        if (Object.keys(errors).length) {
+            return;
+        }        
+
+        const backendErrors = [];
+        for (const toUserId of toUserIds) {
+            const data = await dispatch(createTransaction({
+                "to_user_id": toUserId,
+                "amount": amount * 100,
+                "note": note
+            }))
+
+            if (data) {
+                setErrors(data)
+                backendErrors.append(data);
+            }
+        }
+
+        if (!backendErrors.length) {
+            setComplete(true)
+            dispatch(authenticate())
+        }        
     }
 
     const handleRequest = async () => {
@@ -84,6 +110,12 @@ export default function PayForm() {
     }, [dispatch])
 
     useEffect(() => {
+        let newErrors = errors
+        delete newErrors.insufficient
+        setErrors(newErrors)
+    }, [amount])
+
+    useEffect(() => {
         let newErrors = {}
 
         if (parseFloat(amount) <= 0 || amount.length === 0) {
@@ -108,7 +140,7 @@ export default function PayForm() {
 
         setErrors(newErrors)
 
-    }, [amount, recipient, note, setErrors, user])
+    }, [amount, recipient, recipients, note, setErrors, user])
 
     const showAllUsersRef = useRef(null);
     useEffect(() => {
@@ -129,6 +161,7 @@ export default function PayForm() {
     }, [showAllUsers])
 
     console.log('errors', errors)
+    console.log('hasSubmit', hasSubmit)
     console.log('recipient', recipients)
     console.log('toUserIds', toUserIds)
 
@@ -139,14 +172,23 @@ export default function PayForm() {
         <span className='payform-head'>Pay & Request</span>
         <form className='payform-form'>
             <div className='payform-input-wrapper'>
-                <div className={`amount-input-div payform-amount ${errors?.amount && hasSubmit ? 'hasPayErrors' : ''}`}>
+                <div className={`amount-input-div payform-amount ${(errors?.amount|| errors?.insufficient) && hasSubmit ? 'hasPayErrors' : ''}`}>
                     <b>$ </b>
                     <input type='text' value={amount} size={`${amount}`.length || 1} onKeyDown={handleKeyDown} onChange={(e) => setAmount(e.target.value)} />
                 </div>
                 {hasSubmit && errors.amount &&
                     <div className='auth-error-div'>
-                        <span>{errors.amount} </span>
+                        <span>{errors.amount}</span>
                         <i className={`fa-solid fa-exclamation ${errors?.amount && hasSubmit ? 'payErrorIcon' : ''}`}></i>
+                    </div>
+                }
+                {console.log('-----------------------------------')}
+                {console.log(hasSubmit)}
+                {console.log(errors.insufficient)}
+                {hasSubmit && errors.insufficient &&
+                    <div className='auth-error-div'>
+                        <span>{errors.insufficient}</span>
+                        <i className={`fa-solid fa-exclamation ${errors?.insufficient && hasSubmit ? 'payErrorIcon' : ''}`}></i>
                     </div>
                 }
             </div>
@@ -178,14 +220,14 @@ export default function PayForm() {
                 </div>}
             </div>
             <div className='payform-input-wrapper'>
-                <div className={`payform-note-input-div ${errors?.amount && hasSubmit ? 'hasPayErrors' : ''}`} >
+                <div className={`payform-note-input-div ${errors?.note && hasSubmit ? 'hasPayErrors' : ''}`} >
                     <label htmlFor='note' className='' >Note</label>
                     <textarea
                         name='note'
                         onChange={(e) => setNote(e.target.value)}
                         value={note}
                     ></textarea>
-                    <i className={`fa-solid fa-exclamation payform-note-icon ${errors?.amount && hasSubmit ? 'payErrorIcon' : ''}`}></i>
+                    <i className={`fa-solid fa-exclamation payform-note-icon ${errors?.note && hasSubmit ? 'payErrorIcon' : ''}`}></i>
                 </div>
                 {hasSubmit && errors.note &&
                       <div className='auth-error-div payform-error'>
