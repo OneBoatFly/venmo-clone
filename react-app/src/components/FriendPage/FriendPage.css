@@ -9,9 +9,13 @@
 
 .friend-page {
     margin-top: 3.26rem;
+    margin-left: auto;
+    margin-right: auto;
     flex-grow: 1;
     padding: 0px 8%;
     box-sizing: border-box;
+    width: calc(100% - 317px);
+    max-width: calc(960px + 16%);
 }
 
 .friend-head {

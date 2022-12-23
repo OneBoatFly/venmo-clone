@@ -32,11 +32,12 @@ export default function PayForm() {
     }
 
     const handlePay = async () => {
-        // console.log('handle pay')
-        // console.log(toUserIds, amount, note, parseFloat(amount) * 100 > user?.balance, user?.balance)
+        console.log('handle pay')
+        console.log(toUserIds, amount, note, parseFloat(amount) * 100 * recipients.length > user?.balance, user?.balance)
         setHasSubmit(true)
         
         if (parseFloat(amount) * 100 * recipients.length > user?.balance) {
+            // console.log('in setting insufficient')
             setInsufficient('Insufficient balance.')
             return;
         }
@@ -203,6 +204,7 @@ export default function PayForm() {
                     <input
                         type='text'
                         name='recipient'
+                        placeholder='Find users here...'
                         onChange={(e) => setRecipient(e.target.value)}
                         value={recipient}
                     ></input>
