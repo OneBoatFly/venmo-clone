@@ -2,12 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import './AllUsersDropDown.css';
 
-export default function AllUsersDropDown({ setRecipient, setShowAllUsers, setRecipients, setToUserIds }) {
+export default function AllUsersDropDown({ recipients, setRecipient, setShowAllUsers, setRecipients, setToUserIds }) {
     const allUsers = useSelector(state => state.user.allUsers);
     const user = useSelector(state => state.session.user);
 
-    const handleClick = (e, singleUser) => {
+    const handleClick = (singleUser) => {
         setRecipient('');
+        if (recipients.includes(singleUser.username)) return;
         setRecipients(prev => [...prev, singleUser.username]);
         setToUserIds(prev => [...prev, singleUser.id]);
         setShowAllUsers(false)

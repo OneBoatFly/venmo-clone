@@ -37,6 +37,7 @@ export default function PayForm() {
         setHasSubmit(true)
 
         let newErrors = errors
+        setErrors({})
         if (parseFloat(amount) * 100 > user?.balance) {
             newErrors.insufficient = 'Insufficient balance.'
         }
@@ -187,7 +188,7 @@ export default function PayForm() {
                 {console.log(errors.insufficient)}
                 {hasSubmit && errors.insufficient &&
                     <div className='auth-error-div'>
-                        <span>{errors.insufficient}</span>
+                          <span>{errors.insufficient}</span>
                         <i className={`fa-solid fa-exclamation ${errors?.insufficient && hasSubmit ? 'payErrorIcon' : ''}`}></i>
                     </div>
                 }
@@ -216,7 +217,7 @@ export default function PayForm() {
                     </div>
                 }
                 {showAllUsers && <div ref={showAllUsersRef} className='all-users-drop-down-div'>
-                    <AllUsersDropDown setRecipient={setRecipient} setShowAllUsers={setShowAllUsers} setRecipients={setRecipients} setToUserIds={setToUserIds}/>
+                    <AllUsersDropDown recipients={recipients} setRecipient={setRecipient} setShowAllUsers={setShowAllUsers} setRecipients={setRecipients} setToUserIds={setToUserIds}/>
                 </div>}
             </div>
             <div className='payform-input-wrapper'>
