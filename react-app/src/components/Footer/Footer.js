@@ -11,7 +11,7 @@ export default function Footer() {
             <a href='https://github.com/OneBoatFly' className='footer-contact-me' target="_blank" rel="noopener noreferrer"><img src={githubLogo} alt='github' style={{'width': '18px'}}/></a>
             <a href='https://www.linkedin.com/in/yizhoucatherinezhang/' className='footer-contact-me' target="_blank" rel="noopener noreferrer"><img src={linkedInLogo} alt='github' style={{ 'width': '19px' }} /></a>
         </div>
-        <span>Disclaimer: Vinmo is a clone of the website Venmo created as student project at App Academy. <b>This website does not perform any real transactions.</b></span>
+        <span>Disclaimer: Vinmo is a clone of the website Venmo created as a student project at App Academy. <b>This website does not perform any real transactions.</b></span>
     </div>
   )
 }
