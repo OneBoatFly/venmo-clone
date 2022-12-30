@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { fetchOneTransaction, likeTransaction, unlikeTransaction } from '../../store/transactons';
 import SideBar from '../SideBar/SideBar';
 import TransactionRow from '../TransactionPage/TransactionRow';
+import AddComment from './AddComment';
 import './StoryPage.css';
 import ViewComments from './ViewComments';
 
@@ -53,7 +54,8 @@ export default function StoryPage() {
                                 </div>
                                 <hr className='transaction-divider'></hr>
                             </div>
-                            <ViewComments transaction={currentTransaction} />            
+                            <ViewComments transaction={currentTransaction} />
+                            <AddComment transaction={currentTransaction} />   
                         </div>
                     }
                 </div>

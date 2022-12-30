@@ -176,6 +176,52 @@ export const unlikeTransaction = (transactionId, isUserTran) => async (dispatch)
 }
 
 
+export const createComment = (body, transactionId) => async (dispatch) => {
+    console.log('---------- createComment Thunk - transactionId ------------', body, transactionId)
+    const response = await fetch(`/api/comments?transactionId=${transactionId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)        
+    });
+
+    console.log('---------- createComment Thunk - response ------------', response)
+    if (response.ok) {
+        dispatch(fetchOneTransaction(transactionId))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+
+}
+
+
+export const deleteComment = (commentId, transactionId) => async (dispatch) => {
+    // console.log('---------- deleteComment Thunk - commentId ------------', commentId)
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        dispatch(fetchOneTransaction(transactionId))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+};
+
+
 const initialState = { userTransactions: {}, friendsTransactions: {}, oneTransaction: null };
 export default function reducer(state = initialState, action) {
     const newState = { ...state }

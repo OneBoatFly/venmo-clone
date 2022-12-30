@@ -1,0 +1,38 @@
+.add-comment-wrapper {
+    margin-left: 54px;
+}
+
+.add-comment-input {
+    border: 0.5px solid #888C94;
+    border-radius: 8px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    height: 32px;
+    box-sizing: border-box;
+}
+
+.add-comment-profile-pic {
+    width: 18px;
+    height: 18px;
+}
+
+.add-comment-input input {
+    outline: unset;
+    border: unset;
+    background: unset;
+    flex-grow: 1;
+}
+
+.add-comment-input:focus-within {
+    border-color: #0074DE;
+}
+
+.add-comment-input.hasPayErrors {
+    border-color: #C72830;
+}
+
+.fa-solid.fa-exclamation.payErrorIcon.add-comment-error-icon {
+    font-size: 20px;
+}
