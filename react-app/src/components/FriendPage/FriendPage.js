@@ -6,6 +6,7 @@ import AllFriends from './AllFriends';
 import PendingFriends from './PendingFriends';
 import './FriendPage.css';
 import AddFriends from './AddFriends';
+import SideBarMobile from '../SideBar/SideBarMobile';
 
 export default function FriendPage() {
     const [active, setActive] = useState('Friends');
@@ -21,6 +22,7 @@ export default function FriendPage() {
     return (
         <div className='friend-page-div'>
             <SideBar />
+            <SideBarMobile />            
             <div className='friend-page'>
                 <h1 className='friend-head'>My Friends</h1>
                 <AddFriends />

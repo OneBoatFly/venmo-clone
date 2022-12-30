@@ -5,6 +5,7 @@ import SideBar from '../SideBar/SideBar';
 import UserTransactions from './UserTransactions';
 import './TransactionPage.css';
 import FriendsTransactions from './FriendsTransactions';
+import SideBarMobile from '../SideBar/SideBarMobile';
 
 export default function AccountPage() {
   const [active, setActive] = useState('MyTrans');
@@ -17,6 +18,7 @@ export default function AccountPage() {
   return (
     <div className='transaction-page-div'>
       <SideBar />
+      <SideBarMobile />      
       <div className='transaction-page'>
         <div className='transaction-tag'>
           <button className={`transaction-button ${active === 'FrdTrans' ? 'transaction-active' : ''}`} onClick={() => { setActive('FrdTrans') }}>

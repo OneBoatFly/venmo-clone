@@ -64,3 +64,9 @@
 .sidebar-single-div.sidebar-menu a:hover {
     color: #0074DE;
 }
+
+@media (max-width: 960px) {
+    .sidebar-div {
+        display: none;
+    }
+}

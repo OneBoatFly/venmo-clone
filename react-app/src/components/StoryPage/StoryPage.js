@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchOneTransaction, likeTransaction, unlikeTransaction } from '../../store/transactons';
 import SideBar from '../SideBar/SideBar';
+import SideBarMobile from '../SideBar/SideBarMobile';
 import TransactionRow from '../TransactionPage/TransactionRow';
 import AddComment from './AddComment';
 import './StoryPage.css';
@@ -36,6 +37,7 @@ export default function StoryPage() {
     return (
         <div className='transaction-page-div'>
             <SideBar />
+            <SideBarMobile />            
             <div className='transaction-page'>
                 <div className='transaction-body-div'>
                     {currentTransaction && 
