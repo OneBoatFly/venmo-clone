@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 import PayPage from './components/PayPage/PayPage';
 import OpenRequestPage from './components/OpenRequestPage/OpenRequestPage';
 import FriendPage from './components/FriendPage/FriendPage';
+import StoryPage from './components/StoryPage/StoryPage';
 
 function App() {
   const user = useSelector(state => state.session.user);
@@ -54,6 +55,9 @@ function App() {
         <ProtectedRoute path='/friends' exact={true} >
           <FriendPage />
         </ProtectedRoute>
+        <ProtectedRoute path='/story/:transactionId' >
+          <StoryPage />
+        </ProtectedRoute>        
         <ProtectedRoute >
           <AccountPage />
         </ProtectedRoute>        

@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { compareTime } from '../../utils/compareTime';
-import { fetchAllTransactions, likeTransaction, unlikeTransaction } from '../../store/transactons';
+import { likeTransaction, unlikeTransaction } from '../../store/transactons';
 import TransactionRow from './TransactionRow';
 import './UserTransactions.css';
 
 export default function UserTransactions() {
-    console.log('----------- UseTransactions Component ------------')
     const userTransactions = useSelector(state => state.transaction.userTransactions);
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();

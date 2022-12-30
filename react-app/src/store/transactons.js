@@ -74,7 +74,7 @@ export const fetchAllTransactions = () => async (dispatch) => {
 }
 
 
-export const fetchOneTransactions = (transactionId) => async (dispatch) => {
+export const fetchOneTransaction = (transactionId) => async (dispatch) => {
     console.log('---------- fetchOneTransactions Thunk ------------', transactionId)
     const response = await fetch(`/api/transactions/${transactionId}`);
 
