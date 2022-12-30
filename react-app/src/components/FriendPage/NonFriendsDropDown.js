@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createFriendRequest, fetchAllFriends } from '../../store/friend';
 import { fetchNonFriendUsers } from '../../store/user';
 import './NonFriendsDropDown.css';
 
-export default function NonFriendsDropDown() {
+export default function NonFriendsDropDown({keyword}) {
     const nonFriends = useSelector(state => state.user.nonFriendUsers);
     const dispatch = useDispatch();
+    const [friendsKeyword, setFriendsKeyword] = useState(nonFriends);
 
     const [errors, setErrors] = useState('')
 
@@ -21,6 +22,18 @@ export default function NonFriendsDropDown() {
         dispatch(fetchAllFriends())
     }
 
+    useEffect(() => {
+        if (!nonFriends) return;
+        if (nonFriends.length === 0) return;
+
+        let nonFriendsArr = []
+        nonFriendsArr = nonFriends.filter(user => {
+            return user.username.toLowerCase().includes(keyword.toLowerCase())
+        })
+
+        setFriendsKeyword(nonFriendsArr);
+    }, [keyword, nonFriends])
+
     return (
         <div className='non-friends-div'>
             <h4>People</h4>
@@ -29,7 +42,7 @@ export default function NonFriendsDropDown() {
                     <span>{errors}</span>
                 </div>
             }
-            {nonFriends.map(singleUser => {
+            {friendsKeyword.map(singleUser => {
                 // console.log('singleUser - nonFriend', singleUser.id)
                 return (
                     <div key={singleUser.id} className='non-friends-single-div'>

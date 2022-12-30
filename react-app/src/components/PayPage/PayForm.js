@@ -32,8 +32,8 @@ export default function PayForm() {
     }
 
     const handlePay = async () => {
-        console.log('handle pay')
-        console.log(toUserIds, amount, note, parseFloat(amount) * 100 * recipients.length > user?.balance, user?.balance)
+        // console.log('handle pay')
+        // console.log(toUserIds, amount, note, parseFloat(amount) * 100 * recipients.length > user?.balance, user?.balance)
         setHasSubmit(true)
 
         const numOfRecipient = recipients.length || 1
@@ -145,9 +145,8 @@ export default function PayForm() {
         if (!showAllUsers) return;
         
         const closeAllUsers = (e) => {
-            console.log(showAllUsersRef)
             if (showAllUsersRef.current) {
-                if (showAllUsersRef.current.contains(e.target)) return;
+                if (showAllUsersRef.current.contains(e.target) || e.target.className.includes('payform-input-recipient')) return;
             }
             setShowAllUsers(false);
         }
@@ -191,14 +190,14 @@ export default function PayForm() {
                     </div>
                 }
             </div>
-            <div className='payform-input-wrapper'>
-                <div className={`payform-input-div ${errors?.recipient && hasSubmit ? 'hasPayErrors' : ''}`} onClick={() => setShowAllUsers(true)}>
-                    <label htmlFor='recipient' className='' >To</label>
+            <div className='payform-input-wrapper payform-input-recipient'>
+                <div className={`payform-input-div payform-input-recipient ${errors?.recipient && hasSubmit ? 'hasPayErrors' : ''}`} onClick={() => setShowAllUsers(true)}>
+                    <label htmlFor='recipient' className='payform-input-recipient' >To</label>
                     {recipients.map(username => {
                         return (
-                            <div key={username} className='payform-username-bubble'>
-                                <span>{username}</span>
-                                <i className="fa-solid fa-x" onClick={() => handleDeleteRecipient(username)}></i>
+                            <div key={username} className='payform-username-bubble payform-input-recipient'>
+                                <span className='payform-input-recipient'>{username}</span>
+                                <i className="fa-solid fa-x payform-input-recipient" onClick={() => handleDeleteRecipient(username)}></i>
                             </div>
                         )
                     })}
@@ -208,6 +207,7 @@ export default function PayForm() {
                         placeholder='Find users here...'
                         onChange={(e) => setRecipient(e.target.value)}
                         value={recipient}
+                        className='payform-input-recipient'
                     ></input>
                 </div>
                 {hasSubmit && errors.recipient &&
@@ -216,7 +216,7 @@ export default function PayForm() {
                     </div>
                 }
                 {showAllUsers && <div ref={showAllUsersRef} className='all-users-drop-down-div'>
-                    <AllUsersDropDown recipients={recipients} setRecipient={setRecipient} setShowAllUsers={setShowAllUsers} setRecipients={setRecipients} setToUserIds={setToUserIds}/>
+                    <AllUsersDropDown recipients={recipients} setRecipient={setRecipient} setShowAllUsers={setShowAllUsers} setRecipients={setRecipients} setToUserIds={setToUserIds} keyword={recipient}/>
                 </div>}
             </div>
             <div className='payform-input-wrapper'>
