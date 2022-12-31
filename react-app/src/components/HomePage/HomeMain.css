@@ -1,8 +1,8 @@
 .home-main-div {
-    padding: 6rem 0;
+    padding: 6rem 5rem;
     box-sizing: border-box;
     width: 100%;
-    
+    height: calc(100vh - 160px);
 }
 
 .home-main-sub-div {
@@ -36,7 +36,8 @@
     max-width: min(400px, 40rem);
 }
 
-.sign-up-a-in-main {
+.demo-user {
+    cursor: pointer;
     padding: 0.6rem 1.5rem;
     width: 120px;
     border: 1px solid rgb(0, 140, 255);
@@ -59,7 +60,7 @@
 .home-main-right {
     /* outline: 1px solid blue; */
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .doodle-green {
@@ -73,9 +74,9 @@
 .doodle-multi {
     position: absolute;
     z-index: 2;
-    width: 70px;
-    top: 300px;
-    left: 300px;
+    width: 90px;
+    bottom: 20%;
+    left: 52%;
 }
 
 .upper-phone {
@@ -86,10 +87,10 @@
 .upper-phone-shadow {
     position: absolute;
     z-index: -1;
-    width: 32.5rem;
+    width: 100%;
     left: 0px;
     top: 0px;
-    overflow: hidden;
+    overflow: unset;
 }
 
 

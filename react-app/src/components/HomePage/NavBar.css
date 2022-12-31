@@ -29,7 +29,7 @@
 }
 
 @media screen and (max-width: 400px) {
-    .vinmo-a {
+    .nav-bar-vinmo-logo-div {
         display: none !important;
     }
 }

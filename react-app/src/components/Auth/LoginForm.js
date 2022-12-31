@@ -126,7 +126,7 @@ const LoginForm = () => {
               </div>
             }
           </div>
-          <button type='submit' className='login-button'>Login</button>
+          <button type='submit' className='login-button'>Log in</button>
           <NavLink to='/sign-up' exact={true} className='sign-up-a log-in-page'>
             Sign up
           </NavLink>

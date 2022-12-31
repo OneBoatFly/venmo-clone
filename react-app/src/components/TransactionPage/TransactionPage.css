@@ -23,32 +23,36 @@
 }
 
 .transaction-tag {
-    width: fit-content;
+    width: 160px;
+    min-height: 32px;
+    max-height: 32px;
+    height: 32px;
     border-radius: 32px;
     border: 0.5px solid #55585E;
 }
 
 .transaction-button {
+    border: unset;
     cursor: pointer;
     background-color: white;
     color: #55585E;
-    border: unset;
     padding: 6px 12px;
     width: 80px;
     min-width: 80px;
     min-height: 32px;
+    max-height: 32px;
+    height: 32px;
     border-radius: 32px;
 }
 
 .transaction-active {
     background-color: #55585E;
-    border: 0.5px solid #55585E;
+    box-shadow: 0 0 0 0.5px #55585E;
     color: white;
 }
 
 .transaction-button.transaction-active:hover {
     background-color: #6B6E76;
-    border: 0.5px solid #6B6E76;
 }
 
 .transaction-body-div {
