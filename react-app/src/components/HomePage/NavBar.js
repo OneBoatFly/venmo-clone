@@ -6,7 +6,7 @@ import './NavBar.css';
 const NavBar = () => { 
   return (
     <nav className='nav-bar-nav'>
-      <div className='nav-bar-divs'>
+      <div className='nav-bar-divs nav-bar-vinmo-logo-div'>
         <NavLink to='/' exact={true} className='vinmo-a'>
           <span className='vinmo-span'>Vinmo</span>
         </NavLink>

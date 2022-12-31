@@ -123,12 +123,13 @@
 }
 
 @media (max-width: 960px) {
+    .openrequest-page-div,
     .friend-page-div,
     .transaction-page-div,
     .pay-page-div {
         display: flex;
         flex-direction: column;
-        flex-wrap: nowrap;
+        flex-wrap: nowrap !important;
     }
     
     .sidebar-mobile-wrapper {

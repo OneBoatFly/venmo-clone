@@ -59,7 +59,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    column-gap: 8px;
+    gap: 8px;
 }
 
 .friend-profile-pic {
