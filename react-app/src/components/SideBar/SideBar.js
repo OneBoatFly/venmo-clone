@@ -11,13 +11,13 @@ import { fetchAllFriends } from '../../store/friend';
 
 export default function SideBar() {
   const user = useSelector(state => state.session.user);
+  const amount = getDecimalNum(user?.balance)
+  const socket = useSocket();
   const userOpens = useSelector(state => state.openReqPay.openRequests);
   const openRequestCounter = userOpens?.RequestFroms?.length + userOpens?.RequestTos?.length;
   const pendingFroms = useSelector(state => state.friend.pendingFroms);
   const pendingTos = useSelector(state => state.friend.pendingTos);
   const pendingFriendsCounter = pendingFroms?.length + pendingTos?.length;
-  const amount = getDecimalNum(user?.balance)
-  const socket = useSocket();
   
   const [requestUnread, setRequestUnread] = useState(false);
   const [friendUnread, setFriendUnread] = useState(false);
@@ -30,14 +30,11 @@ export default function SideBar() {
 
   useEffect(() => {
     if (user && socket) {
-      console.log("joining inbox emit:", `inbox-${user.id}`);
       socket.emit("inbox", {
         inbox: `inbox-${user.id}`
       });
 
-      console.log('setting up event listener on notifications')
       socket.on("notification", (data) => {
-        console.log("!! listening on notification triggered", data);
         switch (data) {
           case 'request':
             setRequestUnread(true);
@@ -53,7 +50,6 @@ export default function SideBar() {
     }
   }, [socket, user, dispatch]);
 
-  console.log('------ sidebar requestUnread', requestUnread)
 return (
     <nav className='sidebar-div'>
       {user &&
@@ -93,7 +89,7 @@ return (
               {pendingFriendsCounter > 0 && <span>{pendingFriendsCounter}</span>}
             </NavLink>
 
-            <NavLink to='/search' onClick={(e) => e.preventDefault()}>Search - feature to come</NavLink>
+            {/* <NavLink to='/search' onClick={(e) => e.preventDefault()}>Search - feature to come</NavLink> */}
             <LogoutButton />
           </div>
         </>

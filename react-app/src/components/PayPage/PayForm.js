@@ -97,7 +97,7 @@ export default function PayForm() {
 
             // send notification to the to_users.
             for (const toUserId of toUserIds) {
-                console.log('sending notification', toUserId)
+                // console.log('sending notification', toUserId)
                 socket.emit('notification', {
                     to_user_id: toUserId,
                     notification_type: 'request'
