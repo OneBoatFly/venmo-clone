@@ -53,6 +53,8 @@
 }
 
 .sidebar-single-div.sidebar-menu {
+    width: 100%;
+    padding-right: 0.5rem;
     display: flex;
     flex-direction: column;
     row-gap: 24px;
@@ -64,6 +66,33 @@
 .sidebar-single-div.sidebar-menu a:hover {
     color: #0074DE;
 }
+
+.sidebar-notification-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-notification-div div {
+    flex-grow: 1;
+}
+
+.sidebar-notification-div span {
+    background-color: #c72830;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+}
+
+.hasUnread {
+    font-weight: 800;
+}
+
 
 @media (max-width: 960px) {
     .sidebar-div {
