@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createFriendRequest, fetchAllFriends } from '../../store/friend';
 import { fetchNonFriendUsers } from '../../store/user';
 import './NonFriendsDropDown.css';
+import { useSocket } from '../../context/SocketContext';
 
 export default function NonFriendsDropDown({keyword}) {
     const nonFriends = useSelector(state => state.user.nonFriendUsers);
     const dispatch = useDispatch();
+    const socket = useSocket();
     const [friendsKeyword, setFriendsKeyword] = useState(nonFriends);
 
     const [errors, setErrors] = useState('')
@@ -19,7 +21,11 @@ export default function NonFriendsDropDown({keyword}) {
         }
 
         dispatch(fetchNonFriendUsers());
-        dispatch(fetchAllFriends())
+        dispatch(fetchAllFriends());
+        socket.emit('notification', {
+            to_user_id: singleUser.id,
+            notification_type: 'friend'
+        })        
     }
 
     useEffect(() => {

@@ -7,11 +7,13 @@ import { authenticate } from '../../store/session';
 import { createTransaction } from '../../store/transactons';
 import { fetchAllUsers } from '../../store/user';
 import AllUsersDropDown from './AllUsersDropDown';
-import './PayForm.css'
+import './PayForm.css';
+import { useSocket } from '../../context/SocketContext';
 
 export default function PayForm() {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    const socket = useSocket();
 
     const [amount, setAmount] = useState('0');
     const [recipients, setRecipients] = useState([]);
@@ -92,6 +94,15 @@ export default function PayForm() {
 
         if (!backendErrors.length) {
             setComplete(true)
+
+            // send notification to the to_users.
+            for (const toUserId of toUserIds) {
+                // console.log('sending notification', toUserId)
+                socket.emit('notification', {
+                    to_user_id: toUserId,
+                    notification_type: 'request'
+                })
+            }
         }
     }
 

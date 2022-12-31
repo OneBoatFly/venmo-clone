@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllOpenRequests } from '../../store/openRequest';
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import './OpenRequestPage.css';
 import SideBar from '../SideBar/SideBar'
 import OpenPayments from './OpenPayments';
@@ -10,11 +9,6 @@ import SideBarMobile from '../SideBar/SideBarMobile';
 export default function OpenRequestPage() {
     const [active, setActive] = useState('Requests');
     const userOpens = useSelector(state => state.openReqPay.openRequests);
-
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchAllOpenRequests())
-    }, [dispatch])
 
   return (
     <div className='openrequest-page-div'>
