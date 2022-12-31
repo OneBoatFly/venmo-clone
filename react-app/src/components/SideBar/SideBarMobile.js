@@ -11,16 +11,22 @@ export default function SideBarMobile() {
     const amount = getDecimalNum(user?.balance)
 
     const [openMenu, setOpenMenu] = useState(false);
+    const [menuIcon, setMenuIcon] = useState(true);
+
+    const handleMenuClick = () => {
+        setOpenMenu(prev => !prev)
+        setMenuIcon(false);
+    }
 
   return (
     <div className='sidebar-mobile-wrapper'>
-      <div className="sidebar-menu-icon-wrapper" onClick={() => setOpenMenu(prev => !prev)}>
+        <div className={`sidebar-menu-icon-wrapper ${menuIcon ? 'show-menu-icon': 'no-menu-icon'}`} onClick={handleMenuClick}>
         <i className="fa-solid fa-bars"></i>
       </div>
       <nav className={`sidebar-mobile-div ${openMenu ? 'open-sidebar-mobile': 'close-sidebar-mobile'}`}>
           {user &&
               <>
-                  <div className='sidebar-mobile-single-div' onClick={() => setOpenMenu(false)}>
+                  <div className='sidebar-mobile-single-div sidebar-mobile-head' onClick={() => setOpenMenu(false)}>
                       {user ?
                           <NavLink to='/account' exact={true} className='vinmo-a'>
                               <span className='vinmo-span'>Vinmo</span>
@@ -30,6 +36,9 @@ export default function SideBarMobile() {
                               <span className='vinmo-span'>Vinmo</span>
                           </NavLink>
                       }
+                      <button className='sidebar-mobile-exit-button' onClick={() => setMenuIcon(true)}>
+                          <i className="fa-solid fa-xmark"></i>
+                      </button>
                   </div>
                   <div className='sidebar-mobile-single-div profile-container'>
                       <img src={user.imageUrl} alt='' className='side-bar-profile-pic' />
@@ -38,7 +47,7 @@ export default function SideBarMobile() {
                           <NavLink to={`/transactions`}>@{user.email}</NavLink>
                       </div>
                   </div>
-                  <PayReqButt />
+                  <PayReqButt setOpenMenu={setOpenMenu} />
                   <div className='sidebar-mobile-single-div'>
                       <span className='sidebar-mobile-balance'>${amount} in Vinmo</span>
                   </div>

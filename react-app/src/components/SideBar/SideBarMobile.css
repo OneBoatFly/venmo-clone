@@ -7,6 +7,41 @@
     margin-left: 1rem;
 }
 
+.sidebar-mobile-head {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.sidebar-mobile-head a {
+    width: unset;
+    flex-grow: 1;
+    justify-content: flex-start;
+}
+
+.show-menu-icon {
+    display: block;
+}
+
+.no-menu-icon {
+    display: none;
+}
+
+.sidebar-mobile-exit-button {
+    cursor: pointer;
+    background-color: white;
+    border: unset;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-mobile-exit-button:hover {
+    color: #6b6e76
+}
+
+.sidebar-mobile-exit-button i,
 .sidebar-menu-icon-wrapper i {
     font-size: 1.25rem;
     color: #888c94;
@@ -30,7 +65,6 @@
     justify-content: flex-start;
     row-gap: 2rem;
     padding: 1.7rem 8px 1.7rem 40px;
-    border-right: 1px solid #ccc;
     box-sizing: border-box;
     height: calc(100vh - 80px);
     overflow-y: auto;
@@ -87,17 +121,20 @@
 }
 
 @media (max-width: 960px) {
+    .friend-page-div,
     .transaction-page-div,
     .pay-page-div {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
     }
-
+    
     .sidebar-mobile-wrapper {
         display: block !important;
     }
 
+    .friend-page,
+    .openrequest-page,
     .payform-div,
     .transaction-page {
         width: 100% !important;
