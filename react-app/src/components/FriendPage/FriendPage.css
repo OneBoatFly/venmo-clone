@@ -63,7 +63,11 @@
 }
 
 .friend-profile-pic {
+    max-width: 46px;
+    min-width: 46px;
     width: 46px;
+    max-height: 46px;
+    min-height: 46px;
     height: 46px;
     border-radius: 50%;
     flex-basis: fit-content;
