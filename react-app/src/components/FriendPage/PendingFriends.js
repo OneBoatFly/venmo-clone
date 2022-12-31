@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { editFriendRequest, fetchAllFriends } from '../../store/friend';
+import { deleteFriend, editFriendRequest, fetchAllFriends } from '../../store/friend';
 import { fetchNonFriendUsers } from '../../store/user';
 import './FriendPage.css';
 
@@ -10,7 +10,7 @@ export default function AllFriends({ userPendingFroms, userPendingTos }) {
     const [errors, setErrors] = useState('')
 
     const handleAccept = async (friend) => {
-        console.log('Accept handler', friend)
+        // console.log('Accept handler', friend)
         const data = await dispatch(editFriendRequest(friend.id));
 
         if (data) {
@@ -19,7 +19,17 @@ export default function AllFriends({ userPendingFroms, userPendingTos }) {
 
         dispatch(fetchNonFriendUsers());
         dispatch(fetchAllFriends())
+    }
 
+    const handleCancel = async (friend) => {
+        const data = await dispatch(deleteFriend(friend.id));
+
+        if (data) {
+            setErrors(data)
+        }
+
+        dispatch(fetchNonFriendUsers());
+        dispatch(fetchAllFriends()); 
     }
 
     return (
@@ -53,6 +63,7 @@ export default function AllFriends({ userPendingFroms, userPendingTos }) {
                                 <span className='friend-name'>Invitation to <b>{friend.username}</b></span>
                                 <span className='friend-email'>@{friend.email}</span>
                             </div>
+                            <button className='accept-friend-button' onClick={() => handleCancel(friend)}>Cancel</button>
                         </div>
                         <hr className='friend-divider'></hr>
                     </div>

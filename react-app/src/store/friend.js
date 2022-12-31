@@ -26,7 +26,7 @@ export const removeAllFriends = () => ({
 
 
 export const fetchAllFriends = () => async (dispatch) => {
-    console.log('---------- fetchAllFriends Thunk ------------')
+    // console.log('---------- fetchAllFriends Thunk ------------')
     const response = await fetch('/api/friends');
 
     if (response.ok) {
@@ -46,12 +46,12 @@ export const fetchAllFriends = () => async (dispatch) => {
 }
 
 export const createFriendRequest = (to_user_id) => async (dispatch) => {
-    console.log('---------- createFriendRequest Thunk - parameter ------------', to_user_id)
+    // console.log('---------- createFriendRequest Thunk - parameter ------------', to_user_id)
     const response = await fetch(`/api/friends?to_user_id=${to_user_id}`, {
         method: 'POST'
     });
 
-    console.log('---------- createFriendRequest Thunk - response ------------', response)
+    // console.log('---------- createFriendRequest Thunk - response ------------', response)
     if (response.ok) {
         // const data = await response.json();
         // dispatch(setOpenRequest(data))
@@ -69,12 +69,12 @@ export const createFriendRequest = (to_user_id) => async (dispatch) => {
 
 
 export const editFriendRequest = (from_user_id) => async (dispatch) => {
-    console.log('---------- editFriend Thunk - from_user_id ------------', from_user_id)
+    // console.log('---------- editFriend Thunk - from_user_id ------------', from_user_id)
     const response = await fetch(`/api/friends?from_user_id=${from_user_id}`, {
         method: 'PATCH'
     });
 
-    console.log('---------- editFriend Thunk - response ------------', response)
+    // console.log('---------- editFriend Thunk - response ------------', response)
     if (response.ok) {
         // const data = await response.json();
         // dispatch(setOpenRequest(data))
@@ -92,7 +92,7 @@ export const editFriendRequest = (from_user_id) => async (dispatch) => {
 
 
 export const deleteFriend = (unfriend_user_id) => async (dispatch) => {
-    console.log('---------- deleteFriend Thunk - unfriend_user_id ------------', unfriend_user_id)
+    // console.log('---------- deleteFriend Thunk - unfriend_user_id ------------', unfriend_user_id)
     const response = await fetch(`/api/friends?unfriend_user_id=${unfriend_user_id}`, {
         method: 'DELETE'
     });

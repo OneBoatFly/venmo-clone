@@ -33,7 +33,6 @@ export default function FriendPage() {
                 {active === 'Friends' &&
                     <div className='friends-body-div'>
                         <AllFriends userFriends={friends || []} />
-                        {/* Friends */}
                     </div>
                 }
                 {active === 'Pendings' &&
