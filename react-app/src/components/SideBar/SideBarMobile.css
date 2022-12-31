@@ -109,6 +109,7 @@
 
 .sidebar-mobile-single-div.sidebar-mobile-menu {
     width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     row-gap: 24px;

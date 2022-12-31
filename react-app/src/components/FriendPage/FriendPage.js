@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllFriends } from '../../store/friend';
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import SideBar from '../SideBar/SideBar';
 import AllFriends from './AllFriends';
 import PendingFriends from './PendingFriends';
@@ -13,11 +12,6 @@ export default function FriendPage() {
     const friends = useSelector(state => state.friend.friends);
     const pendingFroms = useSelector(state => state.friend.pendingFroms);
     const pendingTos = useSelector(state => state.friend.pendingTos);
-
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchAllFriends())
-    }, [dispatch])
 
     return (
         <div className='friend-page-div'>
