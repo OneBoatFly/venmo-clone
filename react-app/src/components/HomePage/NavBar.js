@@ -13,7 +13,7 @@ const NavBar = () => {
       </div>
       <div className='nav-bar-divs'>
         <NavLink to='/login' exact={true} className='login-a'>
-          Login
+          Log in
         </NavLink>
         <NavLink to='/sign-up' exact={true} className='sign-up-a'>
           <span className='vinmo-span logo-tiny'>V</span>

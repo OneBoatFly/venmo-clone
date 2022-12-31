@@ -36,7 +36,8 @@
     max-width: min(400px, 40rem);
 }
 
-.sign-up-a-in-main {
+.demo-user {
+    cursor: pointer;
     padding: 0.6rem 1.5rem;
     width: 120px;
     border: 1px solid rgb(0, 140, 255);
