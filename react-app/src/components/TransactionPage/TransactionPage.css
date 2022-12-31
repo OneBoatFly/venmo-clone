@@ -5,6 +5,7 @@
     overflow-y: scroll;
     width: 100%;
     color: #2F3033;
+    position: relative;
 }
 
 .transaction-page {

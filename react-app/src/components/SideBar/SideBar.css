@@ -9,6 +9,10 @@
     padding: 1.7rem 8px 1.7rem 40px;
     border-right: 1px solid #ccc;
     box-sizing: border-box;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
 }
 
 .side-bar-profile-pic {
@@ -59,4 +63,10 @@
 
 .sidebar-single-div.sidebar-menu a:hover {
     color: #0074DE;
+}
+
+@media (max-width: 960px) {
+    .sidebar-div {
+        display: none;
+    }
 }

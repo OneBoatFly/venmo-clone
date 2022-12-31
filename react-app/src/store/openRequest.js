@@ -1,8 +1,8 @@
 // constants
-const SET_OPEN_REQUEST = 'session/SET_OPEN_REQUEST';
-const REMOVE_OPEN_REQUEST = 'session/REMOVE_OPEN_REQUEST';
-const SET_ALL_OPEN_REQUESTS = 'session/SET_ALL_OPEN_REQUESTS';
-const REMOVE_ALL_OPEN_REQUESTS = 'session/REMOVE_ALL_OPEN_REQUESTS';
+const SET_OPEN_REQUEST = 'openRequests/SET_OPEN_REQUEST';
+const REMOVE_OPEN_REQUEST = 'openRequests/REMOVE_OPEN_REQUEST';
+const SET_ALL_OPEN_REQUESTS = 'openRequests/SET_ALL_OPEN_REQUESTS';
+const REMOVE_ALL_OPEN_REQUESTS = 'openRequests/REMOVE_ALL_OPEN_REQUESTS';
 
 
 const setOpenRequest = (openRequest) => ({

@@ -14,7 +14,7 @@ export default function AddFriends() {
         if (!showNonFriends) return;
 
         const closeNonFriends = (e) => {
-            console.log(showNonFriendsRef)
+            // console.log(showNonFriendsRef)
             if (showNonFriendsRef.current) {
                 if (showNonFriendsRef.current.contains(e.target)) return;
             }
@@ -43,7 +43,7 @@ export default function AddFriends() {
             onClick={() => setShowNonFriends(true)}
         ></input>
         {showNonFriends && <div ref={showNonFriendsRef} className='non-friends-drop-down-div'>
-            <NonFriendsDropDown />
+            <NonFriendsDropDown keyword={recipient} />
         </div>}
     </div>
   )

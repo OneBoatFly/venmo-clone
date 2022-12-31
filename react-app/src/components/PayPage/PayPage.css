@@ -5,4 +5,5 @@
     width: 100%;
     color: #2F3033;
     overflow-y: scroll;
+    position: relative;
 }

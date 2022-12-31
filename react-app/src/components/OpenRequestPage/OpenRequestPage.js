@@ -5,6 +5,7 @@ import './OpenRequestPage.css';
 import SideBar from '../SideBar/SideBar'
 import OpenPayments from './OpenPayments';
 import OpenRequests from './OpenRequests';
+import SideBarMobile from '../SideBar/SideBarMobile';
 
 export default function OpenRequestPage() {
     const [active, setActive] = useState('Requests');
@@ -18,6 +19,7 @@ export default function OpenRequestPage() {
   return (
     <div className='openrequest-page-div'>
         <SideBar />
+        <SideBarMobile />        
         <div className='openrequest-page'>
             <h1 className='openrequest-head'>Open Requests</h1>
             <div className='openrequest-tag'>

@@ -1,6 +1,5 @@
 .transaction-top {
     display: flex;
-    flex-wrap: wrap;
     align-items: flex-start;
     column-gap: 8px;
     margin-bottom: 24px;

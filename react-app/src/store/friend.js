@@ -1,8 +1,8 @@
 // constants
-const SET_FRIENDS = 'session/SET_FRIENDS';
-const SET_PENDINGFROMS = 'session/SET_PENDINGFROMS';
-const SET_PENDINGTOS = 'session/SET_PENDINGTOS';
-const REMOVE_ALLFRIENDS = 'session/REMOVE_ALLFRIENDS';
+const SET_FRIENDS = 'friend/SET_FRIENDS';
+const SET_PENDINGFROMS = 'friend/SET_PENDINGFROMS';
+const SET_PENDINGTOS = 'friend/SET_PENDINGTOS';
+const REMOVE_ALLFRIENDS = 'friend/REMOVE_ALLFRIENDS';
 
 
 const setFriends = (friends) => ({
