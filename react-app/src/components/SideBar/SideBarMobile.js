@@ -24,9 +24,14 @@ export default function SideBarMobile() {
     const [requestUnread, setRequestUnread] = useState(false);
     const [friendUnread, setFriendUnread] = useState(false);
 
-    const handleMenuClick = () => {
-        setOpenMenu(prev => !prev)
+    const handleOpenMenu = () => {
+        setOpenMenu(true);
         setMenuIcon(false);
+    }
+
+    const handleCloseMenu = () => {
+        setOpenMenu(false);
+        setMenuIcon(true);
     }
 
     const dispatch = useDispatch();
@@ -59,31 +64,28 @@ export default function SideBarMobile() {
 
   return (
     <div className='sidebar-mobile-wrapper'>
-        <div className={`sidebar-menu-icon-wrapper ${menuIcon ? 'show-menu-icon': 'no-menu-icon'}`} onClick={handleMenuClick}>
+        <div className={`sidebar-menu-icon-wrapper ${menuIcon ? 'show-menu-icon': 'no-menu-icon'}`} onClick={handleOpenMenu}>
         <i className="fa-solid fa-bars"></i>
       </div>
       <nav className={`sidebar-mobile-div ${openMenu ? 'open-sidebar-mobile': 'close-sidebar-mobile'}`}>
           {user &&
               <>
-                  <div className='sidebar-mobile-single-div sidebar-mobile-head' onClick={() => setOpenMenu(false)}>
-                      {user ?
-                          <NavLink to='/account' exact={true} className='vinmo-a'>
-                              <span className='vinmo-span'>Vinmo</span>
-                          </NavLink>
-                          :
-                          <NavLink to='/' exact={true} className='vinmo-a'>
-                              <span className='vinmo-span'>Vinmo</span>
-                          </NavLink>
-                      }
-                      <button className='sidebar-mobile-exit-button' onClick={() => setMenuIcon(true)}>
-                          <i className="fa-solid fa-xmark"></i>
-                      </button>
+                  <div className='sidebar-mobile-single-div sidebar-mobile-head'>
+                    <NavLink to='/account' exact={true} className='vinmo-a' onClick={handleCloseMenu}>
+                        <span className='vinmo-span'>Vinmo</span>
+                    </NavLink>
+                    <button className='sidebar-mobile-exit-button' onClick={() => {
+                    setMenuIcon(true)
+                    handleCloseMenu()
+                    }}>
+                        <i className="fa-solid fa-xmark"></i>
+                    </button>
                   </div>
                   <div className='sidebar-mobile-single-div profile-container'>
                       <img src={user.imageUrl} alt='' className='side-bar-profile-pic' />
                       <div className='sidebar-mobile-name-email-div'>
                           <span>Hi, {user.username}</span>
-                          <NavLink to={`/transactions`}>@{user.email}</NavLink>
+                          <NavLink to={`/transactions`} onClick={handleCloseMenu}>@{user.email}</NavLink>
                       </div>
                   </div>
                   <PayReqButt setOpenMenu={setOpenMenu} />
@@ -91,11 +93,11 @@ export default function SideBarMobile() {
                       <span className='sidebar-mobile-balance'>${amount} in Vinmo</span>
                   </div>
                   <div className='sidebar-mobile-single-div sidebar-mobile-menu'>
-                      <NavLink to='/transactions' onClick={() => setOpenMenu(false)}>My Transactions</NavLink>
+                      <NavLink to='/transactions' onClick={handleCloseMenu}>My Transactions</NavLink>
 
                       <NavLink to='/open' className={`sidebar-notification-div ${requestUnread ? 'hasUnread' : ''}`} onClick={() => {
                         setRequestUnread(false)
-                        setOpenMenu(false)
+                        handleCloseMenu()
                       }}>
                         <div>Open Request</div>
                         {openRequestCounter > 0 && <span>{openRequestCounter}</span>}
@@ -103,7 +105,7 @@ export default function SideBarMobile() {
 
                       <NavLink to='/friends' className={`sidebar-notification-div ${friendUnread ? 'hasUnread' : ''}`} onClick={() => {
                         setFriendUnread(false)
-                        setOpenMenu(false)
+                        handleCloseMenu()
                       }}>
                         <div>Friends</div>
                         {pendingFriendsCounter > 0 && <span>{pendingFriendsCounter}</span>}
