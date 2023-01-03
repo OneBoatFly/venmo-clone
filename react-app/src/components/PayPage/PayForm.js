@@ -174,7 +174,7 @@ export default function PayForm() {
     // console.log('toUserIds', toUserIds)
     // console.log('insufficient', insufficient)
 
-    if (complete) return <Redirect to='/account'></Redirect>
+    if (complete) return <Redirect to='/open'></Redirect>
 
   return (
     <div className='payform-div'>
