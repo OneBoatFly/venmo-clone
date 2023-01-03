@@ -88,26 +88,27 @@ The home page provides a user sign in and sign up options, as well as a demo use
 ## Open Requests
 A user can see all pending requests from and to the user. If the request is from the user, the user can cancel or edit it. If the request is to the user, the user an choose to decline or make a payment.
 
+### Create Request (Live)
+![request-create-live](https://user-images.githubusercontent.com/34921536/210414610-41a08a95-ae15-4be2-9dac-c8887b53bef9.gif)
+
 ### Request From
 ![request-from](https://user-images.githubusercontent.com/34921536/210413576-88acca8a-9018-481b-88a4-cdab4ccf09fc.gif)
 
 ### Request To
 ![request-to](https://user-images.githubusercontent.com/34921536/210413587-6f93a5ac-18a6-4fbc-85b7-700d006ce093.gif)
 
-### Create Request
-![request-create](https://user-images.githubusercontent.com/34921536/210413604-24a0dcea-0251-4211-a22d-bb3cd5d805c9.gif)
 
 ## Friends
 A user can see all it's current confirmed friends and pending friend requests. If the request is from the user, the user can cancel the request. If the request is to the user, the user can accept the request. If the friend is confirmed friend, the user can choose to unfriend.
+
+### Send Request (Live)
+![friends-add](https://user-images.githubusercontent.com/34921536/210413640-2956917a-4688-4bc7-a670-bcb7dc882713.gif)
 
 ### Unfriend
 ![friends-unfriend](https://user-images.githubusercontent.com/34921536/210413622-0d571b05-bbac-4ef9-bf9c-3f9e68e0d49d.gif)
 
 ### Cancel
 ![friends-cancel](https://user-images.githubusercontent.com/34921536/210413627-77ca0b34-4b23-40d5-afec-355814dcf414.gif)
-
-### Send Request (Live)
-![friends-add](https://user-images.githubusercontent.com/34921536/210413640-2956917a-4688-4bc7-a670-bcb7dc882713.gif)
 
 ### Accept
 ![friends-accept](https://user-images.githubusercontent.com/34921536/210413683-1b448d19-c58a-44d7-b41a-23d6555a7094.gif)
