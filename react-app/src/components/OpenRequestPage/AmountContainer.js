@@ -16,10 +16,16 @@ export default function AmountContainer({ newAmount, setNewAmount, errors, setEr
     useEffect(() => {
         let newError = ''
 
+        // if (parseFloat(newAmount) <= 0 || newAmount.length === 0) {
+        //     newError = 'Enter a value greanter than $0.'
+        // } else if (parseFloat(newAmount) * 100 > balance) {
+        //     newError = 'Insufficient balance.'
+        // } else {
+        //     newError = ''
+        // }
+
         if (parseFloat(newAmount) <= 0 || newAmount.length === 0) {
             newError = 'Enter a value greanter than $0.'
-        } else if (parseFloat(newAmount) * 100 > balance) {
-            newError = 'Insufficient balance.'
         } else {
             newError = ''
         }
