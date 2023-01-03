@@ -24,7 +24,8 @@ export default function PayForm() {
     const [hasSubmit, setHasSubmit] = useState(false)
     const [errors, setErrors] = useState({});
     const [insufficient, setInsufficient] = useState('');
-    const [complete, setComplete] = useState(false)
+    const [requestComplete, setRequestComplete] = useState(false);
+    const [payComplete, setPayComplete] = useState(false);
 
     const handleKeyDown = (e) => {
         const valid = (e.key === 'Backspace') || /[0-9]/.test(e.key) || (e.key === 'ArrowLeft') || (e.key === 'ArrowRight') || (e.key === 'ArrowDown') || (e.key === 'ArrowUp') || (e.key === 'Tab') || (e.key === 'Delete' || (e.key === '.'))
@@ -64,7 +65,7 @@ export default function PayForm() {
         }
 
         if (!backendErrors.length) {
-            setComplete(true)
+            setPayComplete(true)
             dispatch(authenticate())
         }        
     }
@@ -93,7 +94,7 @@ export default function PayForm() {
         }
 
         if (!backendErrors.length) {
-            setComplete(true)
+            setRequestComplete(true)
 
             // send notification to the to_users.
             for (const toUserId of toUserIds) {
@@ -174,7 +175,9 @@ export default function PayForm() {
     // console.log('toUserIds', toUserIds)
     // console.log('insufficient', insufficient)
 
-    if (complete) return <Redirect to='/open'></Redirect>
+    if (payComplete) return <Redirect to='/transactions'></Redirect>
+
+    if (requestComplete) return <Redirect to='/open'></Redirect>
 
   return (
     <div className='payform-div'>
