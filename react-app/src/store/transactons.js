@@ -51,7 +51,7 @@ const updateFriendTransaction = (transaction) => ({
 
 
 export const fetchAllTransactions = () => async (dispatch) => {
-    console.log('---------- fetchAllTransactions Thunk ------------')
+    // console.log('---------- fetchAllTransactions Thunk ------------')
     const response = await fetch('/api/transactions');
 
     if (response.ok) {
@@ -75,7 +75,7 @@ export const fetchAllTransactions = () => async (dispatch) => {
 
 
 export const fetchOneTransaction = (transactionId) => async (dispatch) => {
-    console.log('---------- fetchOneTransactions Thunk ------------', transactionId)
+    // console.log('---------- fetchOneTransactions Thunk ------------', transactionId)
     const response = await fetch(`/api/transactions/${transactionId}`);
 
     if (response.ok) {
@@ -94,7 +94,7 @@ export const fetchOneTransaction = (transactionId) => async (dispatch) => {
 
 
 export const createTransaction = (transaction) => async (dispatch) => {
-    console.log('---------- createTransaction Thunk - body ------------', transaction)
+    // console.log('---------- createTransaction Thunk - body ------------', transaction)
     const response = await fetch('/api/transactions', {
         method: 'POST',
         headers: {
@@ -103,7 +103,7 @@ export const createTransaction = (transaction) => async (dispatch) => {
         body: JSON.stringify(transaction)
     });
 
-    console.log('---------- createTransaction Thunk - response ------------', response)
+    // console.log('---------- createTransaction Thunk - response ------------', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(setTransaction(data))
@@ -121,18 +121,18 @@ export const createTransaction = (transaction) => async (dispatch) => {
 
 
 export const likeTransaction = (transactionId, isUserTran) => async (dispatch) => {
-    console.log('---------- likeTransaction Thunk - transactionId, isUserTran ------------', transactionId, isUserTran)
+    // console.log('---------- likeTransaction Thunk - transactionId, isUserTran ------------', transactionId, isUserTran)
     const response = await fetch(`/api/likes?transactionId=${transactionId}`, {
         method: 'POST'
     });
 
-    console.log('---------- likeTransaction Thunk - response ------------', response, response.ok)
+    // console.log('---------- likeTransaction Thunk - response ------------', response, response.ok)
     if (response.ok) {
-        console.log('-------------response.ok--------')
+        // console.log('-------------response.ok--------')
         const data = await response.json();
         console.log('----------- data -----------', data, isUserTran)
         if (isUserTran) {
-            console.log('sending update user transaction action')
+            // console.log('sending update user transaction action')
             dispatch(updateUserTransaction(data));
         } else dispatch(updateFriendTransaction(data));
 
@@ -150,15 +150,15 @@ export const likeTransaction = (transactionId, isUserTran) => async (dispatch) =
 
 
 export const unlikeTransaction = (transactionId, isUserTran) => async (dispatch) => {
-    console.log('---------- unlikeTransaction Thunk - transactionId ------------', transactionId, isUserTran)
+    // console.log('---------- unlikeTransaction Thunk - transactionId ------------', transactionId, isUserTran)
     const response = await fetch(`/api/likes?transactionId=${transactionId}`, {
         method: 'DELETE'
     });
 
-    console.log('---------- unlikeTransaction Thunk - response ------------', response)
+    // console.log('---------- unlikeTransaction Thunk - response ------------', response)
     if (response.ok) {
         const data = await response.json();
-        console.log('----------- data -----------', data, isUserTran)
+        // console.log('----------- data -----------', data, isUserTran)
         if (isUserTran) {
             console.log('sending update user transaction action')
             dispatch(updateUserTransaction(data));
@@ -177,7 +177,7 @@ export const unlikeTransaction = (transactionId, isUserTran) => async (dispatch)
 
 
 export const createComment = (body, transactionId) => async (dispatch) => {
-    console.log('---------- createComment Thunk - transactionId ------------', body, transactionId)
+    // console.log('---------- createComment Thunk - transactionId ------------', body, transactionId)
     const response = await fetch(`/api/comments?transactionId=${transactionId}`, {
         method: 'POST',
         headers: {
@@ -186,7 +186,7 @@ export const createComment = (body, transactionId) => async (dispatch) => {
         body: JSON.stringify(body)        
     });
 
-    console.log('---------- createComment Thunk - response ------------', response)
+    // console.log('---------- createComment Thunk - response ------------', response)
     if (response.ok) {
         dispatch(fetchOneTransaction(transactionId))
         return null;

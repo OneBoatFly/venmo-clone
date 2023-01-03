@@ -31,8 +31,8 @@ export default function OpenPayments({ userPayments }) {
     setSelectedOpen(open)
 
     if (parseFloat(open.amount) > user?.balance) {
-      console.log(open.amount)
-      console.log(user.balance)
+      // console.log(open.amount)
+      // console.log(user.balance)
       setInsufficient('Insufficient balance.')
       return;
     }

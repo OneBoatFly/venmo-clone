@@ -126,9 +126,8 @@
 }
 
 .all-users-drop-down-div {
-    position: absolute;
+    position: relative;
     z-index: 1;
-    top: 54px;
     border-radius: 8px;
     box-shadow: 0px 0px 8px rgb(0, 0, 0, 50%);
     background-color: white;

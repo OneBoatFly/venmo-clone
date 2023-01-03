@@ -43,7 +43,7 @@ export const fetchAllOpenRequests = () => async (dispatch) => {
 }
 
 export const createOpenRequest = (openRequest) => async (dispatch) => {
-    console.log('---------- createOpenRequest Thunk - body ------------', openRequest)
+    // console.log('---------- createOpenRequest Thunk - body ------------', openRequest)
     const response = await fetch('/api/requests', {
         method: 'POST',
         headers: {
@@ -52,7 +52,7 @@ export const createOpenRequest = (openRequest) => async (dispatch) => {
         body: JSON.stringify(openRequest)
     });
 
-    console.log('---------- createOpenRequest Thunk - response ------------', response)
+    // console.log('---------- createOpenRequest Thunk - response ------------', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(setOpenRequest(data))
@@ -70,8 +70,8 @@ export const createOpenRequest = (openRequest) => async (dispatch) => {
 
 
 export const editOpenRequest = (openRequest, openRequestId) => async (dispatch) => {
-    console.log('---------- editOpenRequest Thunk - body ------------', openRequest)
-    console.log('---------- editOpenRequest Thunk - openRequestId ------------', openRequestId)
+    // console.log('---------- editOpenRequest Thunk - body ------------', openRequest)
+    // console.log('---------- editOpenRequest Thunk - openRequestId ------------', openRequestId)
     const response = await fetch(`/api/requests/${openRequestId}`, {
         method: 'PUT',
         headers: {
@@ -80,7 +80,7 @@ export const editOpenRequest = (openRequest, openRequestId) => async (dispatch) 
         body: JSON.stringify(openRequest)
     });
 
-    console.log('---------- editOpenRequest Thunk - response ------------', response)
+    // console.log('---------- editOpenRequest Thunk - response ------------', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(setOpenRequest(data))
@@ -98,7 +98,7 @@ export const editOpenRequest = (openRequest, openRequestId) => async (dispatch) 
 
 
 export const deleteOpenRequest = (openRequestId) => async (dispatch) => {
-    console.log('---------- deleteOpenRequest Thunk - openRequestId ------------', openRequestId)
+    // console.log('---------- deleteOpenRequest Thunk - openRequestId ------------', openRequestId)
     const response = await fetch(`/api/requests/${openRequestId}`, {
         method: 'DELETE'
     });
