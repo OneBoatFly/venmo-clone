@@ -79,3 +79,35 @@ The home page provides a user sign in and sign up options, as well as a demo use
 ### Sign Up
 
 ### Demo User
+
+### Logout
+
+## Open Requests
+A user can see all pending requests from and to the user. If the request is from the user, the user can cancel or edit it. If the request is to the user, the user an choose to decline or make a payment.
+
+### Request From
+
+### Request To
+
+### Create Request
+
+## Friends
+A user can see all it's current confirmed friends and pending friend requests. If the request is from the user, the user can cancel the request. If the request is to the user, the user can accept the request. If the friend is confirmed friend, the user can choose to unfriend.
+
+### Unfriend
+
+### Cancel
+
+### Send Request
+
+### Accept
+
+
+## Transactions
+A user can look at theirs and friends transaction histories and can make new payments. On the transaction history page, a user can also like or cancel like of a transaction. By clicking on the comment icon, a user can go into the specific transaction and make comments.
+
+### User and Friend Transactions History
+
+### Like and Unlike
+
+### Comment
