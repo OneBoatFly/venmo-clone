@@ -26,6 +26,10 @@
     font-size: 16px;
 }
 
+.transaction-info-div span {
+    overflow-wrap: anywhere;
+}
+
 .transaction-amount {
     flex-basis: fit-content;
 }

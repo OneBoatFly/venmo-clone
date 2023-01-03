@@ -92,17 +92,19 @@ export const editFriendRequest = (from_user_id) => async (dispatch) => {
 
 
 export const deleteFriend = (unfriend_user_id) => async (dispatch) => {
-    // console.log('---------- deleteFriend Thunk - unfriend_user_id ------------', unfriend_user_id)
+    console.log('---------- deleteFriend Thunk - unfriend_user_id ------------', unfriend_user_id)
     const response = await fetch(`/api/friends?unfriend_user_id=${unfriend_user_id}`, {
         method: 'DELETE'
     });
 
+    console.log('--------- deleteFriend respseons ------', response)
     if (response.ok) {
         // dispatch(removeOpenRequest());
         return null;
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
+            console.log('----- deleteFriend error ------', data.errors)
             return data.errors;
         }
     } else {

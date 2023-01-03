@@ -6,7 +6,7 @@ import './ViewComments.css';
 
 export default function ViewComments({transaction}) {
     const user = useSelector(state => state.session.user);
-    const comments = transaction.comments;
+    const comments = transaction?.comments;
     const dispatch = useDispatch();
 
     const handleDelete = (commentId) => {
@@ -16,7 +16,7 @@ export default function ViewComments({transaction}) {
 
   return (
     <div className='view-comments-wrapper'>
-        {comments.map(comment => {
+        {comments?.map(comment => {
             const diffTime = getTimeDifference(comment.createdAt)
             return (
                 <div key={comment.id} className='transaction-top'>

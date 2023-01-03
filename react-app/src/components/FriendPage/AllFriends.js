@@ -10,7 +10,7 @@ export default function AllFriends({ userFriends }) {
     const [errors, setErrors] = useState('')
 
     const handleUnfriend = async (friend) => {
-        console.log('unfriend handler')
+        console.log('------------- unfriend handler ------------')
         const data = await dispatch(deleteFriend(friend.id));
 
         if (data) {
