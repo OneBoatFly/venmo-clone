@@ -82,7 +82,7 @@ const LoginForm = () => {
         </NavLink>
         <span className='login-page-mid-span'>Log in or sign up</span>
         <form className="auth-form" onSubmit={onLogin}>
-          {console.log('sign in form errors', errors)}
+          {/* {console.log('sign in form errors', errors)} */}
           <div className='auth-form-error-input-wrapper'>
             <div className='auth-form-input-wrapper' ref={emailDivRef}>
               <div className='auth-form-label-input-wrapper'>

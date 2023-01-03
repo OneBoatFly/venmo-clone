@@ -130,7 +130,7 @@ export const likeTransaction = (transactionId, isUserTran) => async (dispatch) =
     if (response.ok) {
         // console.log('-------------response.ok--------')
         const data = await response.json();
-        console.log('----------- data -----------', data, isUserTran)
+        // console.log('----------- data -----------', data, isUserTran)
         if (isUserTran) {
             // console.log('sending update user transaction action')
             dispatch(updateUserTransaction(data));
@@ -160,7 +160,7 @@ export const unlikeTransaction = (transactionId, isUserTran) => async (dispatch)
         const data = await response.json();
         // console.log('----------- data -----------', data, isUserTran)
         if (isUserTran) {
-            console.log('sending update user transaction action')
+            // console.log('sending update user transaction action')
             dispatch(updateUserTransaction(data));
         } else dispatch(updateFriendTransaction(data));
         return null;

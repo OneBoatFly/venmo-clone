@@ -74,7 +74,7 @@ def delete_comment(commentId):
     """
     Delete a comment and returns None
     """
-    print('backend commentId', commentId)
+    # print('backend commentId', commentId)
     comment = Comment.query.get(commentId)
     if comment:
         db.session.delete(comment)

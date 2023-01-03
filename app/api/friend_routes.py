@@ -96,7 +96,7 @@ def delete_friend():
     Delete a friend and returns None
     """
     unfriend_user_id = request.args.get('unfriend_user_id')
-    print('delete friend route --------', unfriend_user_id)
+    # print('delete friend route --------', unfriend_user_id)
     if int(unfriend_user_id) == current_user.id:
         return {'errors': 'You cannot unfriend yourself.'}, 401
 
@@ -109,7 +109,7 @@ def delete_friend():
         or_(and_(Friend.from_user_id == unfriend_user_id, Friend.to_user_id == current_user.id),
             and_(Friend.from_user_id == current_user.id, Friend.to_user_id == unfriend_user_id))).first()
 
-    print('---------friendship --------', friendship)
+    # print('---------friendship --------', friendship)
 
     if not friendship:
         return {'errors': 'You are not a friend with this user.'}, 404

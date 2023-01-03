@@ -14,14 +14,14 @@ export default function FriendsTransactions() {
     const [friendsTransactionsArr, setFriendsTransactions] = useState([])
 
     const handleLike = (transaction) => {
-        console.log('handleLike - friendsTrans', transaction, user.id, transaction.likedUserIds, transaction.likedUserIds.includes(user.id))
+        // console.log('handleLike - friendsTrans', transaction, user.id, transaction.likedUserIds, transaction.likedUserIds.includes(user.id))
         if (transaction.likedUserIds.includes(user.id)) dispatch(unlikeTransaction(transaction.id, false))
         else dispatch(likeTransaction(transaction.id, false))
     }
 
     const history = useHistory();
     const handleComment = (transaction) => {
-        console.log('handleComment', transaction)
+        // console.log('handleComment', transaction)
         history.push(`/story/${transaction.id}`)
     }
 

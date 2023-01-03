@@ -17,7 +17,7 @@ socketio = SocketIO(cors_allowed_origins="*")
 def handle_inbox(data):
     inbox = data['inbox']
 
-    print(f'---------- setting up inbox: {inbox} ---------')
+    # print(f'---------- setting up inbox: {inbox} ---------')
     join_room(inbox)
 
 
@@ -26,5 +26,5 @@ def handle_notification(data):
     toUserId = data['to_user_id']
     notificationType = data['notification_type']
 
-    print(f'------- sending notification to inbox-{toUserId} --------')
+    # print(f'------- sending notification to inbox-{toUserId} --------')
     emit('notification', notificationType, to=f'inbox-{toUserId}')
