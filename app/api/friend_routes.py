@@ -40,7 +40,7 @@ def create_friend_request():
     Create a friend and returns None
     """
     to_user_id = request.args.get('to_user_id')
-    print('------------------', to_user_id)
+    # print('------------------', to_user_id)
     if int(to_user_id) == current_user.id:
         return {'errors': 'You cannot send a friend request to yourself.'}, 401
 
@@ -96,6 +96,7 @@ def delete_friend():
     Delete a friend and returns None
     """
     unfriend_user_id = request.args.get('unfriend_user_id')
+    print('delete friend route --------', unfriend_user_id)
     if int(unfriend_user_id) == current_user.id:
         return {'errors': 'You cannot unfriend yourself.'}, 401
 
@@ -107,6 +108,8 @@ def delete_friend():
     friendship = Friend.query.filter(
         or_(and_(Friend.from_user_id == unfriend_user_id, Friend.to_user_id == current_user.id),
             and_(Friend.from_user_id == current_user.id, Friend.to_user_id == unfriend_user_id))).first()
+
+    print('---------friendship --------', friendship)
 
     if not friendship:
         return {'errors': 'You are not a friend with this user.'}, 404
