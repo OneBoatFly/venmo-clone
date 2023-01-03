@@ -77,37 +77,49 @@ The home page provides a user sign in and sign up options, as well as a demo use
 ![login](https://user-images.githubusercontent.com/34921536/210405112-cb96c94f-f860-48c0-adf2-e041d38ee832.gif)
 
 ### Sign Up
+![signup](https://user-images.githubusercontent.com/34921536/210413515-414bed14-2c10-458d-875c-9e2dc411330a.gif)
 
 ### Demo User
+![demouser](https://user-images.githubusercontent.com/34921536/210413538-7bcf4461-8958-4009-a2a1-ccda34792657.gif)
 
 ### Logout
+![logout](https://user-images.githubusercontent.com/34921536/210413557-e8083c54-986b-43a1-8c69-d455c8e71ec2.gif)
 
 ## Open Requests
 A user can see all pending requests from and to the user. If the request is from the user, the user can cancel or edit it. If the request is to the user, the user an choose to decline or make a payment.
 
 ### Request From
+![request-from](https://user-images.githubusercontent.com/34921536/210413576-88acca8a-9018-481b-88a4-cdab4ccf09fc.gif)
 
 ### Request To
+![request-to](https://user-images.githubusercontent.com/34921536/210413587-6f93a5ac-18a6-4fbc-85b7-700d006ce093.gif)
 
 ### Create Request
+![request-create](https://user-images.githubusercontent.com/34921536/210413604-24a0dcea-0251-4211-a22d-bb3cd5d805c9.gif)
 
 ## Friends
 A user can see all it's current confirmed friends and pending friend requests. If the request is from the user, the user can cancel the request. If the request is to the user, the user can accept the request. If the friend is confirmed friend, the user can choose to unfriend.
 
 ### Unfriend
+![friends-unfriend](https://user-images.githubusercontent.com/34921536/210413622-0d571b05-bbac-4ef9-bf9c-3f9e68e0d49d.gif)
 
 ### Cancel
+![friends-cancel](https://user-images.githubusercontent.com/34921536/210413627-77ca0b34-4b23-40d5-afec-355814dcf414.gif)
 
-### Send Request
+### Send Request (Live)
+![friends-add](https://user-images.githubusercontent.com/34921536/210413640-2956917a-4688-4bc7-a670-bcb7dc882713.gif)
 
 ### Accept
-
+![friends-accept](https://user-images.githubusercontent.com/34921536/210413683-1b448d19-c58a-44d7-b41a-23d6555a7094.gif)
 
 ## Transactions
 A user can look at theirs and friends transaction histories and can make new payments. On the transaction history page, a user can also like or cancel like of a transaction. By clicking on the comment icon, a user can go into the specific transaction and make comments.
 
 ### User and Friend Transactions History
+![trans-history](https://user-images.githubusercontent.com/34921536/210413718-69d43301-0e85-4ad8-b775-402113ab179c.gif)
 
 ### Like and Unlike
+![trans-like](https://user-images.githubusercontent.com/34921536/210413726-5b3893f2-e8ce-411b-94ea-3be4abd2358c.gif)
 
 ### Comment
+![trans-comment](https://user-images.githubusercontent.com/34921536/210413741-29d1ab10-ef03-4538-b7f3-48e5c2c70c2b.gif)
