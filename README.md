@@ -68,3 +68,14 @@ Vinmo is a clone of venmo.com. The site allows registered users to request for a
    ```
 
 7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+
+# Features
+
+## Home Page
+The home page provides a user sign in and sign up options, as well as a demo user option. By clicking on the buttons, a user will be taken to the sign in or sign up pages.
+### Sign In
+![login](https://user-images.githubusercontent.com/34921536/210405112-cb96c94f-f860-48c0-adf2-e041d38ee832.gif)
+
+### Sign Up
+
+### Demo User
