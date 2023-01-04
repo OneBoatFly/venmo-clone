@@ -7,7 +7,7 @@ export default function HomeMain() {
   const dispatch = useDispatch();
 
   const onDemo = () => {
-    dispatch(login('demo@aa.io', 'password'));
+    dispatch(login('yizhou@aa.io', 'password'));
   };
 
   return (
