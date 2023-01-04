@@ -12,9 +12,6 @@ import PayPage from './components/PayPage/PayPage';
 import OpenRequestPage from './components/OpenRequestPage/OpenRequestPage';
 import FriendPage from './components/FriendPage/FriendPage';
 import StoryPage from './components/StoryPage/StoryPage';
-import { io } from 'socket.io-client';
-
-let socket;
 
 function App() {
   const user = useSelector(state => state.session.user);

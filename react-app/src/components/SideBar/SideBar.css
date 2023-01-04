@@ -22,8 +22,8 @@
 }
 
 .sidebar-single-div.profile-container {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     column-gap: 8px;
 }
@@ -34,16 +34,25 @@
     justify-content: center;
     row-gap: 8px;
     height: 100%;
+    width: calc(100% - 78px - 8px);
 }
 
+.sidebar-mobile-name-email-div span,
 .sidebar-name-email-div span {
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.33;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
 }
 
+.sidebar-mobile-name-email-div a,
 .sidebar-name-email-div a {
     color: #0074DE;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
 }
 
 .sidebar-balance {
