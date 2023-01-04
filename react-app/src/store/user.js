@@ -72,7 +72,7 @@ export const fetchAllUsers = () => async (dispatch) => {
 
 
 export const fetchNonFriendUsers = () => async (dispatch) => {
-    console.log('in fectch non friend users thunk')
+    // console.log('in fectch non friend users thunk')
     const response = await fetch('/api/users/nonfriends');
 
     if (response.ok) {

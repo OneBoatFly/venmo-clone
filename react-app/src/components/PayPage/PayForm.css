@@ -209,6 +209,14 @@
     column-gap: 4px;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+.payform-username-bubble span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%
 }
 
 .payform-username-bubble .fa-solid.fa-x {
