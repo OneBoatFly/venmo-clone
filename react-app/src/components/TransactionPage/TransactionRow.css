@@ -24,6 +24,7 @@
     flex-direction: column;
     row-gap: 6px;
     font-size: 16px;
+    overflow: hidden;
 }
 
 .transaction-info-div span {
@@ -32,6 +33,7 @@
 
 .transaction-amount {
     flex-basis: fit-content;
+    white-space: nowrap;
 }
 
 .transaction-amount.outflow {
