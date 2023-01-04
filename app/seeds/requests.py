@@ -2,37 +2,62 @@ from app.models import db, User, OpenRequest, environment, SCHEMA
 
 
 def seed_requests():
-    user1 = User.query.get(1)
-    user2 = User.query.get(2)
-    user3 = User.query.get(3)
+    users = User.query.all()
 
-    for i in range(3):
-        request1 = OpenRequest(
-            amount=(i + 1) * 10000,
-            note=f'Lunch {i + 1}'
+    AMOUNTS = [
+        5767,
+        4761,
+        5586,
+        7526,
+        3255,
+        3888
+    ]
+
+    NOTES = [
+        '2 vermicelli',
+        'pho',
+        'bun bo',
+        'broken rice',
+        'ramen + bar',
+        'jubilee cheese'
+    ]
+
+    for j in range(len(users) - 1):
+        for i in range(len(AMOUNTS)):
+            request = OpenRequest(
+                amount=AMOUNTS[i],
+                note=NOTES[i]
+            )
+            request.user_from = users[j]
+            request.user_to = users[i + 1]
+            db.session.add(request)
+
+    AMOUNT_P = [
+        3767,
+        2541,
+        7546,
+        7625,
+        1255,
+        4878
+    ]
+
+    NOTES_P = [
+        'bobae',
+        'pizza',
+        'burger',
+        'drinks',
+        'sushi',
+        'pie'
+    ]
+
+    for k in reversed(range(1, len(users))):
+        request = OpenRequest(
+            amount=AMOUNT_P[k - 1],
+            note=NOTES_P[k - 1]
         )
-
-        request1.user_from = user1
-        request1.user_to = user2
-        db.session.add(request1)
-
-        request2 = OpenRequest(
-            amount=(i + 1) * 5000,
-            note=f'Dinner {i + 1}'
-        )
-
-        request2.user_from = user3
-        request2.user_to = user1
-        db.session.add(request2)
-
-        request3 = OpenRequest(
-            amount=(i + 1) * 500,
-            note=f'Breakfast {i + 1}'
-        )
-
-        request3.user_from = user3
-        request3.user_to = user2
-        db.session.add(request3)
+        request.user_from = users[k]
+        request.user_to = users[0]
+        db.session.add(request)
 
     db.session.commit()
 

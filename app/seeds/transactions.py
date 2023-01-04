@@ -2,30 +2,62 @@ from app.models import db, User, Transaction, environment, SCHEMA
 
 
 def seed_transactions():
-    user1 = User.query.get(1)
-    user2 = User.query.get(2)
+    users = User.query.all()
 
-    for i in range(3):
+    AMOUNTS = [
+        2467,
+        3761,
+        4586,
+        5126,
+        1255,
+        2988
+    ]
+
+    NOTES = [
+        'Mashed potatoes',
+        'Cranberry sauce',
+        'Christmas ham',
+        'Beef tenderloin',
+        'Rack of lamb',
+        'Green bean casserole'
+    ]
+
+    for j in range(len(users) - 1):
+        for i in range(len(AMOUNTS)):
+            transaction = Transaction(
+                amount=AMOUNTS[i],
+                note=NOTES[i]
+            )
+            transaction.user_from = users[j]
+            transaction.user_to = users[i + 1]
+            transaction.likes = [users[j]]
+            db.session.add(transaction)
+
+    AMOUNT_P = [
+        377,
+        2541,
+        1546,
+        57625,
+        1855,
+        4868
+    ]
+
+    NOTES_P = [
+        'cookies',
+        'fruitcake',
+        'gingerbread houses',
+        'bourbon balls',
+        'pecan tassies',
+        'eggnog'
+    ]
+
+    for k in reversed(range(1, len(users))):
         transaction = Transaction(
-            amount=(i + 1) * 10000,
-            note=f'Dinner {i + 1}'
+            amount=AMOUNT_P[k - 1],
+            note=NOTES_P[k - 1]
         )
-
-        transaction.user_from = user1
-        transaction.user_to = user2
-        transaction.likes = [user1]
-        db.session.add(transaction)
-
-    user3 = User.query.get(3)
-    for i in range(3):
-        transaction = Transaction(
-            amount=(i + 1) * 10000,
-            note=f'Dinner {i + 1}'
-        )
-
-        transaction.user_from = user2
-        transaction.user_to = user3
-        transaction.likes = [user3]
+        transaction.user_from = users[k]
+        transaction.user_to = users[0]
         db.session.add(transaction)
 
     db.session.commit()

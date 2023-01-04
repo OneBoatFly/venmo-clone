@@ -7,7 +7,7 @@ def seed_comments():
     for transaction in user1.transactions_from:
         for j in range(2):
             comment = Comment(
-                body=f'Great dinner comment number {j + 1}',
+                body=f'Good food {j + 1}',
                 transaction=transaction,
                 user=user1
             )
@@ -16,7 +16,7 @@ def seed_comments():
     for transaction in user2.transactions_to:
         for j in range(2):
             comment = Comment(
-                body=f'Great lunch comment number {j + 1}',
+                body=f'Great lunch {j + 1}',
                 transaction=transaction,
                 user=user2
             )

@@ -4,19 +4,28 @@ from app.models import db, User, environment, SCHEMA, Friend
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='Yizhou', email='yizhou@aa.io', password='password', image_url='https://media.licdn.com/dms/image/C5603AQFk_0ySc7KuHA/profile-displayphoto-shrink_100_100/0/1516481604462?e=1676505600&v=beta&t=Mcy4taadYjrr5ntlJpBTwcjTF4VWw754dv7PskMEvQg')
+    # marnie = User(
+    #     username='Marnie', email='marnie@aa.io', password='password')
+    # bobbie = User(
+    #     username='Bobbie', email='bobbie@aa.io', password='password')
 
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    # db.session.add(marnie)
+    # db.session.add(bobbie)
 
-    # for testing purposes, delete later.
-    for i in range(20):
-        user = User(username=f'TestUser{i + 1}', email=f'test{i + 1}@aa.io', password='password')
+    NAMES = ['Rachel', 'Monica', 'Phoebe', 'Joey', 'Chandler', 'Ross']
+    PROFILES = [
+        'https://firebasestorage.googleapis.com/v0/b/bnbair.appspot.com/o/profiles%2Fprofile-rachel.png?alt=media&token=0605bbe6-3987-4ada-b875-ddf4bc65416f',
+        'https://firebasestorage.googleapis.com/v0/b/bnbair.appspot.com/o/profiles%2Fprofile-monica.png?alt=media&token=53bfe2a2-fd5c-489f-b957-bdce631cc066',
+        'https://firebasestorage.googleapis.com/v0/b/bnbair.appspot.com/o/profiles%2Fprofile-pheobe.png?alt=media&token=b6d51729-02de-41e5-8eae-14170ae400d1',
+        'https://firebasestorage.googleapis.com/v0/b/bnbair.appspot.com/o/profiles%2Fprofile-joey.png?alt=media&token=01cda767-3cf5-47fb-a048-9b466a9c4a2e',
+        'https://firebasestorage.googleapis.com/v0/b/bnbair.appspot.com/o/profiles%2Fprofile-chandler.png?alt=media&token=fa36bcc3-dde5-4ca8-a2c5-e5cdf91fec8f',
+        'https://firebasestorage.googleapis.com/v0/b/bnbair.appspot.com/o/profiles%2Fprofile-ross.png?alt=media&token=e3f3898f-6978-4771-9728-284d2540eb3f'
+    ]
+
+    for i in range(6):
+        user = User(username=NAMES[i], email=f'{NAMES[i].lower()}@aa.io', password='password', image_url=PROFILES[i])
         db.session.add(user)
     
     db.session.commit()
