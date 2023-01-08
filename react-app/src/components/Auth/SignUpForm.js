@@ -73,8 +73,8 @@ const SignUpForm = () => {
       newErrors['username'] = "Please enter your username."
     } else if (username.length < 5) {
       newErrors['username'] = "Username must have 5 or longer characters."
-    } else if (username.length > 50) {
-      newErrors['username'] = "Username must have 50 or less characters."
+    } else if (username.length > 40) {
+      newErrors['username'] = "Username must have 40 or less characters."
     } else {
       delete newErrors['username']
       usernameDivRef.current.classList.remove('hasErrors')
