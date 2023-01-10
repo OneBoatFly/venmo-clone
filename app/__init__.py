@@ -1,3 +1,6 @@
+import eventlet
+eventlet.monkey_patch(socket=True)
+
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
@@ -17,6 +20,10 @@ from .api.image_routes import image_routes
 from .seeds import seed_commands
 from .config import Config
 from .mysocket import socketio
+
+# not using eventlet.monkey_patch() works, but doesn't work in production
+# eventlet.monkey_patch(socket=True) ## socket=True reproduces the recursion error
+# eventlet.monkey_patch(socket=False) ## socket=False leaves flask hanging
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 

@@ -38,12 +38,13 @@ def delete_file_from_s3(userId):
 def upload_file_to_s3(file, acl="public-read"):
     print('------ upload_file_to_s3 -------')
     print(file)
-    print('---------- content type under upload', file.content_type)
+    
     # print(userId)
     # folder_file_path = f'{userId}/{file.filename}'
     # print('folder_file_path ------', folder_file_path)
     try:
-        s3.upload_fileobj(
+        print('*** content type under upload ***', file.content_type)
+        result = s3.upload_fileobj(
             file,
             BUCKET_NAME,
             file.filename,
@@ -52,6 +53,10 @@ def upload_file_to_s3(file, acl="public-read"):
                 "ContentType": file.content_type
             }
         )
+        print('*** upload result ***', result)
+        trace_err1 = traceback.format_exc()
+        print('>>>>>>>>>>>>>>>', trace_err1)
+        print('*** upload_fileobj() finished ***')
     except Exception as e:
         # in case the our s3 upload fails
         trace_err = traceback.format_exc()
