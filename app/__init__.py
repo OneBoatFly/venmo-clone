@@ -108,4 +108,6 @@ def not_found(e):
 
 
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, debug=True, user_reloader=False, ssl_context=('certificate.pem', 'key.pem'), port=5000)
+
+# flask run --cert=certificate.pem --key=key.pem
