@@ -51,12 +51,13 @@ export default function ProfileImage({ setShowModal }) {
                     
         //         }
         //     })
-
+        console.log('------ sending fetch')
         const res = await fetch('/api/images', {
             method: "POST",
             body: formData,
         });
 
+        console.log('------res', res)
         if (res.ok) {
             const data = await res.json();
             dispatch(setUser(data.user));
