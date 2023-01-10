@@ -43,30 +43,30 @@ export default function ProfileImage({ setShowModal }) {
         // some sort of loading message is a good idea
         setImageLoading(true);
 
-        fetch('/api/images', {method: 'DELETE'})
-            .then(async (res) => {
-                console.log('result', res)
+        // fetch('/api/images', {method: 'DELETE'})
+        //     .then(async (res) => {
+        //         console.log('result', res)
 
-                if (res.ok) {
-                    const res = await fetch('/api/images', {
-                        method: "POST",
-                        body: formData,
-                    });
-            
-                    if (res.ok) {
-                        const data = await res.json();
-                        dispatch(setUser(data.user));
-            
-                        setImageLoading(false);
-                        setShowModal(false);
-                    }
-                    else {
-                        setImageLoading(false);
-                        setError('An error occurred. Please try again.');
-                    }
-                }
-            })
+        //         if (res.ok) {
+                    
+        //         }
+        //     })
 
+        const res = await fetch('/api/images', {
+            method: "POST",
+            body: formData,
+        });
+
+        if (res.ok) {
+            const data = await res.json();
+            dispatch(setUser(data.user));
+
+            setImageLoading(false);
+            setShowModal(false);
+        } else {
+            setImageLoading(false);
+            setError('An error occurred. Please try again.');
+        }
     }
 
     return (
