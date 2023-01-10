@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
+import { ModalProvider } from "./context/Modal";
 import SocketProvider from './context/SocketContext';
 
 const store = configureStore();
@@ -12,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <SocketProvider>
-        <App />
+        <ModalProvider>
+         <App />
+        </ModalProvider>
       </SocketProvider>
     </Provider>
   </React.StrictMode>,

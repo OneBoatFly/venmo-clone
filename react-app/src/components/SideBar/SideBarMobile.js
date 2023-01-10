@@ -8,6 +8,9 @@ import './SideBarMobile.css';
 import { useSocket } from '../../context/SocketContext';
 import { fetchAllOpenRequests } from '../../store/openRequest';
 import { fetchAllFriends } from '../../store/friend';
+import { Modal } from '../../context/Modal';
+import ProfileImage from './ProfileImage';
+
 
 export default function SideBarMobile() {
     const user = useSelector(state => state.session.user);
@@ -23,6 +26,8 @@ export default function SideBarMobile() {
     const [menuIcon, setMenuIcon] = useState(true);
     const [requestUnread, setRequestUnread] = useState(false);
     const [friendUnread, setFriendUnread] = useState(false);
+
+    const [showModal, setShowModal] = useState(false);
 
     const handleOpenMenu = () => {
         setOpenMenu(true);
@@ -82,7 +87,7 @@ export default function SideBarMobile() {
                     </button>
                   </div>
                   <div className='sidebar-mobile-single-div profile-container'>
-                      <img src={user.imageUrl} alt='' className='side-bar-profile-pic' />
+                      <img src={user.imageUrl} alt='' className='side-bar-profile-pic profile-add-image' onClick={() => setShowModal(true)} />
                       <div className='sidebar-mobile-name-email-div'>
                           <span>Hi, {user.username}</span>
                           <NavLink to={`/transactions`} onClick={handleCloseMenu}>@{user.email}</NavLink>
@@ -116,6 +121,11 @@ export default function SideBarMobile() {
               </>
           }
       </nav>
+        {showModal &&
+            <Modal onClose={() => setShowModal(false)}>
+                <ProfileImage onClose={() => setShowModal(true)} setShowModal={setShowModal} />
+            </Modal>
+        }
     </div>
   )
 }
