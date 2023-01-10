@@ -70,6 +70,7 @@ export default function ProfileImage({ setShowModal }) {
         }
     }
 
+    console.log('---------image -------', image)
     return (
         <div className='profile-image-upload-modal'>
             <span className='drag-drop-title'>Drag your profile picture here</span>

@@ -38,6 +38,7 @@ def delete_file_from_s3(userId):
 def upload_file_to_s3(file, acl="public-read"):
     print('------ upload_file_to_s3 -------')
     print(file)
+    print('---------- content type under upload', file.content_type)
     # print(userId)
     # folder_file_path = f'{userId}/{file.filename}'
     # print('folder_file_path ------', folder_file_path)
