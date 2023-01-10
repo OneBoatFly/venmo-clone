@@ -12,7 +12,7 @@ s3 = boto3.client(
 
 BUCKET_NAME = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", 'webp'}
 
 def allowed_file(filename):
     return "." in filename and \
@@ -23,12 +23,22 @@ def get_unique_filename(filename):
     unique_filename = uuid.uuid4().hex
     return f"{unique_filename}.{ext}"
 
-def upload_file_to_s3(file, acl="public-read"):
+def delete_file_from_s3(userId):
+    folder = s3.list_objects(Bucket=BUCKET_NAME, Prefix=f"{userId}/")
+
+    for obj in folder['Contents']:
+        s3.delete_object(Bucket=BUCKET_NAME, Key=obj['Key'])
+
+
+def upload_file_to_s3(file, userId, acl="public-read"):
+    folder_file_path = f'{userId}/{file.filename}'
     try:
+        delete_file_from_s3(userId)
+
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
-            file.filename,
+            folder_file_path,
             ExtraArgs={
                 "ACL": acl,
                 "ContentType": file.content_type
@@ -38,4 +48,4 @@ def upload_file_to_s3(file, acl="public-read"):
         # in case the our s3 upload fails
         return {"errors": str(e)}
 
-    return {"url": f"{S3_LOCATION}{file.filename}"}
+    return {"url": f"{S3_LOCATION}{folder_file_path}"}

@@ -3,6 +3,8 @@ import LogoutButton from '../Auth/LogoutButton';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PayReqButt from './PayReqButt';
+import ProfileImage from './ProfileImage';
+import { Modal } from '../../context/Modal';
 import './SideBar.css';
 import { getDecimalNum } from '../../utils/getDecimalNum';
 import { useSocket } from '../../context/SocketContext';
@@ -21,6 +23,7 @@ export default function SideBar() {
   
   const [requestUnread, setRequestUnread] = useState(false);
   const [friendUnread, setFriendUnread] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -51,49 +54,56 @@ export default function SideBar() {
   }, [socket, user, dispatch]);
 
 return (
-    <nav className='sidebar-div'>
-      {user &&
-        <>
-          <div className='sidebar-single-div'>
-            {user ? 
-              <NavLink to='/account' exact={true} className='vinmo-a'>
-                <span className='vinmo-span'>Vinmo</span>
-              </NavLink>            
-            :
-              <NavLink to='/' exact={true} className='vinmo-a'>
-                <span className='vinmo-span'>Vinmo</span>
-              </NavLink>
-            }
-          </div>
-          <div className='sidebar-single-div profile-container'>
-            <img src={user.imageUrl} alt='' className='side-bar-profile-pic'/>
-            <div className='sidebar-name-email-div'>
-              <span>Hi, {user.username}</span>
-              <NavLink to={`/transactions`}>@{user.email}</NavLink>
+    <>
+      <nav className='sidebar-div'>
+        {user &&
+          <>
+            <div className='sidebar-single-div'>
+              {user ? 
+                <NavLink to='/account' exact={true} className='vinmo-a'>
+                  <span className='vinmo-span'>Vinmo</span>
+                </NavLink>            
+              :
+                <NavLink to='/' exact={true} className='vinmo-a'>
+                  <span className='vinmo-span'>Vinmo</span>
+                </NavLink>
+              }
             </div>
-          </div>
-          <PayReqButt />
-          <div className='sidebar-single-div'>
-            <span className='sidebar-balance'>${amount} in Vinmo</span>
-          </div>
-          <div className='sidebar-single-div sidebar-menu'>
-            <NavLink to='/transactions'>My Transactions</NavLink>
+            <div className='sidebar-single-div profile-container'>
+              <img src={user.imageUrl} alt='' className='side-bar-profile-pic profile-add-image' onClick={() => setShowModal(true)}/>
+              <div className='sidebar-name-email-div'>
+                <span>Hi, {user.username}</span>
+                <NavLink to={`/transactions`}>@{user.email}</NavLink>
+              </div>
+            </div>
+            <PayReqButt />
+            <div className='sidebar-single-div'>
+              <span className='sidebar-balance'>${amount} in Vinmo</span>
+            </div>
+            <div className='sidebar-single-div sidebar-menu'>
+              <NavLink to='/transactions'>My Transactions</NavLink>
 
-            <NavLink to='/open' className={`sidebar-notification-div ${requestUnread ? 'hasUnread' : ''}`} onClick={() => setRequestUnread(false)}>
-              <div>Open Request</div>
-              {openRequestCounter > 0 && <span>{openRequestCounter}</span>}
-            </NavLink>
+              <NavLink to='/open' className={`sidebar-notification-div ${requestUnread ? 'hasUnread' : ''}`} onClick={() => setRequestUnread(false)}>
+                <div>Open Request</div>
+                {openRequestCounter > 0 && <span>{openRequestCounter}</span>}
+              </NavLink>
 
-            <NavLink to='/friends' className={`sidebar-notification-div ${friendUnread ? 'hasUnread' : ''}`} onClick={() => setFriendUnread(false)}>
-              <div>Friends</div>
-              {pendingFriendsCounter > 0 && <span>{pendingFriendsCounter}</span>}
-            </NavLink>
+              <NavLink to='/friends' className={`sidebar-notification-div ${friendUnread ? 'hasUnread' : ''}`} onClick={() => setFriendUnread(false)}>
+                <div>Friends</div>
+                {pendingFriendsCounter > 0 && <span>{pendingFriendsCounter}</span>}
+              </NavLink>
 
-            {/* <NavLink to='/search' onClick={(e) => e.preventDefault()}>Search - feature to come</NavLink> */}
-            <LogoutButton />
-          </div>
-        </>
+              {/* <NavLink to='/search' onClick={(e) => e.preventDefault()}>Search - feature to come</NavLink> */}
+              <LogoutButton />
+            </div>
+          </>
+        }
+      </nav>
+      {showModal &&
+        <Modal onClose={() => setShowModal(false)}>
+        <ProfileImage onClose={() => setShowModal(true)} setShowModal={setShowModal} />
+        </Modal>
       }
-    </nav>
+    </>
   );
 }
