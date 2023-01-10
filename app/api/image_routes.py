@@ -1,9 +1,18 @@
 from flask import Blueprint, request
 from app.models import db
 from flask_login import current_user, login_required
-from app.myAWS import upload_file_to_s3, allowed_file, get_unique_filename
+from app.myAWS import upload_file_to_s3, allowed_file, get_unique_filename, delete_file_from_s3
 
 image_routes = Blueprint("images", __name__)
+
+
+@image_routes.route("", methods=["DELETE"])
+@login_required
+def delete_image():
+    # print('---------', 'upload image route')
+
+    delete_file_from_s3(current_user.id)
+    return 'success'
 
 
 @image_routes.route("", methods=["POST"])
