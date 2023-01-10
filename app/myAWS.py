@@ -23,19 +23,24 @@ def get_unique_filename(filename):
     unique_filename = uuid.uuid4().hex
     return f"{unique_filename}.{ext}"
 
+
 def delete_file_from_s3(userId):
     folder = s3.list_objects(Bucket=BUCKET_NAME, Prefix=f"{userId}/")
     print('folder ------------- ', folder)
+    print("folder['Contents']", folder['Contents'])
+
     if folder and 'Contents' in folder:
         for obj in folder['Contents']:
             s3.delete_object(Bucket=BUCKET_NAME, Key=obj['Key'])
 
 
 def upload_file_to_s3(file, userId, acl="public-read"):
+    print('------ upload_file_to_s3 -------')
+    print(file)
+    print(userId)
     folder_file_path = f'{userId}/{file.filename}'
+    print('folder_file_path ------', folder_file_path)
     try:
-        # delete_file_from_s3(userId)
-
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
@@ -47,6 +52,7 @@ def upload_file_to_s3(file, userId, acl="public-read"):
         )
     except Exception as e:
         # in case the our s3 upload fails
+        print('upload_fileobj error --------', e)
         return {"errors": str(e)}
 
     return {"url": f"{S3_LOCATION}{folder_file_path}"}

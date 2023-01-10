@@ -18,15 +18,15 @@ def delete_image():
 @image_routes.route("", methods=["POST"])
 @login_required
 def upload_image():
-    # print('---------', 'upload image route')
+    print('---------', 'upload image route')
     if "image" not in request.files:
-        # print('------ no image')
+        print('------ no image')
         return {"errors": "image required"}, 400
 
     image = request.files["image"]
 
     if not allowed_file(image.filename):
-        # print('----- file not permitted')
+        print('----- file not permitted')
         return {"errors": "file type not permitted"}, 400
 
     image.filename = get_unique_filename(image.filename)
@@ -40,7 +40,7 @@ def upload_image():
         return upload, 400
 
     # print('upload to aws success', upload)
-    # print('---- url ----', upload['url'])
+    print('---- url ----', upload['url'])
     url = upload["url"]
     # flask_login allows us to get the current user from the request
     current_user.image_url = url
