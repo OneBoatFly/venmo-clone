@@ -12,7 +12,7 @@ s3 = boto3.client(
 )
 
 BUCKET_NAME = os.environ.get("S3_BUCKET")
-S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
+S3_LOCATION = f"https://{BUCKET_NAME}.s3.amazonaws.com/"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", 'webp'}
 
 def allowed_file(filename):
@@ -35,17 +35,17 @@ def delete_file_from_s3(userId):
             s3.delete_object(Bucket=BUCKET_NAME, Key=obj['Key'])
 
 
-def upload_file_to_s3(file, userId, acl="public-read"):
+def upload_file_to_s3(file, acl="public-read"):
     print('------ upload_file_to_s3 -------')
     print(file)
-    print(userId)
-    folder_file_path = f'{userId}/{file.filename}'
-    print('folder_file_path ------', folder_file_path)
+    # print(userId)
+    # folder_file_path = f'{userId}/{file.filename}'
+    # print('folder_file_path ------', folder_file_path)
     try:
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
-            folder_file_path,
+            file.filename,
             ExtraArgs={
                 "ACL": acl,
                 "ContentType": file.content_type
@@ -53,8 +53,10 @@ def upload_file_to_s3(file, userId, acl="public-read"):
         )
     except Exception as e:
         # in case the our s3 upload fails
-        traceback.print_exc()
+        trace_err = traceback.format_exc()
+        print('trace_err >>>>>>>>>', trace_err)
         print('upload_fileobj error --------', e)
+
         return {"errors": str(e)}
 
-    return {"url": f"{S3_LOCATION}{folder_file_path}"}
+    return {"url": f"{S3_LOCATION}{file.filename}"}
