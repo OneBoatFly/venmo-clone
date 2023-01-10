@@ -19,7 +19,7 @@ Vinmo is a clone of venmo.com. The site allows registered users to request for a
 ![redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
 ![flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 ![socket](https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white)
-![AWS S3]([https://img.shields.io/badge/AWS%20S3?&style=for-the-badge&logo=AWS%20S3&logoColor=white])
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
 
 ### Database:
