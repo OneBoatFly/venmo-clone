@@ -2,6 +2,7 @@ import boto3
 import botocore
 import os
 import uuid
+import traceback
 
 
 s3 = boto3.client(
@@ -52,6 +53,7 @@ def upload_file_to_s3(file, userId, acl="public-read"):
         )
     except Exception as e:
         # in case the our s3 upload fails
+        traceback.print_exc()
         print('upload_fileobj error --------', e)
         return {"errors": str(e)}
 
