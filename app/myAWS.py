@@ -26,8 +26,9 @@ def get_unique_filename(filename):
 def delete_file_from_s3(userId):
     folder = s3.list_objects(Bucket=BUCKET_NAME, Prefix=f"{userId}/")
 
-    for obj in folder['Contents']:
-        s3.delete_object(Bucket=BUCKET_NAME, Key=obj['Key'])
+    if folder and folder['Contents']:
+        for obj in folder['Contents']:
+            s3.delete_object(Bucket=BUCKET_NAME, Key=obj['Key'])
 
 
 def upload_file_to_s3(file, userId, acl="public-read"):
