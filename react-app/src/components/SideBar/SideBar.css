@@ -111,4 +111,5 @@
 
 .profile-add-image {
     cursor: pointer;
+    object-fit: cover;
 }

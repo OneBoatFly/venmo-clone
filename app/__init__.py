@@ -51,7 +51,7 @@ app.register_blueprint(like_routes, url_prefix='/api/likes')
 app.register_blueprint(search_routes, url_prefix='/api/search')
 app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
-Migrate(app, db)
+Migrate(app, db) # sqlalchemy setup
 socketio.init_app(app)
 
 # Application Security
