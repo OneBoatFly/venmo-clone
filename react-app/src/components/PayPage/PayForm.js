@@ -9,6 +9,7 @@ import { fetchAllUsers } from '../../store/user';
 import AllUsersDropDown from './AllUsersDropDown';
 import './PayForm.css';
 import { useSocket } from '../../context/SocketContext';
+import PayFormEmoji from './PayFormEmoji';
 
 export default function PayForm() {
     const user = useSelector(state => state.session.user);
@@ -241,6 +242,7 @@ export default function PayForm() {
                         onChange={(e) => setNote(e.target.value)}
                         value={note}
                     ></textarea>
+                    {/* <PayFormEmoji /> */}
                     <i className={`fa-solid fa-exclamation payform-note-icon ${errors?.note && hasSubmit ? 'payErrorIcon' : ''}`}></i>
                 </div>
                 {hasSubmit && errors.note &&
