@@ -6,8 +6,10 @@ import App from './App';
 import configureStore from './store';
 import { ModalProvider } from "./context/Modal";
 import SocketProvider from './context/SocketContext';
+import ReactGA from 'react-ga4';
 
 const store = configureStore();
+ReactGA.initialize('G-YDHBRX1F71');
 
 ReactDOM.render(
   <React.StrictMode>
